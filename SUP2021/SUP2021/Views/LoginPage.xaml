@@ -9,6 +9,11 @@
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
             <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
-        </StackLayout>
+            <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+            <Button VerticalOptions="Center" Text="create account" Command="{Binding createCommand }"/>
+            </StackLayout>
+           </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+
+    

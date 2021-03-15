@@ -104,6 +104,7 @@
     -->
     <TabBar>
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+        <ShellContent Route="createaccount" ContentTemplate="{DataTemplate local:createaccount}"/>
     </TabBar>
 
     <!-- Optional Templates 

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vm="clr-namespace:SUP2021.ViewModels"
+             mc:Ignorable="d"
+             x:Class="SUP2021.Views.createaccount"
+             Shell.NavBarIsVisible="False">
+   <ContentPage.BindingContext>
+        <vm:createaccountViewModel/>
+       
+    </ContentPage.BindingContext>
+     
+    <ContentPage.Content>
+         <StackLayout Padding="20,10,20,10" VerticalOptions="Center">
+           <Label Text="Please fill out your personal information" FontSize="Title"/>
+             <Entry Placeholder="Name" PlaceholderColor="HotPink" />
+             <Entry Placeholder="Surname" PlaceholderColor="HotPink" />
+             <Entry Placeholder="Email" PlaceholderColor="HotPink" />
+             <Entry Placeholder="Username" PlaceholderColor="HotPink" />
+             <Entry Placeholder="Phone" Keyboard="Telephone" PlaceholderColor="HotPink" />
+             <Entry IsPassword="true" Placeholder="Password" />
+             <Button VerticalOptions="Center" Text="Register" Command="{Binding regCommand}"/>
+             </StackLayout>
+         </ContentPage.Content>
+</ContentPage>

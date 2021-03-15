@@ -10,9 +10,13 @@ namespace SUP2021.ViewModels
     {
         public Command LoginCommand { get; }
 
+        public Command createCommand { get; }
+
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
+            createCommand = new Command(createClicked);
+
         }
 
         private async void OnLoginClicked(object obj)
@@ -20,5 +24,11 @@ namespace SUP2021.ViewModels
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
             await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
         }
+
+        private async void createClicked(object obj)
+        {
+            await Shell.Current.GoToAsync($"//{nameof(createaccount)}");
+        }
+
     }
 }

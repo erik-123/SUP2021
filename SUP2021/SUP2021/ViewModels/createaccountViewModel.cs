@@ -25,7 +25,7 @@ namespace SUP2021.ViewModels
         }
         private async void OnRegClicked(object obj)
         {
-            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
         }
 
     }

@@ -49,14 +49,14 @@ namespace SUP2021.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
-            };
+            //Item newItem = new Item()
+            //{
+            //    Id = Guid.NewGuid().ToString(),
+            //    Text = Text,
+            //    Description = Description
+            //};
 
-            await DataStore.AddItemAsync(newItem);
+            //await DataStore.AddItemAsync(newItem);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

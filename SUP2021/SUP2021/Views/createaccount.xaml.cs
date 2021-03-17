@@ -15,6 +15,10 @@ namespace SUP2021.Views
             InitializeComponent();
             this.BindingContext = new createaccountViewModel();
         }
+        private async void Back_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LoginPage());
+        }
     }
 }
 

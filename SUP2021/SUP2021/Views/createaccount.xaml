@@ -20,7 +20,8 @@
              <Entry Placeholder="Username" PlaceholderColor="HotPink" />
              <Entry Placeholder="Phone" Keyboard="Telephone" PlaceholderColor="HotPink" />
              <Entry IsPassword="true" Placeholder="Password" />
-             <Button VerticalOptions="Center" Text="Register" Command="{Binding regCommand}"/>
+             <!--<Button VerticalOptions="Center" Text="Register" Command="{Binding regCommand}"/>-->
+             <Button x:Name="Back" Clicked="Back_Clicked" Text="Register"></Button>
              </StackLayout>
          </ContentPage.Content>
 </ContentPage>

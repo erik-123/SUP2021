@@ -35,6 +35,7 @@ namespace SUP2021.Views
             string Password = password.Text;
             string Phone = phone.Text;
             string Adress = "appgatan 2";
+            int uid = 1;
 
             // users.email = email.Text;
             //users.password = password.Text;
@@ -42,8 +43,10 @@ namespace SUP2021.Views
 
             try
             {
+               
                 var newuser = new User
                 {
+                    UID = uid,
                     firstname = name,
                     Username = user,
                     sername=Surname,
@@ -53,14 +56,19 @@ namespace SUP2021.Views
                     adress=Adress
                    
             };
-                database.AddUser(newuser);
-                //database.AddUser(users);
+              
+                 Console.WriteLine(newuser.firstname);
+                  await App.Database.AddUser(newuser);
+                          //  await database.AddUser(users);
                 await DisplayAlert("Grattis", "Tjänsten kostar 5000000 kr per användningstimme", "OK");
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Alert", "Tjänsten är gratis men du måste lägga in dina kortuppgifter", "OK");
-                Debug.WriteLine(ex);
+               // Debug.WriteLine(ex);
+                Console.WriteLine("testmeddelande");
+                Console.WriteLine(ex);
+                Console.WriteLine("testmeddelande");
             }
             
             await Navigation.PushAsync(new LoginPage());

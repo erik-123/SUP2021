@@ -36,10 +36,15 @@ namespace SUP2021.Data
             Database.CreateTableAsync<User>().Wait();
         }
 
-        public string AddUser(User user)
+        public Task<int> AddUser(User user)
+       //public Task<int> AddUser(User user)
         {
-            database.InsertAsync(user);
-            return "success";
+            return database.InsertAsync(user);
+           // database.InsertAsync(user); 
+
+            //return "success";
+            // database.InsertAsync(user);
+            
         }
 
         public Task<List<User>> GetUsersAsync()

@@ -79,8 +79,9 @@
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
 
-    <FlyoutItem Title= "Loggin" Icon="icon_about.png">
+    <FlyoutItem Title= "" FlyoutItemIsVisible="False">
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage} "/>
+      
     </FlyoutItem>
     
     <FlyoutItem Title="About" Icon="icon_about.png">

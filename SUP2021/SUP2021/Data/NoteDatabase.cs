@@ -17,7 +17,8 @@ namespace SUP2021.Data
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<Note>().Wait();
-            
+            database.CreateTableAsync<User>().Wait();
+
 
             string Databasepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Test.db");
 
@@ -33,6 +34,12 @@ namespace SUP2021.Data
             //}
             Database = new SQLiteAsyncConnection(Databasepath);
             Database.CreateTableAsync<User>().Wait();
+        }
+
+        public string AddUser(User user)
+        {
+            database.InsertAsync(user);
+            return "success";
         }
 
         public Task<List<User>> GetUsersAsync()

@@ -29,7 +29,7 @@
         </StackLayout>
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="Welcome to Eriks only fans" FontSize="Title"/>
+                <Label Text="Welcome" FontSize="Title"/>
                 <Label Text="This is a new started appplication! logg in now or registed a account to start your new jurney" FontSize="16" Padding="0,0,0,0"/>
                 <Label FontSize="16" Padding="0,24,0,0">
                     <Label.FormattedText>

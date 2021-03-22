@@ -32,6 +32,7 @@
                 <Label Text="Profile" FontSize="Title"/>
                 <Label Text="Profile" FontSize="16" Padding="0,0,0,0"/>
                 <Label FontSize="16" Padding="0,24,0,0">
+                   
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>

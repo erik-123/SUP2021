@@ -27,8 +27,42 @@ namespace SUP2021.Views
 
             //var Appshell = new AppShell();
 
-        }       
-                
+        }
+        public async void OnLoginButtonClicked(object sender, EventArgs e)
+        {
 
+            try
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.CreateTable<User>(); //SQLite ignorerar create table om den redan finns              
+                    var data = conn.Table<User>().ToList();
+                    // usersListView.ItemsSource = users;
+
+
+                    var data1 = data.Where(x => x.Username == Username.Text && x.password == Password.Text).FirstOrDefault();
+                    if (data1 != null)
+                    {
+                        await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Alert", "Wrong username or password!", "OK");
+                        Console.WriteLine("Fel lösenord");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Alert", "Something went wrong!", "OK");
+                // Debug.WriteLine(ex);
+                Console.WriteLine("testmeddelande");
+                Console.WriteLine(ex);
+                Console.WriteLine("testmeddelande");
+
+            }
+
+
+        }
     }
 }

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SUP2021.Views.TestUserDB">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="New" 
+            />
+        <!-- Clicked="NewContactToolBarItem_Clicked"-->
+
+    </ContentPage.ToolbarItems>
+        
+                <ContentPage.Content>
+        <ListView x:Name="usersListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Username}"
+                              Detail="{Binding password}"
+                              DetailColor="Blue"></TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView> 
+       <!-- <StackLayout> -->
+            
+          
+            <!-- Display notes in a list, Första versionen! -->
+            <!--
+            <CollectionView x:Name="collectionView"
+                    Margin="20"
+                    SelectionMode="Single"
+                    SelectionChanged="OnSelectionChanged">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                               ItemSpacing="10" />
+                </CollectionView.ItemsLayout> -->
+                <!-- Define the appearance of each item in the list -->
+              <!--  <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Text}"
+                           FontSize="Medium"/>
+                            <Label Text="{Binding Date}"
+                           TextColor="Silver"
+                           FontSize="Small" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView> -->
+
+
+
+
+
+
+
+       <!-- </StackLayout> -->
+    </ContentPage.Content>
+</ContentPage>

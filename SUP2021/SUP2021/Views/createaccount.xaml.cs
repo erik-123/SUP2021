@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using SQLite;
 using SUP2021.Data;
 using SUP2021.Models;
 using SUP2021.ViewModels;
@@ -56,15 +57,31 @@ namespace SUP2021.Views
                     adress=Adress
                    
             };
-              
-                 Console.WriteLine(newuser.firstname);
-                  await App.Database.AddUser(newuser);
-                          //  await database.AddUser(users);
-                await DisplayAlert("Grattis", "Tjänsten kostar 5000000 kr per användningstimme", "OK");
+                using(SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.CreateTable<User>();
+                    int rowsAdded = conn.Insert(newuser);
+                    Console.WriteLine(rowsAdded);
+                
+                
+                }
+
+                //Console.WriteLine(newuser.firstname);
+                //  await App.Database.AddUser(newuser);
+                //          //  await database.AddUser(users);
+                await DisplayAlert("Grattis", newuser.firstname + newuser.email + newuser.adress + newuser.UID + newuser.nummber, "OK");
+                //Console.WriteLine("testmeddelande");
+                //var query = App.Database.GetUsersAsync();
+                //query.Wait();
+                //List<User> datas = query.Result;
+                //Console.WriteLine("Total Records in the Notedatabase Table are:" + " " + datas.Count);
+
+                
+
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Alert", "Tjänsten är gratis men du måste lägga in dina kortuppgifter", "OK");
+                await DisplayAlert("Alert", "Something went wrong!", "OK");
                // Debug.WriteLine(ex);
                 Console.WriteLine("testmeddelande");
                 Console.WriteLine(ex);

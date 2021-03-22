@@ -13,6 +13,7 @@ namespace SUP2021
     {
         static NoteDatabase database;
         private static TestDatabase testDatabase;
+        public static string FilePath;
 
         public TestDatabase TestDatabase
         {
@@ -51,6 +52,19 @@ namespace SUP2021
 
 
         }
+
+        public App(string filePath)
+        {
+            InitializeComponent();
+
+            DependencyService.Register<MockDataStore>();
+            MainPage = new AppShell();
+            FilePath = filePath;
+
+
+
+        }
+
 
         protected override void OnStart()
         {

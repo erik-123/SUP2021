@@ -39,6 +39,7 @@ namespace SUP2021.Data
         public Task<int> AddUser(User user)
        //public Task<int> AddUser(User user)
         {
+            //Database.SaveChangesAsync();
             return database.InsertAsync(user);
            // database.InsertAsync(user); 
 
@@ -46,6 +47,15 @@ namespace SUP2021.Data
             // database.InsertAsync(user);
             
         }
+
+        //public async static Task<List<User>> GetAllUsersAsync()
+        //{
+        //    MyDatabaseEntities db = new MyDatabaseEntities();
+        //    var query = from item in db.Students
+        //                select item;
+        //    return await query.ToListAsync();
+        //}
+
 
         public Task<List<User>> GetUsersAsync()
         {

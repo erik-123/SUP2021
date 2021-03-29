@@ -108,6 +108,9 @@
      <FlyoutItem Title= "TestUserDB">
         <ShellContent Route="settings" ContentTemplate="{DataTemplate local:TestUserDB} "/>
     </FlyoutItem>
+    <FlyoutItem Title= "Basket" Icon="icon_feed.png">
+        <ShellContent Route="Basket" ContentTemplate="{DataTemplate local:Basket} "/>
+    </FlyoutItem>
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
    <!-- <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>-->

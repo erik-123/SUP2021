@@ -13,7 +13,7 @@
      
     <ContentPage.Content>
          <StackLayout Padding="20,10,20,10" VerticalOptions="Center">
-           <Label Text="Please fill out your personal information" FontSize="Title"/>
+           <Label Text="Please fill out your personal information"/>
              <Entry x:Name="Firstname" Placeholder="Name" ReturnType="Next" PlaceholderColor="HotPink" />
              <Entry x:Name="surname" Placeholder="Surname" ReturnType="Next" PlaceholderColor="HotPink" />
              <Entry x:Name="email" Placeholder="Email" ReturnType="Next" PlaceholderColor="HotPink" />

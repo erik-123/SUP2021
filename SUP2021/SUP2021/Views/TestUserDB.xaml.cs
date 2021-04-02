@@ -44,18 +44,18 @@ namespace SUP2021.Views
                 Console.WriteLine("testmeddelande");
 
             }
-
+            
             //collectionView.ItemsSource = await App.Database.GetUsersAsync();
             //var test = await App.Database.GetUsersAsync();
-            
+
             //List<User> data = await App.Database.GetUsersAsync();
-           
+
 
             //Console.WriteLine("testmeddelande");
 
             //foreach (User aPart in data)
             //{
-                
+
             //    Console.WriteLine(aPart);
             //    Console.WriteLine("Listan är tom");
             //}
@@ -76,6 +76,56 @@ namespace SUP2021.Views
             //Console.WriteLine(test);
             //Console.WriteLine(data);
             //Console.WriteLine("testmeddelande");
+        }
+        // public IEnumerable<User> GetUsers()
+        // {
+        //  using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+
+        //   return (from u in conn.Table<User>()
+        //    select u).ToList();
+
+        // }
+        // public async User GetSpecificUser(int id)
+        // {
+        //  try{
+        //      using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+        //     return conn.Table<User>().FirstOrDefault(t => t.UID == id);
+        //  }
+        // catch (Exception ex)
+        // {
+        //   return
+        //   await DisplayAlert("Alert", "Fel med sql-frågan!", "OK");
+
+
+        //}
+
+        //}
+        //public Task<Note> GetNoteAsync(int id)
+        // {
+        // using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+        // Get a specific note.
+        //  return conn.Table<User>()
+        //  .Where(i => i.UID == id)
+        //  .FirstOrDefaultasync();
+        //}
+        public User getRow(int User_Id)
+        {
+
+            try
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+
+                    return conn.Table<User>().Where(x => x.UID == User_Id).SingleOrDefault();
+                }
+
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine("Alert", "Fel med sql-frågan!", "OK");
+                Console.WriteLine(ex);
+                return null;
+            }
         }
 
         async void OnAddClicked(object sender, EventArgs e)

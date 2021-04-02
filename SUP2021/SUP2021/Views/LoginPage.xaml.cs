@@ -35,14 +35,18 @@ namespace SUP2021.Views
             {
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                 {
+
                     conn.CreateTable<User>(); //SQLite ignorerar create table om den redan finns              
                     var data = conn.Table<User>().ToList();
                     // usersListView.ItemsSource = users;
-
+   
 
                     var data1 = data.Where(x => x.Username == Username.Text && x.password == Password.Text).FirstOrDefault();
                     if (data1 != null)
                     {
+                        Application.Current.Properties["Username"] = Username.Text;
+                        await Application.Current.SavePropertiesAsync();
+
                         await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
                     }
                     else

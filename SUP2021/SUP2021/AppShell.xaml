@@ -96,8 +96,8 @@
       <FlyoutItem Title="Test2" Icon="icon_feed.png">  
         <ShellContent Route="Test2" ContentTemplate="{DataTemplate local:Test2}" />
     </FlyoutItem>
-     <FlyoutItem Title= "Profile" Icon="icon_feed.png">
-        <ShellContent Route="Profile" ContentTemplate="{DataTemplate local:Profile} "/>
+     <FlyoutItem Title= "Profilepage" Icon="icon_feed.png">
+        <ShellContent Route="Profilepage" ContentTemplate="{DataTemplate local:Profilepage} "/>
     </FlyoutItem>
      <FlyoutItem Title= "Settings" Icon="icon_about.png">
         <ShellContent Route="settings" ContentTemplate="{DataTemplate local:settings} "/>

@@ -111,6 +111,9 @@
     <FlyoutItem Title= "Products">
         <ShellContent Route="settings" ContentTemplate="{DataTemplate local:ProductPage} "/>
     </FlyoutItem>
+    <FlyoutItem Title= "ShoppingCart">
+        <ShellContent Route="Basket" ContentTemplate="{DataTemplate local:Basket} "/>
+    </FlyoutItem>
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
    <!-- <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>-->

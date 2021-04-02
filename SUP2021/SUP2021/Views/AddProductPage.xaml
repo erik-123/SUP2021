@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SUP2021.Views.AddProductPage">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <!--Labels-->
+            <Entry x:Name="price" Placeholder="price" ReturnType="Next" />
+            <Entry x:Name="ProductName" Placeholder="ProductName" ReturnType="Next" />
+            
+            <!-- Buttons-->
+            <Button x:Name="Picker" Clicked="btnPick_Clicked" Text="Pick_an_image"></Button>
+            <Button x:Name="Insert" Clicked="InsertIntoCloudDatabase_Clicked" Text="Insert to firebase"></Button>
+            
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

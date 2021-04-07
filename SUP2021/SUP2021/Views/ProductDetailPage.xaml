@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SUP2021.Views.ProductDetailPage">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Label x:Name="testlabel" Text="{Binding Price}"></Label>
+
+             <ListView x:Name="productDetailListView" HeightRequest="400">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <ImageCell Text="{Binding ProductName}" Detail="{Binding Price}"  >
+                            <ImageCell.ImageSource>
+                                
+                                 <UriImageSource Uri="{Binding URL}"
+                                 CacheValidity="1"
+                                 CachingEnabled="true"
+                                              />
+
+                            </ImageCell.ImageSource>
+                            
+                        </ImageCell>
+
+                        
+
+
+
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>  
+            <Button x:Name="DeleteFB" Clicked="BtnDeleteProductClicked" Text="Delete"></Button>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

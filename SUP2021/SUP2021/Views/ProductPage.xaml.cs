@@ -43,6 +43,14 @@ namespace SUP2021.Views
             }
 
         }
+
+        private void CursoView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            // Navigation.PushAsync(new ProductDetailPage(SelectedPerson.ProductId));
+            Console.WriteLine("efe94d2c-f935-4504-880a-688132fd893d");
+            Navigation.PushAsync(new ProductDetailPage(SelectedPerson.ProductId));
+        }
+
         private async void OnDeleteAllClicked(object sender, EventArgs e)
         {
             await DisplayAlert("Warning", "All product will be deleted", "Confirm", "Cancel");
@@ -69,6 +77,7 @@ namespace SUP2021.Views
             }
 
         }
+        private Products SelectedPerson => (Products)usersListView.SelectedItem;
 
     }
 }

@@ -11,6 +11,11 @@ using Firebase;
 using Firebase.Storage;
 using shortid;
 using shortid.Configuration;
+using Firebase.Database;
+using System.Collections.Generic;
+using System.Linq;
+using Firebase.Database.Query;
+using SUP2021.Services;
 
 
 namespace SUP2021.Views
@@ -20,13 +25,16 @@ namespace SUP2021.Views
     {
         MediaFile file;
 
-        private string imgurl { get; set; }
+        private string Imgurl { get; set; }
 
+        public Guid ProductId { get; set; }
 
+        public static FirebaseClient firebase = new FirebaseClient("https://sup2021-c58ec-default-rtdb.europe-west1.firebasedatabase.app/");
 
         public AddProductPage()
         {
             InitializeComponent();
+            this.ProductId = Guid.NewGuid();
 
 
             //standard bilder om ingen bild valts
@@ -36,8 +44,218 @@ namespace SUP2021.Views
 
         }
 
-        private async void btnPick_Clicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
+            base.OnAppearing();
+
+            var AllProducts = await GetAllofTheProducts();
+            lstPersons.ItemsSource = AllProducts;
+
+
+        }
+
+            public async Task<List<Products>> GetAllofTheProducts()
+        {
+
+            return (await firebase
+              .Child("Persons")
+              .OnceAsync<Products>()).Select(item => new Products
+              {
+                  ProductName = item.Object.ProductName,
+                  PID = item.Object.PID
+              }).ToList();
+        }
+
+        public async Task InsertProduct(int PID, string productName, string price, string url)
+        {
+
+            await firebase
+              .Child("Products")
+              .PostAsync(new Products() { ProductId = ProductId, PID = PID, ProductName = productName, Price = price, URL = url});
+        }
+
+        private async void BtnAdd_Clicked(object sender, EventArgs e)
+        {
+
+           // ProductId = Guid.NewGuid();
+
+           
+
+
+            //int seed = 1939;
+            //ShortId.SetSeed(seed);
+            //string newurl = "test";
+            //int PID = 1;
+
+           
+            //await InsertProduct(PID, ProductName.Text, price.Text, newurl);
+            //// txtId.Text = string.Empty;
+            //// txtName.Text = string.Empty;
+            //await DisplayAlert("Success", "Products Added Successfully", "OK");
+
+            //var AllProducts = await GetAllofTheProducts();
+            // lstPersons.ItemsSource = AllProducts;
+        }
+
+
+        public static async Task<List<Products>> GetAllProducts()
+        {
+            try
+            {
+                var userlist = (await firebase
+                .Child("Products")
+                .OnceAsync<Products>()).Select(item =>
+                new Products
+                {
+                    Price = item.Object.Price,
+                    ProductName = item.Object.ProductName
+                }).ToList();
+                return userlist;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
+        }
+
+        //Read     
+        public static async Task<Products> GetProduct(string productName)
+        {
+            try
+            {
+                var allProducts = await GetAllProducts();
+                await firebase
+                .Child("Products")
+                .OnceAsync<Products>();
+                return allProducts.Where(a => a.ProductName == productName).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Insert a product    
+        public static async Task<bool> AddProduct(int PID, string price, string productName, string ImgUrl)
+        {
+            try
+            {
+
+                await firebase
+                .Child("Products")
+                .PostAsync(new Products() {PID= PID, Price = price, ProductName = productName, URL = ImgUrl});
+                Console.WriteLine("produkten kunde läggas till utan problem");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+
+        //Update     
+        public static async Task<bool> UpdateProduct(string price, string productName)
+        {
+            try
+            {
+
+
+                var toUpdateUser = (await firebase
+                .Child("Products")
+                .OnceAsync<Products>()).Where(a => a.Object.ProductName == productName).FirstOrDefault();
+                await firebase
+                .Child("Products")
+                .Child(toUpdateUser.Key)
+                .PutAsync(new Products() { Price = price, ProductName = productName });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+
+        //Delete User    
+        public static async Task<bool> DeleteProduct(string productName)
+        {
+            try
+            {
+
+                var toDeletePerson = (await firebase
+                .Child("Products")
+                .OnceAsync<Products>()).Where(a => a.Object.ProductName == productName).FirstOrDefault();
+                await firebase.Child("Products").Child(toDeletePerson.Key).DeleteAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+
+        public async Task DeleteTestProduct(int productId)
+        {
+            var toDeletePerson = (await firebase
+              .Child("Persons")
+              .OnceAsync<Products>()).Where(a => a.Object.PID == productId).FirstOrDefault();
+            await firebase.Child("Persons").Child(toDeletePerson.Key).DeleteAsync();
+
+            
+
+        }
+
+        public async Task DeleteTesting(Guid productId)
+        {
+            var toDeletePerson = (await firebase
+                .Child("Persons")
+                .OnceAsync<Products>()).FirstOrDefault(a => a.Object.ProductId == productId);
+            await firebase.Child("Persons").Child(toDeletePerson.Key).DeleteAsync();
+        }
+
+
+
+        private async void BtnDelete_Clicked(object sender, EventArgs e)
+        {
+            //await DeleteTestProduct(1);
+            Console.WriteLine("Test av valet: "+SelectedPerson.ProductId);
+            await DeleteTesting(SelectedPerson.ProductId);
+            await DisplayAlert("Success", "Person Deleted Successfully", "OK");
+            var allPersons = await GetAllProducts();
+            lstPersons.ItemsSource = allPersons;
+        }
+
+
+
+
+        //private async void BtnRetrive_Clicked(object sender, EventArgs e)
+        //{
+        //    var person = await firebaseHelper.GetPerson(Convert.ToInt32(txtId.Text));
+        //    if (person != null)
+        //    {
+        //        txtId.Text = person.PersonId.ToString();
+        //        txtName.Text = person.Name;
+        //        await DisplayAlert("Success", "Person Retrive Successfully", "OK");
+
+        //    }
+        //    else
+        //    {
+        //        await DisplayAlert("Success", "No Person Available", "OK");
+        //    }
+
+        //}
+
+
+
+
+
+
+        private async void btnPick_Clicked(object sender, EventArgs e)
+            {
             await CrossMedia.Current.Initialize();
             try
             {
@@ -64,34 +282,49 @@ namespace SUP2021.Views
 
         private async void InsertIntoCloudDatabase_Clicked(object sender, EventArgs e)
         {
-            int pid = 1;
-            string Price = price.Text;
-            string Name = ProductName.Text;
-
-            Console.WriteLine("Första url visas här:" + imgurl);
-
-            var products = new Products
+            try
             {
-                PID = pid,
-                Price = Price,
-                ProductName = Name,
-                URL = imgurl,
-            };
+                int pid = 1;
+                string Price = price.Text;
+                string productName = ProductName.Text;
 
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                Console.WriteLine("Första url visas här:" + Imgurl);
+
+                var products = new Products
+                {
+                    ProductId = ProductId,
+                    PID = pid,
+                    Price = Price,
+                    ProductName = productName,
+                    URL = Imgurl,
+                };
+
+                await InsertProduct(pid, ProductName.Text, price.Text, Imgurl);
+
+
+                //  var InsertFB = await AddProduct(pid, Price, productName, Imgurl);
+
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.CreateTable<Products>();
+                    int rowsAdded = conn.Insert(products);
+
+                    await DisplayAlert("Congrats!", "A new product have been added!", "OK");
+                    await Navigation.PushAsync(new ProductPage());
+                }
+            }
+            catch (Exception ex) 
             {
-                conn.CreateTable<Products>();
-                int rowsAdded = conn.Insert(products);
-
-                await DisplayAlert("Congrats!", "A new product have been added!", "OK");
-                await Navigation.PushAsync(new ProductPage());
+                Console.WriteLine(ex);
+                await DisplayAlert("Alert", "Something went wrong!", "OK");
             }
         }
 
 
+
         public async Task<string> StoreImages(Stream imageStream)
         {
-            var options = new GenerationOptions //Genererar ett unikt bild med hjälp av Api:et shortid
+            var options = new GenerationOptions //Genererar ett unikt id med hjälp av Api:et shortid
             {
                 UseNumbers = true,
                 UseSpecialCharacters = false,
@@ -106,13 +339,18 @@ namespace SUP2021.Views
                     .Child("image" + id + ".jpg")
                     .PutAsync(imageStream);
 
-            imgurl = storeImage;
-            Console.WriteLine("Här visas url:" + imgurl);
+            Imgurl = storeImage;
+            Console.WriteLine("Här visas url:" + Imgurl);
 
            
-             return imgurl;
+             return Imgurl;
 
 
        }
-    }
+        private Products SelectedPerson => (Products)lstPersons.SelectedItem;
+
+
+       
+
+}
 }

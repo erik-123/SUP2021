@@ -12,7 +12,24 @@
             <!-- Buttons-->
             <Button x:Name="Picker" Clicked="btnPick_Clicked" Text="Pick_an_image"></Button>
             <Button x:Name="Insert" Clicked="InsertIntoCloudDatabase_Clicked" Text="Insert to firebase"></Button>
-            
+
+
+            <Button x:Name="AddtoFB" Clicked="BtnAdd_Clicked" Text="Add_to_FB"></Button>
+            <Button x:Name="DeleteFB" Clicked="BtnDelete_Clicked" Text="Delete"></Button>
+
+
+
+            <ListView x:Name="lstPersons">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding ProductName}"></TextCell>
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
 
         </StackLayout>
     </ContentPage.Content>

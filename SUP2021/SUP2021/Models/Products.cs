@@ -8,6 +8,7 @@ namespace SUP2021.Models
    public class Products
     {
         [PrimaryKey, AutoIncrement]
+        public Guid ProductId { get; set; }       
         public int PID { get; set; }
         public string Price { get; set; }
         public string ProductName { get; set; }

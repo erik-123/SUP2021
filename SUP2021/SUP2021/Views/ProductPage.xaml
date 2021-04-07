@@ -21,11 +21,11 @@
                     <FileImageSource x:Name="Imagestest" File="{Binding FileName}" />
                 </Image.Source>
             </Image>
-            <ListView x:Name="usersListView" HeightRequest="400">
+            <ListView x:Name="usersListView" ItemSelected="CursoView_ItemSelected" SelectedItem="{Binding SelectedItem}" HeightRequest="400">
                 <ListView.ItemTemplate>
                     <DataTemplate>
 
-                        <ImageCell Text="{Binding ProductName}" Detail="{Binding Price}" >
+                        <ImageCell Text="{Binding ProductName}" Detail="{Binding ProductId}" >
                             <ImageCell.ImageSource>
                                 <UriImageSource Uri="{Binding URL}"
                                  CacheValidity="1"

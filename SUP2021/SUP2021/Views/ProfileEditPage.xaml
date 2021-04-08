@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SUP2021.Views.ProfileEditPage">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Button x:Name="PickImage" Clicked="BtnPickImage_Clicked" Text="Select image"></Button>
+            <Button x:Name="InsertSQL" Clicked="InsertIntoDatabase_Clicked" Text="Insert to database"></Button>
+
+
+
+            <Entry x:Name="Firstname" Placeholder="Name" ReturnType="Next" />
+            <Entry x:Name="surname" Placeholder="Surname" ReturnType="Next"/>
+            <Entry x:Name="email" Placeholder="Email" ReturnType="Next" />
+            <Entry x:Name="username" Placeholder="Username" ReturnType="Next" />
+            <Entry x:Name="phone" Placeholder="Phone" ReturnType="Next" Keyboard="Telephone" />
+            <Entry x:Name="password" IsPassword="true" Placeholder="Password" ReturnType="Next" />
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

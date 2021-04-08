@@ -9,11 +9,18 @@ namespace SUP2021.ViewModels
     public class profileViewModel : BaseViewModel
     {
         public Command entryCommand { get; }
+        public Command EditCommand { get; }
 
         public profileViewModel()
         {
             Title = "Profile";
             entryCommand = new Command(OnentryClicked);
+            EditCommand = new Command(BtnOnEditClicked);
+
+        }
+        private async void BtnOnEditClicked (object obj)
+        {
+            await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
 
         }
         private async void OnentryClicked(object obj)

@@ -15,6 +15,10 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         
+        
+        
+        
+        
             <ScrollView>
          <!-- <FlexLayout IsVisible="True" JustifyContent="SpaceEvenly" Direction="Column" AlignItems="Start" >-->
                        <!-- <StackLayout Padding="300,10,300,10" VerticalOptions="Center">-->
@@ -30,7 +34,9 @@
                               Detail="{Binding Email}"
                                         
                               DetailColor="Blue"></TextCell>
-                               
+                              
+                <ImageButton Source="icon_edit_profilepage" HorizontalOptions="End" HeightRequest="50" WidthRequest="50" BackgroundColor="Transparent" BorderColor="Transparent"/>
+                <ImageButton Source="icon_settings_profilepage" HorizontalOptions="End" HeightRequest="50" WidthRequest="50" Clicked="OnImageButtonClicked" BackgroundColor="Transparent" BorderColor="Transparent"/>
                              
             
 
@@ -38,37 +44,59 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>                       
                     </ListView>-->
- <ListView x:Name="listUser" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" SeparatorVisibility="None" >
+            <ListView x:Name="listUser" HorizontalOptions="Center" SeparatorVisibility="Default" RowHeight="500">
     <ListView.ItemTemplate>
         <DataTemplate>
             <ViewCell>
                 <ViewCell.View>
-                    <Grid HorizontalOptions="Center">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="auto" />
-                        </Grid.ColumnDefinitions>
                     
+                                                    
 
-                   <!-- <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >-->
-                    
-                    <Label Text="Username:" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
-                      <Label Text="{Binding Username}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                                    <StackLayout>
 
-                     
-                        
-                 
-                        <Label Text="Hej" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1"/>
-                      <Label Text="{Binding firstname}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1" />
-                    <!-- </StackLayout>-->
-                        
-                        
-                        
-                   </Grid>
+                                    <!--<Button Text="Divide by 2" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"  />   Clicked="OnImageButtonClicked" -->
+
+                                   
+                                         <ImageButton Source="icon_settings_profilepage" HorizontalOptions="End" HeightRequest="50" WidthRequest="50" Clicked="OnImageSettingsButtonClicked" BackgroundColor="Transparent" BorderColor="Transparent"/>
+                                         <ImageButton Source="icon_edit_profilepage" HorizontalOptions="End" HeightRequest="50" WidthRequest="50" Clicked="OnImageEditButtonClicked" BackgroundColor="Transparent" BorderColor="Transparent"/>
+                                         
+                                    
+                                    <!-- <Button Image="icon_edit_profilepage"  HorizontalOptions="End" HeightRequest="50" WidthRequest="50" Command="{Binding EditCommand}"/> -->   
+                                    <!--Command="{Binding DivideBy2Command}"-->
+
+                                    <Image
+                                        Source="{Binding URL}">
+                                           
+                                                       </Image>
+                                        <!-- <Label Text="{Binding URL} " VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/> -->
+
+                                    <Label Text="Username:" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding Username} " VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                                    <Label Text="Password:" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding password} " VerticalTextAlignment="Center" HorizontalTextAlignment="Center"   />
+                                   
+
+
+
+                                    <Label  Text="Firstname" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding firstname}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  />
+
+                                    <Label Text="Surname" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding sername}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  />
+
+                                    <Label Text="Number" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+                                    <Label Text="{Binding nummber}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1" />  
+                                    
+                                        
+                                        
+
+
+                                    </StackLayout>
+                                        
+                                
+
+                               
                 </ViewCell.View>
               
 
@@ -76,6 +104,10 @@
         </DataTemplate>
     </ListView.ItemTemplate>
 </ListView>
+
+                
+                
+                
                          <!--</StackLayout>-->
           <!-- </FlexLayout>-->
             </ScrollView>

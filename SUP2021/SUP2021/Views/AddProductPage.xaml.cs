@@ -77,9 +77,9 @@ namespace SUP2021.Views
         private async void BtnAdd_Clicked(object sender, EventArgs e)
         {
 
-           // ProductId = Guid.NewGuid();
+            // ProductId = Guid.NewGuid();
 
-           
+            await DisplayAlert("Alert", "Denna knapp ska tas bort!", "OK");
 
 
             //int seed = 1939;
@@ -87,7 +87,7 @@ namespace SUP2021.Views
             //string newurl = "test";
             //int PID = 1;
 
-           
+
             //await InsertProduct(PID, ProductName.Text, price.Text, newurl);
             //// txtId.Text = string.Empty;
             //// txtName.Text = string.Empty;

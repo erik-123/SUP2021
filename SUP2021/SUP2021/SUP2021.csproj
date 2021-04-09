@@ -16,14 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="notes3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="notes3" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FirebaseDatabase.net" Version="4.0.6" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
     <PackageReference Include="shortid" Version="3.0.0" />
@@ -58,7 +50,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\AddProductPage.xaml">
+    <EmbeddedResource Update="Views\Product\AddProductPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ListUsers.xaml">
@@ -67,22 +59,22 @@
     <EmbeddedResource Update="Views\NotesPage - Copy.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProductDetailPage.xaml">
+    <EmbeddedResource Update="Views\Product\ProductDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProductPage.xaml">
+    <EmbeddedResource Update="Views\Product\ProductPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProfileEditPage.xaml">
+    <EmbeddedResource Update="Views\Profile\ProfileEditPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Test.xaml">
+    <EmbeddedResource Update="Views\Test\Test.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Test2.xaml">
+    <EmbeddedResource Update="Views\Test\Test2.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\TestUserDB.xaml">
+    <EmbeddedResource Update="Views\Test\TestUserDB.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

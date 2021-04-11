@@ -90,9 +90,9 @@
     <FlyoutItem Title="Browse" Icon="icon_feed.png">
         <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Test" Icon="icon_feed.png">
+   <!-- <FlyoutItem Title="Test" Icon="icon_feed.png">
         <ShellContent Route="Test" ContentTemplate="{DataTemplate local:Test}" />
-    </FlyoutItem>
+    </FlyoutItem> -->
       <FlyoutItem Title="Test2" Icon="icon_feed.png">  
         <ShellContent Route="Test2" ContentTemplate="{DataTemplate local:Test2}" />
     </FlyoutItem>
@@ -114,6 +114,12 @@
     <FlyoutItem Title= "ShoppingCart">
         <ShellContent Route="Basket" ContentTemplate="{DataTemplate local:Basket} "/>
     </FlyoutItem>
+    <FlyoutItem Title= "Payment test">
+        <ShellContent Route="PaymentTest" ContentTemplate="{DataTemplate local:Test.PaymentTest} "/>
+    </FlyoutItem>
+    
+
+
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
    <!-- <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>-->
@@ -129,6 +135,7 @@
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
         <ShellContent Route="createaccount" ContentTemplate="{DataTemplate local:createaccount}"/>
         <ShellContent Route="AddProductPage" ContentTemplate="{DataTemplate local:AddProductPage}"/>
+       
     </TabBar>
 
     <!-- Optional Templates 

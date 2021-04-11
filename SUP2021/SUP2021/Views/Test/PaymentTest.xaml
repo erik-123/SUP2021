@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:fastEntry="clr-namespace:XamarinFastEntrySample.FastEntry;assembly=XamarinFastEntry.Behaviors" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="SUP2021.Views.Test.PaymentTest">
+    <ContentPage.Content>
+      
+            <StackLayout Padding="20">
+                
+                <!--<Entry Placeholder="Card No" Keyboard="Numeric" MaxLength="16" x:Name="cardNo"/>-->
+            <Entry Placeholder="Card No" Keyboard="Numeric"  x:Name="cardNo">
+               
+            <Entry.Behaviors>
+                    <fastEntry:XamarinFastEntryBehaviour Mask="####-####-####-####"
+                                                         MaxLength="19"
+                                                         
+                                                         
+                                                         />
+
+
+                </Entry.Behaviors>
+                 </Entry>
+                
+                <Entry Placeholder="Expire Year" Keyboard="Numeric" MaxLength="2" x:Name="expireYear"/>
+                <Entry Placeholder="Expire Month" Keyboard="Numeric" MaxLength="2" x:Name="expireMonth"/>
+                <Entry Placeholder="CVV" Keyboard="Numeric" MaxLength="3" x:Name="cvv"/>
+                <Label Text="Choose a cardnumber from the list below, &#10;CVC = Any &#10;Date/Year = Any"></Label>
+
+
+
+            <behaviors:Expander >
+                <behaviors:Expander.Header>
+                    <Label Text=" ▼ Test Cards (Click to Expand)"
+               FontAttributes="Bold"
+                />
+                </behaviors:Expander.Header>
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <ListView x:Name="testcreditcardslist" SelectionMode="None" VerticalScrollBarVisibility="Always">
+                        <ListView.ItemsSource>
+                            <x:Array Type="{x:Type x:String}" >
+
+                                <x:String>(VISA) CardNo: 4242-4242-4242-4242</x:String>
+                                <x:String>(Mastercard) CardNo: 5200-8282-8282-8210</x:String>
+                                <x:String>(Discover) CardNo: 6011-1111-1111-1117</x:String>
+                                <x:String>(JCB) CardNo: 3566-0020-2036-0505</x:String>
+                                <x:String>(Diners Club) CardNo: CardNo: 3056-9300-0902-0004</x:String>
+                                <x:String>(UnionPay) CardNo: 6200-0000-0000-0005</x:String>
+                                <x:String>(American Express) CardNo: 3782-822463-10005</x:String>
+                            </x:Array>
+                        </ListView.ItemsSource>
+                    </ListView>
+
+
+                </Grid>
+
+            </behaviors:Expander>
+
+            <behaviors:Expander >
+            <behaviors:Expander.Header>
+                <Label Text=" ▼ Scenarios
+                       "
+               FontAttributes="Bold"
+                />
+            </behaviors:Expander.Header>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+
+                <ListView x:Name="testscenariocreditcardslist" SelectionMode="None" VerticalScrollBarVisibility="Always">
+                    <ListView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}" >
+
+                                <x:String>(Expired) CardNo: 4000-0000-0000-0069</x:String>
+                                <x:String>(Incorrect CVC) CardNo: 4000-0000-0000-0127</x:String>
+                                <x:String>(Proces_error) CardNo: 4000-0000-0000-0119</x:String>
+                                <x:String>(Incorrect CardNo) CardNo: 4242-4242-4242-4241</x:String>
+                                <x:String>(Declined) CardNo: 4000-0000-0000-0002</x:String>
+                           
+                        </x:Array>
+                    </ListView.ItemsSource>
+                </ListView>
+
+
+            </Grid>
+
+            </behaviors:Expander>
+
+
+
+            <Button Text="Make Payment" VerticalOptions="End" Margin="5" Clicked="Button_Clicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

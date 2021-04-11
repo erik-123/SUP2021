@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SUP2021.Views.Test.PaymentSuccesfulPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Payment successful!" TextColor="LimeGreen" HorizontalTextAlignment="Center" FontSize="24" Margin="20"></Label>
+            <Image Source="payment_successful"></Image>
+            <Label Text="An receipt has been sent to your email!" HorizontalTextAlignment="Center"></Label>
+            <Label Text="Payment Details" HorizontalTextAlignment="Center" Margin="10" FontAttributes="Bold"></Label>
+
+            <!--<StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="20, 10">
+                
+                <Label Text="Payment type" HorizontalTextAlignment="Center"></Label>
+                <Label Text="Credit card" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+                
+            </StackLayout> -->
+
+            <FlexLayout  JustifyContent="SpaceEvenly" Direction="Row" VerticalOptions="Center">
+                <Label Text="Payment type"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                <Label Text="Credit Card"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"></Label>
+            </FlexLayout>
+
+           <!-- <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="20, -10, 0, 5">
+
+             <Label Text="Mobile" HorizontalTextAlignment="Center"></Label>
+             <Label Text="11111" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+
+            </StackLayout> -->
+
+            <FlexLayout JustifyContent="SpaceEvenly">
+
+                <Label Text="Mobile" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                <Label Text="+46234567890" FlexLayout.Basis="25%" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" FontAttributes="Bold"></Label>
+
+            </FlexLayout>
+
+
+            <FlexLayout JustifyContent="SpaceEvenly"  AlignItems="Center">
+
+            <Label Text="Email" HorizontalTextAlignment="Center"></Label>
+            <Label Text="TestData@test.se" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+
+            </FlexLayout>
+
+           <!-- <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="20, 10, 0, 5">
+               
+            </StackLayout> -->
+
+            <StackLayout Margin="20,5,5,5">
+            <FlexLayout JustifyContent="SpaceEvenly" AlignContent="SpaceEvenly" AlignItems="Center" Margin="5">
+
+                <Label Text="Amount Paid" HorizontalTextAlignment="Center" FontSize="18" FontAttributes="Bold"></Label>
+                <Label Text="500 SEK" HorizontalTextAlignment="Center" FontSize="18" FontAttributes="Bold"></Label>
+
+            </FlexLayout>
+
+            <FlexLayout JustifyContent="SpaceEvenly" AlignContent="SpaceEvenly">
+                <Label Text="Transaction id" HorizontalOptions="Fill"></Label>
+                <Label Text="12345678" HorizontalOptions="Fill"></Label>
+            </FlexLayout>
+            </StackLayout>
+
+            <!--<StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="20, 10, 0, 5">
+                <Label Text="Transaction id" HorizontalOptions="Fill"></Label>
+                <Label Text="1234" HorizontalOptions="Fill"></Label>
+            </StackLayout>-->
+
+           
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="10, 30, 0, 0">
+            <Button Text="Print"  Clicked ="OnButtonPrintClicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Button>
+            <Button Text="Close"  Clicked="OnButtonClosedClicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

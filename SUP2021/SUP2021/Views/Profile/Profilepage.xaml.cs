@@ -129,6 +129,12 @@ namespace SUP2021.Views
         {
             await Navigation.PushAsync(new settings());
         }
+
+        public async void OnVarukorgButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Basket()); //Basket
+        }
+
     }
 }
 

@@ -18,7 +18,7 @@
              <Entry x:Name="surname" Placeholder="Surname" ReturnType="Next" PlaceholderColor="HotPink" />
              <Entry x:Name="email" Placeholder="Email" ReturnType="Next" PlaceholderColor="HotPink" />
              <Entry x:Name="username" Placeholder="Username" ReturnType="Next" PlaceholderColor="HotPink" />
-             <Entry x:Name="phone" Placeholder="Phone" ReturnType="Next" Keyboard="Telephone" PlaceholderColor="HotPink" />
+             <Entry x:Name="phone" MaxLength="10" Placeholder="Phone" ReturnType="Next" Keyboard="Telephone" PlaceholderColor="HotPink" />
              <Entry x:Name="password" IsPassword="true" Placeholder="Password" ReturnType="Next" />
              <!--<Button VerticalOptions="Center" Text="Register" Command="{Binding regCommand}"/>-->
              <Button x:Name="Back" Clicked="Back_Clicked" Text="Register"></Button>

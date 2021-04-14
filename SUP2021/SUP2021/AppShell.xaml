@@ -114,8 +114,8 @@
     <FlyoutItem Title= "ShoppingCart">
         <ShellContent Route="Basket" ContentTemplate="{DataTemplate local:Basket} "/>
     </FlyoutItem>
-    <FlyoutItem Title= "Payment test">
-        <ShellContent Route="PaymentTest" ContentTemplate="{DataTemplate local:Test.PaymentTest} "/>
+    <FlyoutItem Title="Payment test">
+        <ShellContent Route="PaymentMainPage" ContentTemplate="{DataTemplate local:Test.PaymentMainPage} "/>
     </FlyoutItem>
     
 

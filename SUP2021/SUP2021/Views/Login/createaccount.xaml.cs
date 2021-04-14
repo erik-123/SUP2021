@@ -22,6 +22,7 @@ namespace SUP2021.Views
             //Firstname.ReturnCommand = new Command(() => username.Focus());
             
             this.BindingContext = new createaccountViewModel();
+            Firstname.Keyboard = Keyboard.Create(KeyboardFlags.Suggestions | KeyboardFlags.CapitalizeWord);
         }
         private async void Back_Clicked(object sender, EventArgs e)
         {
@@ -42,53 +43,76 @@ namespace SUP2021.Views
             //users.password = password.Text;
             //users.nummber = phone.Text;
 
-            try
+            if ((string.IsNullOrWhiteSpace(Firstname.Text) || string.IsNullOrWhiteSpace(email.Text) || string.IsNullOrWhiteSpace(username.Text) || string.IsNullOrWhiteSpace(password.Text) ||
+                string.IsNullOrWhiteSpace(surname.Text) ||  string.IsNullOrWhiteSpace(phone.Text) ||   string.IsNullOrEmpty(Firstname.Text) || string.IsNullOrEmpty(email.Text)        ||
+                string.IsNullOrEmpty(username.Text) ||  string.IsNullOrEmpty(password.Text)       ||   string.IsNullOrEmpty(surname.Text)   || (string.IsNullOrEmpty(phone.Text))))
+
+
             {
-               
-                var newuser = new User
+                await DisplayAlert("Alert", "A textfield can't be empty or lack value", "OK");
+            }
+            else if (phone.Text.Length < 10)
+            {
+                phone.Text = string.Empty;
+                await DisplayAlert("Alert", "Enter 10 digit Number", "OK");
+              
+            }
+            else
+            {
+
+
+
+
+
+
+                try
                 {
-                    UID = uid,
-                    firstname = name,
-                    Username = user,
-                    sername=Surname,
-                    email=Email,
-                    password=Password,
-                    nummber=Phone,
-                    adress=Adress
-                   
-            };
-                using(SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+
+                    var newuser = new User
+                    {
+                        UID = uid,
+                        firstname = name,
+                        Username = user,
+                        sername = Surname,
+                        email = Email,
+                        password = Password,
+                        nummber = Phone,
+                        adress = Adress
+
+                    };
+                    using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                    {
+                        conn.CreateTable<User>();
+                        int rowsAdded = conn.Insert(newuser);
+                        Console.WriteLine(rowsAdded);
+
+
+                    }
+
+                    //Console.WriteLine(newuser.firstname);
+                    //  await App.Database.AddUser(newuser);
+                    //          //  await database.AddUser(users);
+                    await DisplayAlert("Grattis", newuser.firstname + newuser.email + newuser.adress + newuser.UID + newuser.nummber, "OK");
+                    //Console.WriteLine("testmeddelande");
+                    //var query = App.Database.GetUsersAsync();
+                    //query.Wait();
+                    //List<User> datas = query.Result;
+                    //Console.WriteLine("Total Records in the Notedatabase Table are:" + " " + datas.Count);
+
+
+
+                }
+                catch (Exception ex)
                 {
-                    conn.CreateTable<User>();
-                    int rowsAdded = conn.Insert(newuser);
-                    Console.WriteLine(rowsAdded);
-                
-                
+                    await DisplayAlert("Alert", "Something went wrong!", "OK");
+                    // Debug.WriteLine(ex);
+                    Console.WriteLine("testmeddelande");
+                    Console.WriteLine(ex);
+                    Console.WriteLine("testmeddelande");
                 }
 
-                //Console.WriteLine(newuser.firstname);
-                //  await App.Database.AddUser(newuser);
-                //          //  await database.AddUser(users);
-                await DisplayAlert("Grattis", newuser.firstname + newuser.email + newuser.adress + newuser.UID + newuser.nummber, "OK");
-                //Console.WriteLine("testmeddelande");
-                //var query = App.Database.GetUsersAsync();
-                //query.Wait();
-                //List<User> datas = query.Result;
-                //Console.WriteLine("Total Records in the Notedatabase Table are:" + " " + datas.Count);
-
-                
-
+                await Navigation.PushAsync(new LoginPage());
             }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Alert", "Something went wrong!", "OK");
-               // Debug.WriteLine(ex);
-                Console.WriteLine("testmeddelande");
-                Console.WriteLine(ex);
-                Console.WriteLine("testmeddelande");
-            }
-            
-            await Navigation.PushAsync(new LoginPage());
         }
     }
 }

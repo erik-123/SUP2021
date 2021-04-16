@@ -16,8 +16,10 @@ namespace SUP2021.Droid
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Rg.Plugins.Popup.Popup.Init(this);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-           
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
+
 
             string FileName = "SUP2021_db.db3";
             string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);

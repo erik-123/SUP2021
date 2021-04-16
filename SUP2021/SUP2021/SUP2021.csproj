@@ -18,15 +18,22 @@
   <ItemGroup>
     <PackageReference Include="FirebaseDatabase.net" Version="4.0.6" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
+    <PackageReference Include="libphonenumber-csharp" Version="8.12.21" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.11" />
     <PackageReference Include="shortid" Version="3.0.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="Stripe.net" Version="39.43.0" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.3" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="XamarinFastEntry.Behaviors" Version="1.1.1" />
     
   </ItemGroup>
@@ -73,6 +80,18 @@
     <EmbeddedResource Update="Views\Profile\ProfileEditPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Test\CountryControl.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Test\ChooseCountryPopup.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Test\CountryTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Test\EntryOutlined.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Test\PaymentMainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -92,6 +111,9 @@
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="ViewModels\ItemDetailViewModel.cs">
       <IncludeInPackage>false</IncludeInPackage>
+    </Compile>
+    <Compile Update="Views\Test\ChooseCountryPopup.xaml.cs">
+      <DependentUpon>ChooseCountryPopup.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

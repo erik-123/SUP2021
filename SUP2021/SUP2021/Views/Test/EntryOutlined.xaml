@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:SUP2021.Views.Test"
+             x:Class="SUP2021.Views.Test.EntryOutlined">
+  <ContentView.Content>
+      <StackLayout>
+          <Label Text="Hello Xamarin.Forms!" />
+            <Grid>
+                <Frame HasShadow="False"
+                       x:Name="EntryFrame"
+                       BorderColor="{Binding BorderColor, Source={x:Reference this}}"
+                       
+                       />
+
+                <Label x:Name="PlaceHolderLabel"
+                       BackgroundColor="White" HorizontalOptions="Start"
+                       TextColor="{Binding PlaceholderColor, Source={Reference this}}"
+                       Text="{Binding Placeholder,Source={x:Reference this}}"
+                       Margin="10,0,0,0"
+                       VerticalOptions="Center" />
+
+                <controls:BorderlessEntry
+                    
+                    x:Name="TextBox" VerticalOptions="FillAndExpand"
+                    Text="{Binding Text,Source={x:Reference this},Mode=TwoWay}"
+                    Margin="10,0,0,0"
+                    />
+            </Grid>
+
+
+
+        </StackLayout>
+  </ContentView.Content>
+</ContentView> 
+
+
+<!-- ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:SUP2021.Views.Test"
+             x:Class="SUP2021.Views.Test.EntryOutlined"
+             x:Name="this">
+    <ContentView.Content>
+        <StackLayout>
+            <Grid>
+                <Frame HasShadow="False"
+                       x:Name="EntryFrame"
+                       BorderColor="{Binding BorderColor, Source={x:Reference this}}"
+                       
+                       />
+
+                <Label x:Name="PlaceHolderLabel"
+                       BackgroundColor="White" HorizontalOptions="Start"
+                       TextColor="{Binding PlaceholderColor, Source={Reference this}}"
+                       Text="{Binding Placeholder,Source={x:Reference this}}"
+                       Margin="10,0,0,0"
+                       VerticalOptions="Center" />
+
+                <controls:BorderlessEntry
+                    
+                    x:Name="TextBox" VerticalOptions="FillAndExpand"
+                    Text="{Binding Text,Source={x:Reference this},Mode=TwoWay}"
+                    Margin="10,0,0,0"
+                    />
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView> -->

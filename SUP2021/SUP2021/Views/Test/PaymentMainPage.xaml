@@ -3,26 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:custom="clr-namespace:SUP2021.Views.Test"
              x:Class="SUP2021.Views.Test.PaymentMainPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
 
-            <custom:CustomEntry  
-                             CornerRadius="18"  
-                             IsCurvedCornersEnabled="True"  
-                             BorderColor="Blue"      
-                             HorizontalTextAlignment="Center"  
-                             FontSize="17"  
-                             HeightRequest="40"  
-                             Placeholder="Custom Entry"  
-                             PlaceholderColor="Gray"  
-                             TextColor="Black"  
-                             FontAttributes="Bold"  
-                             WidthRequest="100"/>
 
-            <Entry Text="Address"></Entry>
+            <Label Text="Address"></Label>
+            <custom:CustomEntry EntryBorderColor="Black" 
+                                EntryCornerRadius="3" 
+                                
+                                WidthRequest="200">
+                
+                
+            </custom:CustomEntry>
+
+            <Label Text="PostalCode"></Label>
+            <custom:CustomEntry EntryBorderColor="Black" 
+                                EntryCornerRadius="3" 
+                                WidthRequest="200">
+
+
+            </custom:CustomEntry>
+
+            <Label Text="City"></Label>
+            <custom:CustomEntry EntryBorderColor="Black" 
+                                EntryCornerRadius="3" 
+                                WidthRequest="200">
+
+
+            </custom:CustomEntry>
+
+
+            <!-- <Entry Text="Address" WidthRequest="200"></Entry>
           
             <Entry Text="PostalCode" ></Entry>
             <Entry Text="City"></Entry>
-            <Entry Text="Country"></Entry>
+            <Entry Text="Country"></Entry> -->
             
           
 

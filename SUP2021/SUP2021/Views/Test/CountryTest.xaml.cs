@@ -16,5 +16,16 @@ namespace SUP2021.Views.Test
         {
             InitializeComponent();
         }
+        public async void Postnordtest(object sender, EventArgs e) 
+        {
+            //Api key: 03f0da2b63d3bf80b62eb88c4e1c40c8
+            await DisplayAlert("","","");
+
+
+
+        }
+
+
+
     }
 }

@@ -5,13 +5,13 @@
     <ContentPage.Content>
       
             <StackLayout Padding="20">
-            <Button Text="Open Swish"
+          <!--  <Button Text="Open Swish"
                 Margin="20"
                 Clicked="OnOpenSwishButton_Clicked"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="FillAndExpand"
                 BackgroundColor="#1b89c0"
-                TextColor="White"/>
+                TextColor="White"/> -->
 
             <!--<Entry Placeholder="Card No" Keyboard="Numeric" MaxLength="16" x:Name="cardNo"/>-->
             <Entry Placeholder="Card No" Keyboard="Numeric"  x:Name="cardNo">

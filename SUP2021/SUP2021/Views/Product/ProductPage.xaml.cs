@@ -62,8 +62,11 @@ namespace SUP2021.Views
                     conn.DropTable<Products>();
                     var task = new FirebaseStorage("sup2021-c58ec.appspot.com")
                     .Child("ProductImages").DeleteAsync();
+                    usersListView.ItemsSource = null;
 
-                    
+
+
+
             }
             }
             catch (Exception ex)

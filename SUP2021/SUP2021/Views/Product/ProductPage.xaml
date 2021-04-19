@@ -25,7 +25,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
 
-                        <ImageCell Text="{Binding ProductName}" Detail="{Binding ProductId}" >
+                        <ImageCell Text="{Binding ProductName}" Detail="{Binding Price}" >
                             <ImageCell.ImageSource>
                                 <UriImageSource Uri="{Binding URL}"
                                  CacheValidity="1"

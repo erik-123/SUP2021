@@ -54,71 +54,92 @@ namespace SUP2021.Views
             }
         }
 
-        public async Task InsertUser(int UserID, string adress, string Firstname, string surname, string username, string password, string number, string email, string URL)
+        public async Task InsertUser(int UserID, string adress, string Firstname, string surname, string username, string password, string number, string email, string postcode, string URL)
         {
                        
             await firebase
               .Child("Users")
-              .PostAsync(new User() { UID = UserID, adress = adress, Username = username, firstname = Firstname, sername = surname, password = password, nummber = number,  email= email, URL = URL });
+              .PostAsync(new User() { UID = UserID, adress = adress, Username = username, firstname = Firstname, sername = surname, password = password, nummber = number,  email= email, postcode=postcode, URL = URL });
 
             }
-           
 
 
 
 
-    
+
+
 
 
         private async void InsertIntoDatabase_Clicked(object sender, EventArgs e)
         {
-            try
+            if ((string.IsNullOrWhiteSpace(Firstname.Text) || string.IsNullOrWhiteSpace(email.Text) || string.IsNullOrWhiteSpace(username.Text) || string.IsNullOrWhiteSpace(password.Text) ||
+               string.IsNullOrWhiteSpace(surname.Text) || string.IsNullOrWhiteSpace(phone.Text) || string.IsNullOrEmpty(Firstname.Text) || string.IsNullOrEmpty(email.Text) ||
+               string.IsNullOrEmpty(username.Text) || string.IsNullOrEmpty(password.Text) || string.IsNullOrEmpty(surname.Text) || (string.IsNullOrEmpty(phone.Text)
+
+              || string.IsNullOrEmpty(adress.Text) || string.IsNullOrEmpty(postcode.Text) || string.IsNullOrWhiteSpace(adress.Text) || string.IsNullOrWhiteSpace(postcode.Text))))
+
+
             {
-                string name = Firstname.Text;
-                string user = username.Text;
-                string Surname = surname.Text;
-                string Email = email.Text;
-                string Password = password.Text;
-                string Phone = phone.Text;
-                string Adress = "appgatan 2";
-                int uid = 1;
-
-
-                Console.WriteLine("Första url visas här:" + Imgurl);
-
-                var updateduser = new User
-                {
-                    URL = Imgurl,
-                    UID = uid,
-                    firstname = name,
-                    Username = user,
-                    sername = Surname,
-                    email = Email,
-                    password = Password,
-                    nummber = Phone,
-                    adress = Adress
-
-                };
-
-
-
-               await InsertUser(uid, name, user, Surname, Email, Password, Phone, Adress, Imgurl);
-
-
-
-                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-                {
-                    conn.CreateTable<User>();
-                    int rowsAdded = conn.Update(updateduser);
-
-                    await DisplayAlert("Congrats!", "User have been updated", "OK");
-                    await Navigation.PushAsync(new Profilepage());
-                }
+                await DisplayAlert("Alert", "A textfield can't be empty or lack value", "OK");
             }
-            catch (Exception ex)
+            else if (phone.Text.Length < 10 || postcode.Text.Length < 5)
             {
-                Console.WriteLine(ex);
-                await DisplayAlert("Alert", "Something went wrong!", "OK");
+                phone.Text = string.Empty;
+                await DisplayAlert("Alert", "Enter 10 digit Number or 5 digital Number for postcode", "OK");
+
+            }
+            else
+            {
+                try
+                {
+                    string name = Firstname.Text;
+                    string user = username.Text;
+                    string Surname = surname.Text;
+                    string Email = email.Text;
+                    string Password = password.Text;
+                    string Phone = phone.Text;
+                    string Adress = adress.Text;
+                    string Postcode = postcode.Text;
+                    int uid = 1;
+
+
+                    Console.WriteLine("Första url visas här:" + Imgurl);
+
+                    var updateduser = new User
+                    {
+                        URL = Imgurl,
+                        UID = uid,
+                        firstname = name,
+                        Username = user,
+                        sername = Surname,
+                        email = Email,
+                        password = Password,
+                        nummber = Phone,
+                        adress = Adress,
+                        postcode = Postcode
+
+                    };
+
+
+
+                    await InsertUser(uid, name, user, Surname, Email, Password, Phone, Adress, Postcode, Imgurl);
+
+
+
+                    using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                    {
+                        conn.CreateTable<User>();
+                        int rowsAdded = conn.Update(updateduser);
+
+                        await DisplayAlert("Congrats!", "User have been updated", "OK");
+                        await Navigation.PushAsync(new Profilepage());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    await DisplayAlert("Alert", "Something went wrong!", "OK");
+                }
             }
         }
 

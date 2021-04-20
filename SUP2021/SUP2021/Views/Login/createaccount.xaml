@@ -14,12 +14,14 @@
     <ContentPage.Content>
          <StackLayout Padding="20,10,20,10" VerticalOptions="Center">
            <Label Text="Please fill out your personal information"/>
-             <Entry x:Name="Firstname" Placeholder="Name" ReturnType="Next" PlaceholderColor="HotPink" />
-             <Entry x:Name="surname" Placeholder="Surname" ReturnType="Next" PlaceholderColor="HotPink" />
-             <Entry x:Name="email" Placeholder="Email" ReturnType="Next" PlaceholderColor="HotPink" />
-             <Entry x:Name="username" Placeholder="Username" ReturnType="Next" PlaceholderColor="HotPink" />
-             <Entry x:Name="phone" MaxLength="10" Placeholder="Phone" ReturnType="Next" Keyboard="Telephone" PlaceholderColor="HotPink" />
-             <Entry x:Name="password" IsPassword="true" Placeholder="Password" ReturnType="Next" />
+             <Entry x:Name="Firstname" Placeholder="Name" ReturnType="Next" PlaceholderColor="Blue" />
+             <Entry x:Name="surname" Placeholder="Surname" ReturnType="Next" PlaceholderColor="Blue" />
+             <Entry x:Name="email" Placeholder="Email" ReturnType="Next" PlaceholderColor="Blue" />
+             <Entry x:Name="username" Placeholder="Username" ReturnType="Next" PlaceholderColor="Blue" />
+             <Entry x:Name="phone" MaxLength="10" Placeholder="Phone" ReturnType="Next" Keyboard="Telephone" PlaceholderColor="Blue" />
+             <Entry x:Name="password" IsPassword="true" Placeholder="Password" PlaceholderColor="Blue" ReturnType="Next" />
+             <Entry x:Name="adress" Placeholder="Adress" ReturnType="Next" PlaceholderColor="Blue" />
+             <Entry x:Name="postcode" MaxLength="5" Placeholder="Postcode" ReturnType="Next" Keyboard="Telephone" PlaceholderColor="Blue" />
              <!--<Button VerticalOptions="Center" Text="Register" Command="{Binding regCommand}"/>-->
              <Button x:Name="Back" Clicked="Back_Clicked" Text="Register"></Button>
              </StackLayout>

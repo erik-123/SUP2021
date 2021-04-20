@@ -71,6 +71,8 @@ namespace SUP2021.Views
                         row.firstname = entry.firstname;
                         row.sername = entry.sername;
                         row.nummber = entry.nummber;
+                        row.adress = entry.adress;
+                        row.postcode = entry.postcode;
                         Console.WriteLine("test av URL: "+ entry.URL);
 
 

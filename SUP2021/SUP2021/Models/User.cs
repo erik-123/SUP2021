@@ -16,6 +16,7 @@ namespace SUP2021.Models
         public string nummber { get; set; }
         public string email { get; set; }
         public string URL { get; set; }
+        public string postcode { get; set; }
         public User() { }
 
     }

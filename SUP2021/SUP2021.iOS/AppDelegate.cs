@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using FFImageLoading.Forms.Platform;
 using Foundation;
 using UIKit;
 
@@ -28,6 +28,8 @@ namespace SUP2021.iOS
             //string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             string folderPath = Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),"..","Library");
             string completePath = Path.Combine(folderPath, FileName);
+            Rg.Plugins.Popup.Popup.Init();
+            CachedImageRenderer.Init();
             LoadApplication(new App(completePath));
 
             return base.FinishedLaunching(app, options);

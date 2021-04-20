@@ -7,9 +7,11 @@
              x:Class="SUP2021.Views.LoginPage"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Entry x:Name="Username" Placeholder="Username" PlaceholderColor="HotPink" />
-            <Entry x:Name="Password"  IsPassword="true" Placeholder="Password" />
+                  
+        <StackLayout Padding="10,0,10,200" VerticalOptions="Center">
+           <Label Text="Online shopping" FontSize="45" FontAttributes="Italic" Margin="110,50,60,140" TextColor="Blue" />
+            <Entry x:Name="Username" Placeholder="Username" PlaceholderColor="Blue" />
+            <Entry x:Name="Password"  IsPassword="true" Placeholder="Password" PlaceholderColor="Blue" />
             <Button Text="Login" Clicked="OnLoginButtonClicked" />
            <!-- <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/> -->
             <StackLayout Padding="10,0,10,0" VerticalOptions="Center">

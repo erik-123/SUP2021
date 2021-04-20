@@ -31,7 +31,9 @@
 
 
 
-                <Button Text="Postnord Test" Clicked="Postnordtest"></Button>
+                
+                
+
 
 
                 <Label Text="Address:"></Label>
@@ -103,6 +105,13 @@
                                VerticalOptions="CenterAndExpand"/>
                     </StackLayout>
                 </Frame>
+
+                <!-- <Button Text="Find nearest service point by postal code" Clicked="Postnordtest"></Button>-->
+                <Label Padding ="10" Text="Find nearest service point by postal code" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+                <ImageButton  Source="shipping_postnord_icon" HorizontalOptions="Center" HeightRequest="50" WidthRequest="50" Clicked="Postnordtest" BackgroundColor="Transparent" BorderColor="Transparent"/>
+                
+
+                <Button Text="Next" Clicked="OnNextButtonClicked"></Button> <!--Lägg in bilden i IOS -->
             </StackLayout>
         </ScrollView>
     </Grid>  

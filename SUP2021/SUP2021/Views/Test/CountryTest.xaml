@@ -35,7 +35,8 @@
 
 
                 <Label Text="Address:"></Label>
-                <custom:CustomEntry EntryBorderColor="Black" 
+                <custom:CustomEntry x:Name="txtAdress"
+                                EntryBorderColor="Black" 
                                 EntryCornerRadius="3" 
                                 
                                 WidthRequest="200">
@@ -44,15 +45,19 @@
                 </custom:CustomEntry>
 
                 <Label Text="PostalCode:"></Label>
-                <custom:CustomEntry EntryBorderColor="Black" 
-                                EntryCornerRadius="3" 
-                                WidthRequest="200">
+                <custom:CustomEntry x:Name="txtPostalCode"
+                                    Keyboard="Numeric"
+                                    MaxLength="5"
+                                    EntryBorderColor="Black" 
+                                    EntryCornerRadius="3" 
+                                    WidthRequest="200">
 
 
                 </custom:CustomEntry>
 
                 <Label Text="City:"></Label>
-                <custom:CustomEntry EntryBorderColor="Black" 
+                <custom:CustomEntry x:Name="txtCity"
+                                EntryBorderColor="Black" 
                                 EntryCornerRadius="3" 
                                 WidthRequest="200">
 

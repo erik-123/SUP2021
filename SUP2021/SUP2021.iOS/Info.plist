@@ -19,12 +19,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-        <key>NSPhotoLibraryUsageDescription</key>
-        <string>Photo Library Access Warning</string>
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>SUP2021</string>
+	<string>eCommerce</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.companyname.SUP2021</string>
 	<key>CFBundleVersion</key>

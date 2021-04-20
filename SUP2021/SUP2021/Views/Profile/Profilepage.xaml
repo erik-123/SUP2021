@@ -86,7 +86,13 @@
                                     <Label Text="{Binding sername}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  />
 
                                     <Label Text="Number" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1"/>
-                                    <Label Text="{Binding nummber}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1" />  
+                                    <Label Text="{Binding nummber}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1" />
+
+                                    <Label Text="Adress" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding adress}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  />
+
+                                    <Label Text="Postcode" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+                                    <Label Text="{Binding postcode}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1" />
                                     
                                         
                                         

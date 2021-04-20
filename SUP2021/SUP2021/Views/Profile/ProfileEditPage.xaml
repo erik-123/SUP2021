@@ -16,6 +16,10 @@
             <Entry x:Name="username" Placeholder="Username" ReturnType="Next" />
             <Entry x:Name="phone" Placeholder="Phone" ReturnType="Next" Keyboard="Telephone" />
             <Entry x:Name="password" IsPassword="true" Placeholder="Password" ReturnType="Next" />
+            <Entry x:Name="adress" Placeholder="Adress" ReturnType="Next" />
+            <Entry x:Name="postcode" Placeholder="Postcode" ReturnType="Next" Keyboard="Telephone" />
+           
+
 
 
 

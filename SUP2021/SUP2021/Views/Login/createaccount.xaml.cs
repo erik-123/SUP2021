@@ -36,7 +36,8 @@ namespace SUP2021.Views
             string Email = email.Text;
             string Password = password.Text;
             string Phone = phone.Text;
-            string Adress = "appgatan 2";
+            string Adress = adress.Text;
+            string Postcode = postcode.Text;
             int uid = 1;
 
             // users.email = email.Text;
@@ -45,16 +46,18 @@ namespace SUP2021.Views
 
             if ((string.IsNullOrWhiteSpace(Firstname.Text) || string.IsNullOrWhiteSpace(email.Text) || string.IsNullOrWhiteSpace(username.Text) || string.IsNullOrWhiteSpace(password.Text) ||
                 string.IsNullOrWhiteSpace(surname.Text) ||  string.IsNullOrWhiteSpace(phone.Text) ||   string.IsNullOrEmpty(Firstname.Text) || string.IsNullOrEmpty(email.Text)        ||
-                string.IsNullOrEmpty(username.Text) ||  string.IsNullOrEmpty(password.Text)       ||   string.IsNullOrEmpty(surname.Text)   || (string.IsNullOrEmpty(phone.Text))))
+                string.IsNullOrEmpty(username.Text) ||  string.IsNullOrEmpty(password.Text)       ||   string.IsNullOrEmpty(surname.Text)   || (string.IsNullOrEmpty(phone.Text)
+
+               || string.IsNullOrEmpty(adress.Text) || string.IsNullOrEmpty(postcode.Text) || string.IsNullOrWhiteSpace(adress.Text) || string.IsNullOrWhiteSpace(postcode.Text))))
 
 
             {
                 await DisplayAlert("Alert", "A textfield can't be empty or lack value", "OK");
             }
-            else if (phone.Text.Length < 10)
+            else if (phone.Text.Length < 10 || postcode.Text.Length <5 )
             {
                 phone.Text = string.Empty;
-                await DisplayAlert("Alert", "Enter 10 digit Number", "OK");
+                await DisplayAlert("Alert", "Enter 10 digit Number or 5 digital Number for postcode", "OK");
               
             }
             else
@@ -77,7 +80,8 @@ namespace SUP2021.Views
                         email = Email,
                         password = Password,
                         nummber = Phone,
-                        adress = Adress
+                        adress = Adress,
+                        postcode = Postcode
 
                     };
                     using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
@@ -92,7 +96,7 @@ namespace SUP2021.Views
                     //Console.WriteLine(newuser.firstname);
                     //  await App.Database.AddUser(newuser);
                     //          //  await database.AddUser(users);
-                    await DisplayAlert("Grattis", newuser.firstname + newuser.email + newuser.adress + newuser.UID + newuser.nummber, "OK");
+                    await DisplayAlert("Nytt konto:" + "" + "Förnamn:" + "", newuser.firstname + "" + "Email:" + "" + newuser.email + "" + "Adress:" + "" + newuser.adress +"" + "Postcode:" + newuser.postcode + "" + "Id" + "" + newuser.UID + "" + "Telefon" + "" + newuser.nummber, "OK");
                     //Console.WriteLine("testmeddelande");
                     //var query = App.Database.GetUsersAsync();
                     //query.Wait();

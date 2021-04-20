@@ -115,6 +115,7 @@
     <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
     <AndroidResource Include="Resources\drawable\icon_about.png" />
     <AndroidResource Include="Resources\drawable\icon_feed.png" />
+    <AndroidResource Include="Resources\drawable\icon_edit_profilepage.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SUP2021\SUP2021.csproj">
@@ -126,9 +127,6 @@
     <AndroidResourceAnalysisConfig Include="Resources\file_paths.xml">
       <SubType>Designer</SubType>
     </AndroidResourceAnalysisConfig>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon_edit_profilepage.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon_settings_profilepage.png" />

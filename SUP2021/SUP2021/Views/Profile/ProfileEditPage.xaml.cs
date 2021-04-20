@@ -54,12 +54,12 @@ namespace SUP2021.Views
             }
         }
 
-        public async Task InsertUser(int UserID, string adress, string Firstname, string surname, string username, string password, string number, string email, string URL)
+        public async Task InsertUser(int UserID, string adress, string Firstname, string surname, string username, string password, string number, string email, string postcode, string URL)
         {
                        
             await firebase
               .Child("Users")
-              .PostAsync(new User() { UID = UserID, adress = adress, Username = username, firstname = Firstname, sername = surname, password = password, nummber = number,  email= email, URL = URL });
+              .PostAsync(new User() { UID = UserID, adress = adress, Username = username, firstname = Firstname, sername = surname, password = password, nummber = number,  email= email, postcode=postcode, URL = URL });
 
             }
            
@@ -80,7 +80,8 @@ namespace SUP2021.Views
                 string Email = email.Text;
                 string Password = password.Text;
                 string Phone = phone.Text;
-                string Adress = "appgatan 2";
+                string Adress = adress.Text;
+                string Postcode = postcode.Text;
                 int uid = 1;
 
 
@@ -96,13 +97,14 @@ namespace SUP2021.Views
                     email = Email,
                     password = Password,
                     nummber = Phone,
-                    adress = Adress
+                    adress = Adress,
+                    postcode = Postcode
 
                 };
 
 
 
-               await InsertUser(uid, name, user, Surname, Email, Password, Phone, Adress, Imgurl);
+               await InsertUser(uid, name, user, Surname, Email, Password, Phone, Adress, Postcode, Imgurl);
 
 
 

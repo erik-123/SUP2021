@@ -14,8 +14,8 @@
             <Button x:Name="Insert" Clicked="InsertIntoCloudDatabase_Clicked" Text="Insert to firebase"></Button>
 
 
-            <Button x:Name="AddtoFB" Clicked="BtnAdd_Clicked" Text="Add_to_FB"></Button>
-            <Button x:Name="DeleteFB" Clicked="BtnDelete_Clicked" Text="Delete"></Button>
+          <!--  <Button x:Name="AddtoFB" Clicked="BtnAdd_Clicked" Text="Add_to_FB"></Button>
+            <Button x:Name="DeleteFB" Clicked="BtnDelete_Clicked" Text="Delete"></Button> -->
 
 
 

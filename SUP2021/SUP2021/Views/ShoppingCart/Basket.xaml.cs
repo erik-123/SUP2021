@@ -22,17 +22,17 @@ namespace SUP2021.Views
         {
             InitializeComponent();
         }
-        public async Task<List<Products>> GetAllofTheProducts()
-        {
+      //  public async Task<List<Products>> GetAllofTheProducts()
+       // {
 
-            return (await firebase
-              .Child("Persons")
-              .OnceAsync<Products>()).Select(item => new Products
-              {
-                  ProductName = item.Object.ProductName,
-                  PID = item.Object.PID
-              }).ToList();
-        }
+          //  return (await firebase
+             // .Child("Persons")
+            //  .OnceAsync<Products>()).Select(item => new Products
+           //   {
+              //    ProductName = item.Object.ProductName,
+             //     PID = item.Object.PID
+             // }).ToList();
+       // }
         public static async Task<List<Products>> GetAllProducts()
         {
             try
@@ -57,7 +57,7 @@ namespace SUP2021.Views
         {
             base.OnAppearing();
 
-            var AllProducts = await GetAllofTheProducts();
+            var AllProducts = await GetAllProducts();
             lstPersons.ItemsSource = AllProducts;
 
 

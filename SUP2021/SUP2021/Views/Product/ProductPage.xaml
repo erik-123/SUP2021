@@ -24,22 +24,26 @@
             <ListView x:Name="usersListView" ItemSelected="CursoView_ItemSelected" SelectedItem="{Binding SelectedItem}" HeightRequest="400">
                 <ListView.ItemTemplate>
                     <DataTemplate>
+                       
 
                         <ImageCell Text="{Binding ProductName}" Detail="{Binding Price}" >
                             <ImageCell.ImageSource>
                                 <UriImageSource Uri="{Binding URL}"
                                  CacheValidity="1"
                                  CachingEnabled="true"/>
+
                                 
                             </ImageCell.ImageSource>
                         </ImageCell>                    
 
-
+                       
 
                     </DataTemplate>
                 </ListView.ItemTemplate>
 
+
             </ListView>
+              
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

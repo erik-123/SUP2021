@@ -22,16 +22,16 @@
         </Grid.RowDefinitions>
       <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,40" Spacing="10" BackgroundColor="DarkBlue" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-                <Label Text="Welcome" FontSize="Title" TextColor="White"/>
-                <Label Text="This is a new started appplication! log in now or registed a account to start your new journey" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
-                <Label Text="About the application" FontSize="Title" TextColor="White"/>
-                 <Label Text="This is a new started appplication! log in now or registed a account to start your new journey" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
-                <Label Text="Our passion" FontSize="Title" TextColor="White"/>
-                 <Label Text="This is a new started appplication! log in now or registed a account to start your new journey" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
-                <Label Text="About us" FontSize="Title" TextColor="White"/>
-                <Label Text="This is a new started appplication! log in now or registed a account to start your new journey" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
+                <Label Text="Välkomna till alexanders garage shopping" FontSize="Title" TextColor="White"/>
+                <Label Text="Detta är en ny garangeshopping app som som säljer allt ifrån korv till målafärg " FontSize="16" Padding="0,0,0,0" TextColor="White"/>
+                <Label Text="Om applikationen" FontSize="Title" TextColor="White"/>
+                 <Label Text="Applikationen är byggd i Xamarin och dess mål är att fungera på både android och ios enheter så alla får möjligheten att handla" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
+                <Label Text="Våran passion" FontSize="Title" TextColor="White"/>
+                 <Label Text="Våran passion är att bli markandsledande inom garageshopping hemma hos alex då hans granne även har gått in i markaden" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
+                <Label Text="Om oss" FontSize="Title" TextColor="White"/>
+                <Label Text="Vi är fyra studenter på örebro universitet" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
                  <Label Text="Contact us" FontSize="Title" TextColor="White"/>
-                 <Label Text="This is a new started appplication! log in now or registed a account to start your new journey" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
+                 <Label Text="Alex@garage.nu eller korv@shopping.nu" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
                 <Label FontSize="16" Padding="0,24,0,0">
                     <Label.FormattedText>
                         <FormattedString>

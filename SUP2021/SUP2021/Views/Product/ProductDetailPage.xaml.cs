@@ -1,5 +1,6 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
+using SQLite;
 using SUP2021.Models;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace SUP2021.Views
     {
         public static FirebaseClient firebase = new FirebaseClient("https://sup2021-c58ec-default-rtdb.europe-west1.firebasedatabase.app/");
         public Guid productId { get;}
+        public Guid ShoppingId { get; set; }
 
         public ObservableCollection<Products> Items { get; set; } = new ObservableCollection<Products>();
 
@@ -26,9 +28,10 @@ namespace SUP2021.Views
         {
             InitializeComponent();
             this.productId = productId;
+            this.ShoppingId = Guid.NewGuid();
 
 
-           
+
         }
         protected override async void OnAppearing()
         {
@@ -57,6 +60,59 @@ namespace SUP2021.Views
             await firebase.Child("Persons").Child(toDeletePerson.Key).DeleteAsync();
         }
 
+        public async void OnAddBasketButton_Clicked(object sender, EventArgs e)
+        {
+         
+           
+            var value = Application.Current.Properties["Username"].ToString();
+            Console.WriteLine(value);
+
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<User>();
+                //int rowsAdded = conn.Insert(newShoppingCartModel);
+                // Console.WriteLine(rowsAdded);
+                var useridcheck = conn.Table<User>().Where(c => c.Username == value).ToList();
+
+
+                var Rows = new ObservableCollection<User>();
+                Rows.Clear();
+
+
+
+                foreach (var entry in useridcheck)
+                {
+                    // var test = "***"; 
+
+                    // entryList just contains values I use to populate row info 
+                    var row = new User();
+                    row.UID = entry.UID;
+                    Console.WriteLine("test av UID: " + entry.UID);
+                    var uid = entry.UID;
+
+                    Rows.Add(row);
+
+
+
+
+                    var newShoppingCartModel = new ShoppingCartModel
+                    {
+
+                        UID = uid,
+                        ShoppingId = ShoppingId,
+                        ProductID = productId
+
+
+
+
+                    };
+                }
+            }
+            await Navigation.PushAsync(new ProductPage()); //Basket
+
+
+        }
+
 
 
         private async void BtnDeleteProductClicked(object sender, EventArgs e)
@@ -67,6 +123,8 @@ namespace SUP2021.Views
             await DisplayAlert("Success", "Person Deleted Successfully", "OK");
             var allPersons = await GetAllProducts();
             productDetailListView.ItemsSource = allPersons;
+
+
 
         }
 

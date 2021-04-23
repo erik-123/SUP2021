@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using Firebase.Storage;
 using SQLite;
 using SUP2021.Models;
@@ -10,14 +11,19 @@ using Xamarin.Forms.Xaml;
 namespace SUP2021.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+
     public partial class ProductPage : ContentPage
     {
+        public Guid ShoppingId { get; set; }
+        public Guid productId { get; }
         public ProductPage()
         {
             InitializeComponent();
             this.BindingContext = new ProductViewModel();
+            this.ShoppingId = Guid.NewGuid();
+           
 
-        }
+    }
 
         protected override async void OnAppearing()
         {
@@ -43,8 +49,67 @@ namespace SUP2021.Views
             }
 
         }
+       
 
-        private void CursoView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    /* public async void OnAddBasketButton_Clicked (object sender, EventArgs e)
+         {
+         var value = Application.Current.Properties["Username"].ToString();
+         var test = SelectedPerson.ProductId;
+
+
+
+
+         var newShoppingCartModel = new ShoppingCartModel
+         {
+
+             //UID = uid,
+            // ShoppingId = ShoppingId,
+             //ProductId = test
+
+
+
+
+     };
+         using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+         {
+             conn.CreateTable<User>();
+             int rowsAdded = conn.Insert(newShoppingCartModel);
+             Console.WriteLine(rowsAdded);
+             var useridcheck = conn.Table<User>().Where(c => c.Username == value).ToList();
+
+
+             var hej = (Products)usersListView.SelectedItem;
+             Guid testo = hej.ProductId;
+             Console.WriteLine("Test av produktID" + testo);
+
+
+
+
+             var Rows = new ObservableCollection<User>();
+         Rows.Clear();
+
+
+
+         foreach (var entry in useridcheck)
+         {
+             // var test = "***"; 
+
+             // entryList just contains values I use to populate row info 
+             var row = new User();
+             row.UID = entry.UID;
+             Console.WriteLine("test av UID: " + entry.UID);
+
+             Rows.Add(row);
+         }
+         }
+     }
+    */
+
+
+
+
+
+    private void CursoView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             
             Navigation.PushAsync(new ProductDetailPage(SelectedPerson.ProductId));

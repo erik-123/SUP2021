@@ -120,9 +120,14 @@
         <ShellContent Route="settings" ContentTemplate="{DataTemplate local:settings} "/>
     </FlyoutItem>
 
-   
+    <FlyoutItem Title= "FAQ">
+        <ShellContent Route="FAQ" ContentTemplate="{DataTemplate local:Test.FAQ} "/>
+    </FlyoutItem>
 
-      <FlyoutItem Title= "Logout" Icon="icon_about.png">
+
+
+
+    <FlyoutItem Title= "Logout" Icon="icon_about.png">
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage} "/>
     </FlyoutItem>
     

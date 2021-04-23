@@ -1,9 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SUP2021.Views.Test.FAQ">
-    <ContentPage.Content>
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit" xmlns:vm="clr-namespace:SUP2021.ViewModels"
+             x:Class="SUP2021.Views.Test.FAQ"
+              Title="{Binding Title}">
 
-        <Label Text="FAQ"></Label>
+ 
+        
+      <ContentPage.Content>
+        
+  
+
+
+       <behaviors:Expander>
+            <behaviors:Expander.Header>
+                <Label Text="Om oss ▼"
+               FontAttributes="Bold"
+               FontSize="Medium" Padding="10" Margin="2"/>
+            </behaviors:Expander.Header>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1"
+               Text="Vi är några studenter"
+               FontAttributes="Italic" />
+            </Grid>
+            </behaviors:Expander>
+
+        
     </ContentPage.Content>
+
+
 </ContentPage>

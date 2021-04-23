@@ -81,7 +81,7 @@
                 </Grid.ColumnDefinitions>
 
 
-                <ListView x:Name="testscenariocreditcardslist" SelectionMode="None" VerticalScrollBarVisibility="Always">
+                <ListView x:Name="testscenariocreditcardslist" SelectionMode="Single" VerticalScrollBarVisibility="Always">
                     <ListView.ItemsSource>
                         <x:Array Type="{x:Type x:String}" >
 

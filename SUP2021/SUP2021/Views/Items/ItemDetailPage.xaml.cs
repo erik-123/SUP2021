@@ -9,6 +9,7 @@ namespace SUP2021.Views
         public ItemDetailPage()
         {
             InitializeComponent();
+            this.BindingContext = new ItemDetailViewModel();
             BindingContext = new ItemDetailViewModel();
         }
     }

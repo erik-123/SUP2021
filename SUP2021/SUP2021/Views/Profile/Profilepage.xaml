@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vm="clr-namespace:SUP2021.ViewModels"
              mc:Ignorable="d"
-             x:Class="SUP2021.Views.Profilepage">
+             x:Class="SUP2021.Views.Profilepage"
+             Title="{Binding Title}">
   
 
   

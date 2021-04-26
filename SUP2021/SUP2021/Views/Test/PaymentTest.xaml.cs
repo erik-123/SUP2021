@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SQLite;
 using Stripe;
 using SUP2021.Models;
+using SUP2021.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,6 +26,7 @@ namespace SUP2021.Views.Test
         public PaymentTest()
         {
             InitializeComponent();
+            this.BindingContext = new PaymentViewModel();
         }
         protected override async void OnAppearing()
         {

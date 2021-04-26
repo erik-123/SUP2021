@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 using RestSharp;
 using SUP2021.Models;
 using System.Net;
+using SUP2021.ViewModels;
 
 namespace SUP2021.Views.Test
 {
@@ -21,6 +22,7 @@ namespace SUP2021.Views.Test
         public CountryTest()
         {
             InitializeComponent();
+            this.BindingContext = new ShippingViewModel();
         }
         public async void Postnordtest(object sender, EventArgs e)
         {

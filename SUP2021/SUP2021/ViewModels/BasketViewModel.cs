@@ -7,10 +7,11 @@ using Xamarin.Forms;
 
 namespace SUP2021.ViewModels
 {
-    public class BasketViewModel : ContentView
+    public class BasketViewModel : BaseViewModel
     {
         public BasketViewModel()
         {
+            Title = "Shoppingcart";
         }
     }
 }

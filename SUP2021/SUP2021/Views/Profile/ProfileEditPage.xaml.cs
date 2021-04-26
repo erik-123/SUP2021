@@ -31,6 +31,7 @@ namespace SUP2021.Views
         public ProfileEditPage()
         {
             InitializeComponent();
+           
         }
 
         private async void BtnPickImage_Clicked(object sender, EventArgs e)

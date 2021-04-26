@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vm="clr-namespace:SUP2021.ViewModels"
              mc:Ignorable="d"
              x:Class="SUP2021.Views.createaccount"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             Title="{Binding Title}">
    <ContentPage.BindingContext>
         <vm:createaccountViewModel/>
        

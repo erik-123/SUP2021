@@ -19,8 +19,9 @@ namespace SUP2021.Views
         public createaccount()
         {
             InitializeComponent();
+            this.BindingContext = new createaccountViewModel();
             //Firstname.ReturnCommand = new Command(() => username.Focus());
-            
+
             this.BindingContext = new createaccountViewModel();
             Firstname.Keyboard = Keyboard.Create(KeyboardFlags.Suggestions | KeyboardFlags.CapitalizeWord);
         }

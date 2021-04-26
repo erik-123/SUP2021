@@ -22,6 +22,7 @@ namespace SUP2021.Views
             //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             // Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             InitializeComponent();
+            
             this.BindingContext = new LoginViewModel();
 
 

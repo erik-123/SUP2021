@@ -11,6 +11,7 @@ using Firebase.Storage;
 using Firebase;
 using Firebase.Database.Query;
 using Firebase.Database;
+using SUP2021.ViewModels;
 
 namespace SUP2021.Views
 {
@@ -21,6 +22,7 @@ namespace SUP2021.Views
         public Basket()
         {
             InitializeComponent();
+            this.BindingContext = new BasketViewModel();
         }
       //  public async Task<List<Products>> GetAllofTheProducts()
        // {

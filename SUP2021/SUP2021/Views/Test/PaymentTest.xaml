@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:fastEntry="clr-namespace:XamarinFastEntrySample.FastEntry;assembly=XamarinFastEntry.Behaviors" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="SUP2021.Views.Test.PaymentTest">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fastEntry="clr-namespace:XamarinFastEntrySample.FastEntry;assembly=XamarinFastEntry.Behaviors"
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="SUP2021.Views.Test.PaymentTest"
+             Title="{Binding Title}">
     <ContentPage.Content>
       
             <StackLayout Padding="20">
@@ -19,9 +22,7 @@
             <Entry.Behaviors>
                     <fastEntry:XamarinFastEntryBehaviour Mask="####-####-####-####"
                                                          MaxLength="19"
-                                                         
-                                                         
-                                                         />
+                     />
 
 
                 </Entry.Behaviors>

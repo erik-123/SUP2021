@@ -23,7 +23,7 @@ namespace SUP2021.ViewModels
 
         public PaymentViewModel()
         {
-            Title = "About";
+            Title = "Payment";
             SelectedCountry = CountryUtils.GetCountryModelByName("Sweden");
             ShowPopupCommand = new Command(async _ => await ExecuteShowPopupCommand());
             CountrySelectedCommand = new Command(country => ExecuteCountrySelectedCommand(country as CountryModel));

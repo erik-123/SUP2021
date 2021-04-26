@@ -34,6 +34,7 @@ namespace SUP2021.Views
         public AddProductPage()
         {
             InitializeComponent();
+           
             this.ProductId = Guid.NewGuid();
 
 

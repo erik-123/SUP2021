@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace SUP2021.ViewModels
 {
-   public class ProductViewModel
+   public class ProductViewModel : BaseViewModel
     {
         public Command AddNewCommand { get; }
         
@@ -15,7 +15,9 @@ namespace SUP2021.ViewModels
         public ProductViewModel()
         {
             AddNewCommand = new Command(OnAddNewClicked);
-            
+
+            Title = "Product";
+
 
         }
 

@@ -10,13 +10,13 @@
       <ContentPage.Content>
         
   
-
+<StackLayout> 
 
        <behaviors:Expander>
             <behaviors:Expander.Header>
                 <Label Text="Om oss ▼"
                FontAttributes="Bold"
-               FontSize="Medium" Padding="10" Margin="2"/>
+               FontSize="Large" Padding="10" Margin="2"/>
             </behaviors:Expander.Header>
             <Grid Padding="10">
                 <Grid.ColumnDefinitions>
@@ -27,9 +27,93 @@
                 <Label Grid.Column="1"
                Text="Vi är några studenter"
                FontAttributes="Italic" />
-            </Grid>
+             </Grid>
+
+
             </behaviors:Expander>
 
+          
+       <behaviors:Expander>
+            <behaviors:Expander.Header>
+                <Label Text="Betalning ▼"
+               FontAttributes="Bold"
+               FontSize="Large" Padding="10" Margin="2"/>
+            </behaviors:Expander.Header>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1"
+               Text="Vi är några studenter"
+               FontAttributes="Italic" />
+             </Grid>
+
+
+            </behaviors:Expander>
+
+    <behaviors:Expander>
+            <behaviors:Expander.Header>
+                <Label Text="Vilkor ▼"
+               FontAttributes="Bold"
+               FontSize="Large" Padding="10" Margin="2"/>
+            </behaviors:Expander.Header>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1"
+               Text="Vi är några studenter"
+               FontAttributes="Italic" />
+             </Grid>
+
+
+            </behaviors:Expander>
+
+    <behaviors:Expander>
+            <behaviors:Expander.Header>
+                <Label Text="Frakt ▼"
+               FontAttributes="Bold"
+               FontSize="Large" Padding="10" Margin="2"/>
+            </behaviors:Expander.Header>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1"
+               Text="Vi är några studenter"
+               FontAttributes="Italic" />
+             </Grid>
+
+
+            </behaviors:Expander>
+
+    <behaviors:Expander>
+            <behaviors:Expander.Header>
+                <Label Text="Rättigheter ▼"
+               FontAttributes="Bold"
+               FontSize="Large" Padding="10" Margin="2"/>
+            </behaviors:Expander.Header>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1"
+               Text="Vi är några studenter"
+               FontAttributes="Italic" />
+             </Grid>
+
+
+            </behaviors:Expander>
+
+    </StackLayout>
         
     </ContentPage.Content>
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace SUP2021.Models
 {
@@ -9,7 +10,10 @@ namespace SUP2021.Models
     {
         [PrimaryKey, AutoIncrement]
         public Guid ProductId { get; set; }       
-        public int PID { get; set; }
+
+        [ForeignKey(typeof(Products))]
+        public int RefUserID { get; set; }
+
         public string Price { get; set; }
         public string ProductName { get; set; }
         public string URL { get; set; }

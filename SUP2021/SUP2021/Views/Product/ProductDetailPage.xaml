@@ -33,6 +33,7 @@
 
             </ListView>  
             <Button x:Name="DeleteFB" Clicked="BtnDeleteProductClicked" Text="Delete"></Button>
+            <Button Text="Send SMS" Clicked="BtnSmsToSeller"></Button>
             <Button Clicked="OnAddBasketButton_Clicked" Text="Buy"> </Button>
 
         </StackLayout>

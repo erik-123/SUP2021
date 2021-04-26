@@ -2,13 +2,14 @@
 using Firebase.Database.Query;
 using SQLite;
 using SUP2021.Models;
+using SUP2021.Views.Product;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,7 +19,7 @@ namespace SUP2021.Views
     public partial class ProductDetailPage : ContentPage
     {
         public static FirebaseClient firebase = new FirebaseClient("https://sup2021-c58ec-default-rtdb.europe-west1.firebasedatabase.app/");
-        public Guid productId { get;}
+        public Guid productId { get; }
         public Guid ShoppingId { get; set; }
 
         public ObservableCollection<Products> Items { get; set; } = new ObservableCollection<Products>();
@@ -39,19 +40,19 @@ namespace SUP2021.Views
             //await GetProduct(productId);
             var product = await GetProduct(productId);
             //var product = await GetAllProducts();
-            
-                
+
+
 
             productDetailListView.ItemsSource = product;
-            
 
-           // Console.WriteLine(ProductName);
-            Console.WriteLine("Här visas id:t"+ productId);
+
+            // Console.WriteLine(ProductName);
+            Console.WriteLine("Här visas id:t" + productId);
             //Console.WriteLine(product.PID + product.ProductName + product.Price);
 
         }
 
-      
+
         public async Task DeleteTheProduct(Guid productId)
         {
             var toDeletePerson = (await firebase
@@ -62,8 +63,8 @@ namespace SUP2021.Views
 
         public async void OnAddBasketButton_Clicked(object sender, EventArgs e)
         {
-         
-           
+
+
             var value = Application.Current.Properties["Username"].ToString();
             Console.WriteLine(value);
 
@@ -100,7 +101,7 @@ namespace SUP2021.Views
 
                         UID = uid,
                         ShoppingId = ShoppingId,
-                        ProductID = productId
+                        RefProductID = productId
 
 
 
@@ -128,6 +129,65 @@ namespace SUP2021.Views
 
         }
 
+        public async void BtnSmsToSeller(object sender, EventArgs e)
+            {
+            
+                   //await  Navigation.PushAsync(new SendSMStoSellerPage());
+            try
+            {
+
+
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.CreateTable<Products>();
+                    var products = conn.Table<Products>().ToList();
+
+                    foreach (var entry in products)
+                    {
+
+                        int pid = entry.RefUserID;
+                        Console.WriteLine("test av URL: " + entry.RefUserID);
+
+                        conn.CreateTable<User>();
+                        //var data = conn.Table<User>().ToList();
+                        var checkquery = conn.Table<User>().Where(a => a.UID == pid).ToList();
+
+
+                        foreach (var entries in checkquery)
+                        {
+
+
+                            var number = entries.nummber;
+
+
+                            await Sms.ComposeAsync(new SmsMessage
+                            {
+                                //Body = EntryMessage.Text,
+                                Recipients = new List<string> { number }
+
+
+                            });
+
+                        }
+                        }
+                    }
+                }
+            catch (Exception)
+
+            {
+                Console.WriteLine("Device is missing sms-client");
+
+
+            }
+
+
+
+
+
+
+
+        }
+
 
 
 
@@ -141,7 +201,7 @@ namespace SUP2021.Views
                 new Products
                 {
                     ProductId = item.Object.ProductId,
-                    PID = item.Object.PID,
+                    //PID = item.Object.PID,
                     Price = item.Object.Price,
                     ProductName = item.Object.ProductName,
                     URL = item.Object.URL

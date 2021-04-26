@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Firebase.Database.Query;
 using SUP2021.Services;
-
+using System.Collections.ObjectModel;
 
 namespace SUP2021.Views
 {
@@ -62,7 +62,7 @@ namespace SUP2021.Views
               .OnceAsync<Products>()).Select(item => new Products
               {
                   ProductName = item.Object.ProductName,
-                  PID = item.Object.PID
+                  
               }).ToList();
         }
 
@@ -71,7 +71,7 @@ namespace SUP2021.Views
 
             await firebase
               .Child("Products")
-              .PostAsync(new Products() { ProductId = ProductId, PID = PID, ProductName = productName, Price = price, URL = url});
+              .PostAsync(new Products() { ProductId = ProductId, RefUserID = PID, ProductName = productName, Price = price, URL = url});
         }
 
         private async void BtnAdd_Clicked(object sender, EventArgs e)
@@ -145,7 +145,7 @@ namespace SUP2021.Views
 
                 await firebase
                 .Child("Products")
-                .PostAsync(new Products() {PID= PID, Price = price, ProductName = productName, URL = ImgUrl});
+                .PostAsync(new Products() { RefUserID = PID, Price = price, ProductName = productName, URL = ImgUrl});
                 Console.WriteLine("produkten kunde läggas till utan problem");
                 return true;
             }
@@ -198,11 +198,11 @@ namespace SUP2021.Views
             }
         }
 
-        public async Task DeleteTestProduct(int productId)
+        public async Task DeleteTestProduct(Guid productId)
         {
             var toDeletePerson = (await firebase
               .Child("Persons")
-              .OnceAsync<Products>()).Where(a => a.Object.PID == productId).FirstOrDefault();
+              .OnceAsync<Products>()).Where(a => a.Object.ProductId == productId).FirstOrDefault();
             await firebase.Child("Persons").Child(toDeletePerson.Key).DeleteAsync();
 
             
@@ -284,36 +284,76 @@ namespace SUP2021.Views
         {
             try
             {
-                int pid = 1;
-                string Price = price.Text;
-                string productName = ProductName.Text;
-
-                Console.WriteLine("Första url visas här:" + Imgurl);
-
-                var products = new Products
-                {
-                    ProductId = ProductId,
-                    PID = pid,
-                    Price = Price,
-                    ProductName = productName,
-                    URL = Imgurl,
-                };
-
-                await InsertProduct(pid, ProductName.Text, price.Text, Imgurl);
+                
 
 
-                //  var InsertFB = await AddProduct(pid, Price, productName, Imgurl);
+                var value = Application.Current.Properties["Username"].ToString();
 
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                 {
-                    conn.CreateTable<Products>();
-                    int rowsAdded = conn.Insert(products);
 
-                    await DisplayAlert("Congrats!", "A new product have been added!", "OK");
-                    await Navigation.PushAsync(new ProductPage());
+                    conn.CreateTable<User>(); //SQLite ignorerar create table om den redan finns
+                    var data = conn.Table<User>().ToList();
+                    var checkquery = conn.Table<User>().Where(a => a.Username == value).FirstOrDefault();
+
+                    Console.WriteLine(value);
+
+
+
+
+
+
+                    var useridcheck = conn.Table<User>().Where(c => c.Username == value).ToList();
+
+
+                    var Rows = new ObservableCollection<User>();
+                    Rows.Clear();
+
+
+                    foreach (var entry in useridcheck)
+                    {
+
+                        int pid = entry.UID;
+                        Console.WriteLine("test av URL: " + entry.UID);
+
+
+
+                        var length = entry.password.Length;
+
+
+
+
+
+
+                        string Price = price.Text;
+                        string productName = ProductName.Text;
+
+                        Console.WriteLine("Första url visas här:" + Imgurl);
+
+                        var products = new Products
+                        {
+                            ProductId = ProductId,
+                            RefUserID = pid,
+                            Price = Price,
+                            ProductName = productName,
+                            URL = Imgurl,
+                        };
+
+                        await InsertProduct(pid, ProductName.Text, price.Text, Imgurl);
+
+
+                        //  var InsertFB = await AddProduct(pid, Price, productName, Imgurl);
+
+
+                        conn.CreateTable<Products>();
+                        int rowsAdded = conn.Insert(products);
+
+                        await DisplayAlert("Congrats!", "A new product have been added!", "OK");
+                        await Navigation.PushAsync(new ProductPage());
+                    }
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 await DisplayAlert("Alert", "Something went wrong!", "OK");

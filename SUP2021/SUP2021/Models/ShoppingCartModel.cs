@@ -20,7 +20,7 @@ namespace SUP2021.Models
 
 
         [ForeignKey(typeof(Products))]
-        public Guid ProductID { get; set; }
+        public Guid RefProductID { get; set; }
         public ShoppingCartModel() { }
     }
 

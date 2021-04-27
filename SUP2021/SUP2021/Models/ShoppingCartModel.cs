@@ -11,10 +11,12 @@ namespace SUP2021.Models
         [PrimaryKey, AutoIncrement]
         public Guid ShoppingId { get; set; }
         [ForeignKey(typeof(User))]
-        [OneToOne]
-        public List<User> user { get; set; }//user
+        [OneToMany]
+        public List<User> user { get; set; }
 
-        public int UID { get; set; }//UID
+         public int UID { get; set; }
+           
+       //UID
 
 
 

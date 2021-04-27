@@ -61,55 +61,90 @@ namespace SUP2021.Views
             await firebase.Child("Persons").Child(toDeletePerson.Key).DeleteAsync();
         }
 
+
+        public async Task InsertintoShoppingCart(int UID)
+        {
+        
+
+            await firebase
+              .Child("ShoppingCart")
+              .PostAsync(new ShoppingCartModel() { UID = UID, RefProductID = productId, ShoppingId = ShoppingId 
+              });
+        }
+
+
         public async void OnAddBasketButton_Clicked(object sender, EventArgs e)
         {
-
+          
 
             var value = Application.Current.Properties["Username"].ToString();
             Console.WriteLine(value);
+            
 
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
-                conn.CreateTable<User>();
-                //int rowsAdded = conn.Insert(newShoppingCartModel);
-                // Console.WriteLine(rowsAdded);
-                var useridcheck = conn.Table<User>().Where(c => c.Username == value).ToList();
-
-
-                var Rows = new ObservableCollection<User>();
-                Rows.Clear();
-
-
-
-                foreach (var entry in useridcheck)
                 {
-                    // var test = "***"; 
-
-                    // entryList just contains values I use to populate row info 
-                    var row = new User();
-                    row.UID = entry.UID;
-                    Console.WriteLine("test av UID: " + entry.UID);
-                    var uid = entry.UID;
-
-                    Rows.Add(row);
+                try
+                {
+                    conn.CreateTable<User>();
+                    //int rowsAdded = conn.Insert(newShoppingCartModel);
+                    // Console.WriteLine(rowsAdded);
+                    var useridcheck = conn.Table<User>().Where(c => c.Username == value).ToList();
 
 
+                    var Rows = new ObservableCollection<User>();
+                    Rows.Clear();
 
 
-                    var newShoppingCartModel = new ShoppingCartModel
+
+                    foreach (var entry in useridcheck)
                     {
+                        // var test = "***"; 
 
-                        UID = uid,
-                        ShoppingId = ShoppingId,
-                        RefProductID = productId
+                        // entryList just contains values I use to populate row info 
+                        var row = new User();
+                        row.UID = entry.UID;
+                        Console.WriteLine("test av UID: " + entry.UID);
+                        var uid = entry.UID;
+
+                        Rows.Add(row);
 
 
 
 
-                    };
+                        var newShoppingCartModel = new ShoppingCartModel
+                        {
+
+                            UID = uid,
+                            ShoppingId = ShoppingId,
+                            RefProductID = productId
+
+
+
+
+                        };
+
+
+
+                        await InsertintoShoppingCart(uid);
+
+                        conn.CreateTable<ShoppingCartModel>();
+                        int rowsAdded = conn.Insert(newShoppingCartModel);
+
+                        await DisplayAlert("Congrats!", "A new product have been added to the ShoppingCart!", "OK");
+                        Console.WriteLine(uid.ToString(), ShoppingId, productId);
+                        await Navigation.PushAsync(new ProductPage()); 
+
+                    }
                 }
+                catch (Exception ex) 
+                {
+                    Console.WriteLine(ex);
+                    await DisplayAlert("Alert","Something went wrong!","OK");
+                }
+
+                  
             }
-            await Navigation.PushAsync(new ProductPage()); //Basket
+           
 
 
         }

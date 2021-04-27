@@ -5,17 +5,71 @@
              Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="This is a shopping basket"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <ListView x:Name="lstPersons">
-                <ListView.ItemTemplate>
+
+            <!--<ListView x:Name="ShoppingCart" HeightRequest="400">
+                
+                    <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding ProductName}"></TextCell>
+
+
+                        <ImageCell Text="{Binding ProductName}" Detail="{Binding Price}">
+                            <ImageCell.ImageSource>
+                                <UriImageSource Uri="{Binding URL}"
+                                 CacheValidity="1"
+                                 CachingEnabled="true"/>
+
+
+                            </ImageCell.ImageSource>
+                            
+                        </ImageCell>
+                        
+
 
                     </DataTemplate>
                 </ListView.ItemTemplate>
+
+
+            </ListView> -->
+
+
+            <ListView x:Name="ShoppingCart" HeightRequest="400">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="OnDeleteButtonClicked"
+                                 CommandParameter="{Binding .}"
+                                 Text="Delete" IsDestructive="True" />
+                            </ViewCell.ContextActions>
+                            <ViewCell.View>
+                            <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding URL}" Aspect="AspectFit"></Image>
+                                    <Label Text="{Binding ProductName}"></Label>
+                                    <Label Text="{Binding Price}"></Label>                                    
+                                    <Button Text="Delete" HeightRequest="50" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Clicked="OnDeleteButtonClicked">
+                                </Button>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
             </ListView>
+
+
+            <!--<ListView x:Name="ShoppingCart">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding Price}"></Label>
+                           
+
+
+                        </ViewCell>
+
+                    </DataTemplate>                    
+                </ListView.ItemTemplate>
+            </ListView> -->
+            <Button Text="Checkout" Clicked="OnCheckoutClicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

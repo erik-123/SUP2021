@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using FFImageLoading.Forms.Platform;
 using Foundation;
+using Shiny;
 using UIKit;
 
 namespace SUP2021.iOS
@@ -31,6 +32,9 @@ namespace SUP2021.iOS
             Rg.Plugins.Popup.Popup.Init();
             CachedImageRenderer.Init();
             LoadApplication(new App(completePath));
+            iOSShinyHost.Init(platformBuild: services => services.UseNotifications());
+            global::Xamarin.Forms.Forms.Init();
+            LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }

@@ -1,9 +1,12 @@
-﻿using SQLite;
+﻿using Shiny;
+using Shiny.Notifications;
+using SQLite;
 using SUP2021.Data;
 using SUP2021.Services;
 using SUP2021.Views;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -65,8 +68,39 @@ namespace SUP2021
 
         }
 
+        protected override async void OnStart()
+        {
+            await SendNotificationNow();
+            await ScheduleLocalNotification(DateTimeOffset.UtcNow.AddMinutes(1));
+        }
 
-        protected override void OnStart()
+        Task SendNotificationNow()
+        {
+            var notification = new Notification
+            {
+                Title = "Kom ihåg att titta till våra nya produkter",
+                Message = "",
+            };
+
+            return ShinyHost.Resolve<INotificationManager>().RequestAccessAndSend(notification);
+        }
+
+        Task ScheduleLocalNotification(DateTimeOffset scheduledTime)
+        {
+            var notification = new Notification
+            {
+                Title = "Alltid bra priser",
+                Message = "",
+                ScheduleDate = scheduledTime
+            };
+
+            return ShinyHost.Resolve<INotificationManager>().Send(notification);
+        }
+    
+
+
+
+/*protected override void OnStart()
         {
             
         }
@@ -77,6 +111,6 @@ namespace SUP2021
 
         protected override void OnResume()
         {
-        }
+        }*/
     }
 }

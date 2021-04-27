@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shiny;
+using Shiny.Notifications;
 using SQLite;
 using Stripe;
 using SUP2021.Models;
@@ -38,6 +40,8 @@ namespace SUP2021.Views.Test
             template.SetBinding(TextCell.TextProperty, ".");
             testcreditcardslist.ItemTemplate = template;
             testscenariocreditcardslist.ItemTemplate = template;
+            await SendNotificationNow();
+            await ScheduleLocalNotification(DateTimeOffset.UtcNow.AddMinutes(1));
 
             await DisplayAlert("Alert","Skriv inte in ditt eget kort","OK");
 
@@ -45,7 +49,32 @@ namespace SUP2021.Views.Test
 
         }
 
-        async void OnOpenSwishButton_Clicked(System.Object sender, System.EventArgs e)
+        Task SendNotificationNow()
+        {
+            var notification = new Notification
+            {
+                Title = "Du har 2 minuter på dig att betala",
+                Message = "",
+            };
+
+            return ShinyHost.Resolve<INotificationManager>().RequestAccessAndSend(notification);
+        }
+
+        Task ScheduleLocalNotification(DateTimeOffset scheduledTime)
+        {
+            var notification = new Notification
+            {
+                Title = "30 sekunder kvar",
+                Message = "",
+                ScheduleDate = scheduledTime
+            };
+
+            return ShinyHost.Resolve<INotificationManager>().Send(notification);
+        }
+    
+
+
+async void OnOpenSwishButton_Clicked(System.Object sender, System.EventArgs e)
         {
 
             GetUserInfo();

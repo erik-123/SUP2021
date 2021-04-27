@@ -39,6 +39,7 @@
     <PackageReference Include="XamarinFastEntry.Behaviors" Version="1.1.1" />
     
     <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
+    <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
   </ItemGroup>
   <ItemGroup>
     <GoogleServicesJson Include="google-services.json" />

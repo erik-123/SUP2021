@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using System.IO;
+using Shiny;
 
 namespace SUP2021.Droid
 {
@@ -20,6 +21,8 @@ namespace SUP2021.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
 
+            AndroidShinyHost.Init(this.Application, platformBuild: services => services.UseNotifications());
+            Shiny.Notifications.AndroidOptions.DefaultSmallIconResourceName = "icon_about";
 
             string FileName = "SUP2021_db.db3";
             string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
@@ -30,7 +33,7 @@ namespace SUP2021.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
+            Shiny.AndroidShinyHost.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }

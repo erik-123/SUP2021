@@ -22,6 +22,7 @@ namespace SUP2021.Views
         public Guid productId { get; }
         public Guid ShoppingId { get; set; }
 
+        public Guid WishId { get; set; }
         public ObservableCollection<Products> Items { get; set; } = new ObservableCollection<Products>();
 
 
@@ -30,6 +31,7 @@ namespace SUP2021.Views
             InitializeComponent();
             this.productId = productId;
             this.ShoppingId = Guid.NewGuid();
+            this.WishId = Guid.NewGuid();
 
 
 
@@ -69,6 +71,20 @@ namespace SUP2021.Views
             await firebase
               .Child("ShoppingCart")
               .PostAsync(new ShoppingCartModel() { UID = UID, RefProductID = productId, ShoppingId = ShoppingId 
+              });
+        }
+
+        public async Task InsertintoWishlist(int UID)
+        {
+
+
+            await firebase
+              .Child("Wishlist")
+              .PostAsync(new WishListModel()
+              {
+                  UID = UID,
+                  ReferProductID = productId,
+                  WishId = WishId
               });
         }
 
@@ -149,7 +165,79 @@ namespace SUP2021.Views
 
         }
 
+        public async void OnAddWishButton_Clicked(object sender, EventArgs e)
+        {
 
+
+            var value = Application.Current.Properties["Username"].ToString();
+            Console.WriteLine(value);
+
+
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                try
+                {
+                    conn.CreateTable<User>();
+                    var useridcheck = conn.Table<User>().Where(c => c.Username == value).ToList();
+
+
+                    var Rows = new ObservableCollection<User>();
+                    Rows.Clear();
+
+
+
+                    foreach (var entry in useridcheck)
+                    {
+                        // var test = "***"; 
+
+                        // entryList just contains values I use to populate row info 
+                        var row = new User();
+                        row.UID = entry.UID;
+                        Console.WriteLine("test av UID: " + entry.UID);
+                        var uid = entry.UID;
+
+                        Rows.Add(row);
+
+
+
+
+                        var newWishListModel = new WishListModel
+                        {
+
+                            UID = uid,
+                            WishId = WishId,
+                            ReferProductID = productId
+
+
+
+
+                        };
+
+
+
+                        await InsertintoWishlist(uid);
+
+                        conn.CreateTable<WishListModel>();
+                        int rowsAdded = conn.Insert(newWishListModel);
+
+                        await DisplayAlert("Congrats!", "A new product have been added to the wishlist!", "OK");
+                        Console.WriteLine(uid.ToString(), ShoppingId, productId);
+                        await Navigation.PushAsync(new ProductPage());
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    await DisplayAlert("Alert", "Something went wrong!", "OK");
+                }
+
+
+            }
+
+
+
+        }
 
         private async void BtnDeleteProductClicked(object sender, EventArgs e)
         {

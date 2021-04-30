@@ -113,7 +113,9 @@ namespace SUP2021.Views.Test
                 int numericStatusCode = (int)statusCode;
 
 
-                await DisplayAlert("Vales from Api", response.Content, "OK", "Cancel");
+                await DisplayActionSheet("Vales from Api", response.Content, "OK", "Cancel");
+
+                
                 
 
 
@@ -154,6 +156,7 @@ namespace SUP2021.Views.Test
 
 
             }
+            
         }
         public async void OnNextButtonClicked(object sender, EventArgs e)
         {

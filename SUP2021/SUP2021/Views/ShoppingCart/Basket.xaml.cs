@@ -27,6 +27,8 @@ namespace SUP2021.Views
             InitializeComponent();
             this.BindingContext = new BasketViewModel();
         }
+
+       
       
         
         protected override async void OnAppearing()
@@ -57,6 +59,11 @@ namespace SUP2021.Views
 
 
                             var row = new Products();
+                            var sum = conn.ExecuteScalar<int>("SELECT SUM(Price) FROM Products INNER JOIN ShoppingCartModel ON Products.ProductId = ShoppingCartModel.RefProductID  WHERE Price > 0");
+                            
+
+
+
                             row.Price = c.Price;
                             row.ProductName = c.ProductName;
                             row.ProductId = c.ProductId;
@@ -65,7 +72,13 @@ namespace SUP2021.Views
 
                             Rows.Add(row);
                             ShoppingCart.ItemsSource = Rows;
+                            CountShoppingCart.Text = sum.ToString();
+
+                            
                         }
+
+
+                     
 
                     }
                 }

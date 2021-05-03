@@ -45,39 +45,20 @@
                
               <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
     <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-        <Button Text="Facebook" Clicked="Button_ClickedFacebook"/>
+    <ImageButton Source="facebook.png" HeightRequest="50" WidthRequest="50" Clicked="Button_ClickedFacebook"/>
     </StackLayout>
     <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-        <Button Text="Instagram" Clicked="Button_ClickedInstagram"/>
+    <ImageButton Source="instagram.png" HeightRequest="50" WidthRequest="50" Clicked="Button_ClickedInstagram"/>
     </StackLayout>
     <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-    <Button Text="Twitter" Clicked="Button_ClickedTwitter"/>
+    <ImageButton Source="twitter.png" HeightRequest="50" WidthRequest="50" Clicked="Button_ClickedTwitter"/>
     </StackLayout>
     <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-    <Button Text="LinkedIn" Clicked="Button_ClickedLinkedIn"/>
+    <ImageButton Source="linkedin.png" HeightRequest="50" WidthRequest="50" Clicked="Button_ClickedLinkedIn"/>
     </StackLayout>
 </StackLayout>
 
 
-
-
-               <!-- <Button Text="Open Instagram"
-                Margin="20"
-                Clicked="Button_ClickedInstagram"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="FillAndExpand"
-                BackgroundColor="#1b89c0"
-                TextColor="White"/>-->
-
-
-             
-
-
-               <!-- <Button Margin="0,10
-                ,0,0" Text="Entry"
-                        Command="{Binding entryCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />-->
             </StackLayout>
 
         </ScrollView>

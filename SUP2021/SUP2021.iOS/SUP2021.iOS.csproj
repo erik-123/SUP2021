@@ -134,6 +134,10 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
     <BundleResource Include="Resources\shipping_postnord_icon.png" />
+    <BundleResource Include="Resources\instagram.png" />
+    <BundleResource Include="Resources\twitter.png" />
+    <BundleResource Include="Resources\linkedin.png" />
+    <BundleResource Include="Resources\facebook.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

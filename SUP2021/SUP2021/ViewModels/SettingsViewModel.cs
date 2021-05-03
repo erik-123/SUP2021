@@ -6,6 +6,8 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using static Xamarin.Essentials.Permissions;
 using Xamarin.Essentials;
+using System.ComponentModel;
+using SUP2021.Views;
 
 namespace SUP2021.ViewModels
 {
@@ -13,8 +15,12 @@ namespace SUP2021.ViewModels
     {
 
         public ICommand OnSelectPermissionChangeCommand { get; set; }
-        public ICommand GoHomeCommand { get; set; }
+        public ICommand GoToSettingsCommand { get; set; }
         public ICommand LoadPermissionCommand { get; set; }
+
+        public ICommand GoToEditProfile { get; set; }
+
+
         public List<Settings> PermissionsList { get; set; }
         public Settings PermissionSelected { get; set; }
 
@@ -30,22 +36,41 @@ namespace SUP2021.ViewModels
                 if (PermissionSelected != null)
                 {
                     PermissionSelected.IsGranted = await CheckAndRequestPermissionAsync(PermissionSelected.Permission) == PermissionStatus.Granted;
+
                 }
             });
 
-            GoHomeCommand = new Command(async () =>
-            {
-                await App.Current.MainPage.DisplayAlert("Hey", "Welcome to my App", "Ok");
-            });
-        }
+            GoToSettingsCommand = new Command(() =>
+           {
+               Xamarin.Essentials.AppInfo.ShowSettingsUI();
+           });
+
+            
+    }
+
+
+        //public bool SwitchMe
+        //{
+        //    get => Preferences.Get(nameof(SwitchMe), false);
+        //    set
+        //    {
+
+        //        Preferences.Set(nameof(SwitchMe), value);
+        //        OnPropertyChanged(nameof(SwitchMe));
+        //    }
+
+
+        //}
 
         async Task LoadPermissions()
         {
             PermissionsList = new List<Settings>()
             {
-                { await CreatePermission(new Camera(), "ic_cam", "Camera", "So your friends can see you")},
-                { await CreatePermission(new Microphone(), "ic_mic", "Mic", "So your friends can hear you") },
-                { await CreatePermission(new LocationWhenInUse(), "ic_location", "Location", "So your friends can find you") }
+                { await CreatePermission(new Camera(), "ic_cam", "Camera", "Access to media and camera")},
+                { await CreatePermission(new Microphone(), "ic_mic", "Mic", "Voice activation") },
+                { await CreatePermission(new LocationWhenInUse(), "ic_location", "Location", " Access aproximate location (network) and precise location (GPS)") },
+                { await CreatePermission(new StorageRead(), "ic_storage", "Storage", "⚠ This app requires access to your storage, if the permission is revoked some functions will stop working!") }
+
             };
         }
 
@@ -67,6 +92,7 @@ namespace SUP2021.ViewModels
             if (status != PermissionStatus.Granted)
             {
                 status = await permission.RequestAsync();
+             
             }
             return status;
 

@@ -1,58 +1,209 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SUP2021.Views.settings"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit" x:Class="SUP2021.Views.settings"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <StackLayout>
-            <CollectionView ItemsSource="{Binding PermissionsList}"
-                          SelectionChangedCommand="{Binding OnSelectPermissionChangeCommand}"
-                          SelectedItem="{Binding PermissionSelected, Mode=TwoWay}"
-                          SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="10"
-                          RowSpacing="5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="2"
-                               Source="{Binding Icon}"
-                               Aspect="AspectFill"
-                               HeightRequest="60"
-                               WidthRequest="60" />
+       <!-- <StackLayout>
+            <Label Text=" E-Commerce" FontSize="18" FontAttributes="Bold"></Label>
+            <Label Text=" Permissions" FontSize="16" FontAttributes="Bold"></Label>
+            <Label Text=" This App may request access to"></Label>
 
-                            <Label Grid.Column="1"
-                               Text="{Binding Name}"
-                               FontAttributes="Bold"
-                               VerticalOptions="End"/>
 
-                            <Label Grid.Row="1"
-                               Grid.Column="1"
-                               Text="{Binding Description}"
-                               VerticalOptions="Start"
-                               FontAttributes="Italic"/>
+            <FlexLayout JustifyContent="SpaceBetween">
+            <Label x:Name="lblDesc"  Text=" Location:" FontSize="16" FontAttributes="Bold"/>
+            <Switch IsToggled="{Binding SwitchMe}" Toggled="OnToggled"/>
+            </FlexLayout>
+            
+            <behaviors:Expander >
+                <behaviors:Expander.Header>
+                    <Label Text="       Read more"
+                           FontAttributes="Italic"
+                           FontSize="12"
+                           TextColor="Black"
+                           
+                />
 
-                            <CheckBox Grid.Row="0"
-                                  Color="#6C8AAE"
-                                  IsChecked="{Binding IsGranted}"
-                                  Grid.RowSpan="2"
-                                  Grid.Column="2"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Button Text="Next"
-                  Command="{Binding GoHomeCommand}"
-                  CornerRadius="0"
-                  FontSize="20"
-                  TextColor="#F9E0A9"
-                  BackgroundColor="#6C8AAE" />
-        </StackLayout>
+                </behaviors:Expander.Header>
+
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <ListView x:Name="LocationInfo" SelectionMode="None" VerticalScrollBarVisibility="Always"  SeparatorColor="Transparent">
+                        <ListView.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>● access aproximate location (network)</x:String>
+                                <x:String>● acess precise location (GPS)</x:String>
+                            </x:Array>
+                        </ListView.ItemsSource>
+                    </ListView>
+
+                </Grid>
+            </behaviors:Expander >
+
+
+
+
+            <FlexLayout JustifyContent="SpaceBetween">
+                <Label  Text=" Camera" FontSize="16" FontAttributes="Bold"/>
+                <Switch />
+             </FlexLayout>
+
+
+            <behaviors:Expander >
+                <behaviors:Expander.Header>
+                    <Label Text="       Read more"
+                           FontAttributes="Italic"
+                           FontSize="12"
+                           TextColor="Black"
+                           
+                />
+
+                </behaviors:Expander.Header>
+
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <ListView x:Name="CameraInfo" SelectionMode="None" VerticalScrollBarVisibility="Always"  SeparatorColor="Transparent" HasUnevenRows="False">
+                        <ListView.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>● take pictures and videos"</x:String>                                
+                            </x:Array>
+                        </ListView.ItemsSource>
+                    </ListView>
+
+                </Grid>
+            </behaviors:Expander >
+
+           
+
+            
+            
+            
+            
+            
+            
+            <FlexLayout JustifyContent="SpaceBetween">
+                <Label  Text=" Telephone" FontSize="16" FontAttributes="Bold"/>
+            <Switch />
+            </FlexLayout>
+
+
+            <behaviors:Expander >
+                <behaviors:Expander.Header>
+                    <Label Text="       Read more"
+                           FontAttributes="Italic"
+                           FontSize="12"
+                           TextColor="Black"
+                           
+                />
+
+                </behaviors:Expander.Header>
+
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <ListView x:Name="TelephoneInfo" SelectionMode="None" VerticalScrollBarVisibility="Always"  SeparatorColor="Transparent">
+                        <ListView.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">                                
+                                <x:String>● read phone status and identity"</x:String>
+                                <x:String>● send text messages</x:String>
+                            </x:Array>
+                        </ListView.ItemsSource>
+                    </ListView>
+
+                </Grid>
+            </behaviors:Expander >
+
+
+
+
+
+
+
+          
+
+            <FlexLayout JustifyContent="SpaceBetween">
+                <Label  Text=" Storage" FontSize="16" FontAttributes="Bold"/>
+                <Switch />
+            </FlexLayout>
+          
+            
+            <behaviors:Expander >
+                <behaviors:Expander.Header>
+                    <Label Text=" ⚠ This app requires access to your storage, if the permission is revoked some functions will stop working!" TextColor="Red"
+                           FontAttributes="Bold"
+                           FontSize="12"
+                />
+                                       
+                </behaviors:Expander.Header>
+                
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <ListView x:Name="expanderStorageInfo" SelectionMode="None" VerticalScrollBarVisibility="Always"  SeparatorColor="Transparent">
+                        <ListView.ItemsSource>
+                            <x:Array Type="{x:Type x:String}" >
+                                
+                                                             
+                                <x:String>● read the contents of your storage"</x:String>
+                                <x:String>● modify or delete the contents of your storage"</x:String>
+                               
+                              
+                            </x:Array>
+                        </ListView.ItemsSource>
+                    </ListView>
+
+
+                </Grid>
+                </behaviors:Expander >                   
+
+
+
+
+                        <Button Text="Click here to open settings" Clicked="OnButtonClickedOpenSettings" BackgroundColor="Gray" TextColor="Black" ></Button> -->
+
+        <StackLayout>            
+          
+            
+            
+            
+           
+
+            <Label Text="Permissions" FontSize="16" FontAttributes="Bold"></Label>
+            <FlexLayout JustifyContent="SpaceBetween">
+                <Label Text="Edit permissions:"></Label>
+                <Button Text="Go to settings" Clicked="OnEditPermissionsClicked"/>
+            </FlexLayout>
+
+
+            <Label Text="Notifications" FontSize="16" FontAttributes="Bold"></Label>
+            <FlexLayout JustifyContent="SpaceBetween">
+                <Label Text="Edit notifications:"></Label>
+                <Button Text="Go to settings" Command="{Binding GoToSettingsCommand}"/>
+            </FlexLayout>
+
+            <Label Text="Profile" FontSize="16" FontAttributes="Bold"></Label>
+            <FlexLayout JustifyContent="SpaceBetween">
+            <Label Text="Edit Profile"></Label>
+            <Button Text="Go to settings" Clicked="OnEditProfilebuttonclicked" BorderWidth="20"/>
+            </FlexLayout>
+
+        </StackLayout> 
 
 
 

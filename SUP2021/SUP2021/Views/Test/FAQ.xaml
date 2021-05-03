@@ -10,7 +10,10 @@
       <ContentPage.Content>
         
   
-<StackLayout> 
+
+<ScrollView> 
+<StackLayout>
+
 
        <behaviors:Expander>
             <behaviors:Expander.Header>
@@ -25,7 +28,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="1"
-               Text="Vi är några studenter"
+               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                FontAttributes="Italic" />
              </Grid>
 
@@ -46,7 +49,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="1"
-               Text="Vi är några studenter"
+               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                FontAttributes="Italic" />
              </Grid>
 
@@ -66,7 +69,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="1"
-               Text="Vi är några studenter"
+               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                FontAttributes="Italic" />
              </Grid>
 
@@ -86,7 +89,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="1"
-               Text="Vi är några studenter"
+               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." 
                FontAttributes="Italic" />
              </Grid>
 
@@ -95,7 +98,7 @@
 
     <behaviors:Expander>
             <behaviors:Expander.Header>
-                <Label Text="Rättigheter ▼"
+                <Label Text="Hur ändrar jag mina uppgifter ▼"
                FontAttributes="Bold"
                FontSize="Large" Padding="10" Margin="2"/>
             </behaviors:Expander.Header>
@@ -106,7 +109,108 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="1"
-               Text="Vi är några studenter"
+               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+               FontAttributes="Italic" />
+             </Grid>
+
+
+            </behaviors:Expander>
+
+     <behaviors:Expander>
+            <behaviors:Expander.Header>
+                <Label Text="Reklamation ▼"
+               FontAttributes="Bold"
+               FontSize="Large" Padding="10" Margin="2"/>
+            </behaviors:Expander.Header>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1"
+               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+               FontAttributes="Italic" />
+             </Grid>
+
+
+            </behaviors:Expander>
+
+     <behaviors:Expander>
+            <behaviors:Expander.Header>
+                <Label Text="Presentkort samt rabatter ▼"
+               FontAttributes="Bold"
+               FontSize="Large" Padding="10" Margin="2"/>
+            </behaviors:Expander.Header>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1"
+               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+               FontAttributes="Italic" />
+             </Grid>
+
+
+            </behaviors:Expander>
+
+    <behaviors:Expander>
+            <behaviors:Expander.Header>
+                <Label Text="Nyhetsbrev ▼"
+               FontAttributes="Bold"
+               FontSize="Large" Padding="10" Margin="2"/>
+            </behaviors:Expander.Header>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1"
+               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+               FontAttributes="Italic" />
+             </Grid>
+
+
+            </behaviors:Expander>
+
+     <behaviors:Expander>
+            <behaviors:Expander.Header>
+                <Label Text="Hur länge gäller presentkort ▼"
+               FontAttributes="Bold"
+               FontSize="Large" Padding="10" Margin="2"/>
+            </behaviors:Expander.Header>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1"
+               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+              
+                FontAttributes="Italic" />
+             </Grid>
+
+
+            </behaviors:Expander>
+
+     <behaviors:Expander>
+            <behaviors:Expander.Header>
+                <Label Text="Övriga frågor ▼"
+               FontAttributes="Bold"
+               FontSize="Large" Padding="10" Margin="2"/>
+            </behaviors:Expander.Header>
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="1"
+               Text="Kontakta Erik.Sondell@Outlock.com"
                FontAttributes="Italic" />
              </Grid>
 
@@ -114,6 +218,7 @@
             </behaviors:Expander>
 
     </StackLayout>
+    </ScrollView>
         
     </ContentPage.Content>
 

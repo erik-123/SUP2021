@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Firebase.Storage;
 using SQLite;
 using SUP2021.Models;
@@ -51,59 +52,8 @@ namespace SUP2021.Views
         }
        
 
-    /* public async void OnAddBasketButton_Clicked (object sender, EventArgs e)
-         {
-         var value = Application.Current.Properties["Username"].ToString();
-         var test = SelectedPerson.ProductId;
+   
 
-
-
-
-         var newShoppingCartModel = new ShoppingCartModel
-         {
-
-             //UID = uid,
-            // ShoppingId = ShoppingId,
-             //ProductId = test
-
-
-
-
-     };
-         using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-         {
-             conn.CreateTable<User>();
-             int rowsAdded = conn.Insert(newShoppingCartModel);
-             Console.WriteLine(rowsAdded);
-             var useridcheck = conn.Table<User>().Where(c => c.Username == value).ToList();
-
-
-             var hej = (Products)usersListView.SelectedItem;
-             Guid testo = hej.ProductId;
-             Console.WriteLine("Test av produktID" + testo);
-
-
-
-
-             var Rows = new ObservableCollection<User>();
-         Rows.Clear();
-
-
-
-         foreach (var entry in useridcheck)
-         {
-             // var test = "***"; 
-
-             // entryList just contains values I use to populate row info 
-             var row = new User();
-             row.UID = entry.UID;
-             Console.WriteLine("test av UID: " + entry.UID);
-
-             Rows.Add(row);
-         }
-         }
-     }
-    */
 
 
 
@@ -146,7 +96,33 @@ namespace SUP2021.Views
         }
         private Products SelectedPerson => (Products)usersListView.SelectedItem;
 
+
+         async void Handle_SearchButtonPressed(object sender, System.EventArgs e)
+        {
+
+            try
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    var products = conn.Table<Products>().ToList();
+                    usersListView.ItemsSource = products.Where(s => s.ProductName.Contains(ProductSearch.Text));
+
+
+
+                }
+
+            }
+
+            catch(Exception ep)
+            {
+                Console.WriteLine(ep);
+                await DisplayAlert("Alert", "Something went wrong!", "OK");
+            }
+
+        }
+
     }
+
 }
         
 

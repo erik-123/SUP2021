@@ -16,7 +16,15 @@
         </ContentPage.ToolbarItems>
   <!--  Clicked="OnAddProductClicked" -->
 <ContentPage.Content>
+
+    
         <StackLayout>
+
+             <SearchBar x:Name="ProductSearch"  
+                 TextChanged="Handle_SearchButtonPressed"
+                 />
+
+              
             <Image x:Name="test2"/>
             <Image x:Name="NewImage" >
                 <Image.Source>

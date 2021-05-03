@@ -69,6 +69,12 @@
                     </DataTemplate>                    
                 </ListView.ItemTemplate>
             </ListView> -->
+            <FlexLayout JustifyContent="Center">
+            <Label x:Name="sum" Text="Sum: " FontSize="Title"> </Label>
+            <Label x:Name="CountShoppingCart" Text="{Binding CounterShoppingCart}" FontSize="Title"> </Label>
+            <Label x:Name="Sek" Text=" SEK" FontSize="Title"> </Label>
+                </FlexLayout>
+          
             <Button Text="Checkout" Clicked="OnCheckoutClicked"></Button>
         </StackLayout>
     </ContentPage.Content>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Android.Content;
+
 using SUP2021.Services;
 using SUP2021.ViewModels;
 using SUP2021.Views.Settings;

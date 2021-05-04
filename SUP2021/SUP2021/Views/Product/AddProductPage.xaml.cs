@@ -61,14 +61,15 @@ namespace SUP2021.Views
             var AllProducts = await GetAllofTheProducts();
 
     
-            lstPersons.ItemsSource = AllProducts;
+            
 
 
 
 
 
             
-                
+               try
+            { 
             
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                     
@@ -94,9 +95,28 @@ namespace SUP2021.Views
 
 
                 };
+                    
+                    foreach (var x in collection)
+                {
+                    if (collection.Count > 0)
+                    {
 
-                conn.InsertAll(collection);
+                    }
+
+
+
+                   else
+                    {
+                        conn.InsertAll(collection);
+
+                    }
+                }
                 
+
+
+
+
+
 
                 picker.ItemsSource = conn.Table<CategoryModel>().ToList();
 
@@ -118,10 +138,17 @@ namespace SUP2021.Views
                 }
             }
 
-                 }    
-            
+                 }
+            }
+            catch(Exception ex)
+            {
+                await DisplayAlert("Alert", "Product list is empty or an error occured!", "OK");
+                Console.WriteLine( ex);
+            }
 
-            
+
+
+
 
 
 
@@ -293,7 +320,7 @@ namespace SUP2021.Views
 
 
 
-        private async void BtnDelete_Clicked(object sender, EventArgs e)
+        /*private async void BtnDelete_Clicked(object sender, EventArgs e)
         {
             //await DeleteTestProduct(1);
             Console.WriteLine("Test av valet: "+SelectedPerson.ProductId);
@@ -301,7 +328,7 @@ namespace SUP2021.Views
             await DisplayAlert("Success", "Person Deleted Successfully", "OK");
             var allPersons = await GetAllProducts();
             lstPersons.ItemsSource = allPersons;
-        }
+        }*/
 
 
 
@@ -461,7 +488,7 @@ namespace SUP2021.Views
 
 
        }
-        private Products SelectedPerson => (Products)lstPersons.SelectedItem;
+       /* private Products SelectedPerson => (Products)lstPersons.SelectedItem;*/
 
 
        

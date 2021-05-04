@@ -17,6 +17,7 @@ using System.Linq;
 using Firebase.Database.Query;
 using SUP2021.Services;
 using System.Collections.ObjectModel;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace SUP2021.Views
 {
@@ -29,13 +30,21 @@ namespace SUP2021.Views
 
         public Guid ProductId { get; set; }
 
+       public Guid CategoryId { get; set; }
+      
+
+
+
         public static FirebaseClient firebase = new FirebaseClient("https://sup2021-c58ec-default-rtdb.europe-west1.firebasedatabase.app/");
+        private object user;
 
         public AddProductPage()
         {
             InitializeComponent();
            
             this.ProductId = Guid.NewGuid();
+            this.CategoryId = Guid.NewGuid();
+         
 
 
             //standard bilder om ingen bild valts
@@ -50,7 +59,98 @@ namespace SUP2021.Views
             base.OnAppearing();
 
             var AllProducts = await GetAllofTheProducts();
-            lstPersons.ItemsSource = AllProducts;
+
+    
+            
+
+
+
+
+
+            
+               try
+            { 
+            
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                    
+                {
+                conn.CreateTable<CategoryModel>();
+
+                List<CategoryModel> collection = new List<CategoryModel>();
+
+
+
+                {
+                    collection.Add(new CategoryModel() { CategoryName = "Kläder", CategoryId = Guid.NewGuid()});
+                    collection.Add(new CategoryModel() { CategoryName = "Elektronik", CategoryId = Guid.NewGuid() });
+                    collection.Add(new CategoryModel() { CategoryName = "Mat", CategoryId = Guid.NewGuid() });
+                    collection.Add(new CategoryModel() { CategoryName = "Annat", CategoryId = Guid.NewGuid() });
+
+                   /* collection.Add(new CategoryModel() { CategoryName = "Kläder", CategoryId = CategoryId });
+                    collection.Add(new CategoryModel() { CategoryName = "Elektronik", CategoryId = CategoryId });
+                    collection.Add(new CategoryModel() { CategoryName = "Mat", CategoryId = CategoryId });
+                    collection.Add(new CategoryModel() { CategoryName = "Annat", CategoryId = CategoryId });*/
+
+
+
+
+                };
+                    
+                    foreach (var x in collection)
+                {
+                    if (collection.Count > 0)
+                    {
+
+                    }
+
+
+
+                   else
+                    {
+                        conn.InsertAll(collection);
+
+                    }
+                }
+                
+
+
+
+
+
+
+                picker.ItemsSource = conn.Table<CategoryModel>().ToList();
+
+
+                 
+
+                    var Pickerlist = conn.Table<CategoryModel>().ToList();
+
+
+                    List<CategoryModel> Finallist = new List<CategoryModel>();
+
+
+                    foreach (var item in Pickerlist)
+            {
+                var exit = Finallist.Where(i => i.CategoryName == item.CategoryName).ToList();
+                if (exit.Count == 0)
+                {
+                    Finallist.Add(item);
+                }
+            }
+
+                 }
+            }
+            catch(Exception ex)
+            {
+                await DisplayAlert("Alert", "Product list is empty or an error occured!", "OK");
+                Console.WriteLine( ex);
+            }
+
+
+
+
+
+
 
 
         }
@@ -220,7 +320,7 @@ namespace SUP2021.Views
 
 
 
-        private async void BtnDelete_Clicked(object sender, EventArgs e)
+        /*private async void BtnDelete_Clicked(object sender, EventArgs e)
         {
             //await DeleteTestProduct(1);
             Console.WriteLine("Test av valet: "+SelectedPerson.ProductId);
@@ -228,7 +328,7 @@ namespace SUP2021.Views
             await DisplayAlert("Success", "Person Deleted Successfully", "OK");
             var allPersons = await GetAllProducts();
             lstPersons.ItemsSource = allPersons;
-        }
+        }*/
 
 
 
@@ -388,7 +488,7 @@ namespace SUP2021.Views
 
 
        }
-        private Products SelectedPerson => (Products)lstPersons.SelectedItem;
+       /* private Products SelectedPerson => (Products)lstPersons.SelectedItem;*/
 
 
        

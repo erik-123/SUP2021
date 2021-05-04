@@ -59,30 +59,43 @@ namespace SUP2021.Views.Test
                 //City: Örebro
 
 
-                string[] subs = streetName.Split(' ');
-
-                foreach (var sub in subs)
+                try
                 {
-                    Console.WriteLine($"Substring: {sub}");
+                    string[] subs = streetName.Split(' ');
 
+                    foreach (var sub in subs)
+                    {
+                        Console.WriteLine($"Substring: {sub}");
+
+
+                    }
+
+
+                    string x = subs[0];
+                    string y = subs[1];
+                    Console.WriteLine(city + postalCode + x + y);
+
+
+                    var body = new JsonRootAdressObject
+
+                    {
+                        city = city,
+                        postalCode = postalCode,
+                        streetName = x,
+                        streetNumber = y
+
+                    };
+
+                }
+                catch (Exception ex)
+
+                {
+                    Console.WriteLine(ex);
+                    await DisplayAlert("Alert!", "Incorrect adress, try again", "OK");
 
                 }
 
-
-                string x = subs[0];
-                string y = subs[1];
-                Console.WriteLine(city + postalCode + x + y);
-
-                var body = new JsonRootAdressObject
-
-                {
-                    city = city,
-                    postalCode = postalCode,
-                    streetName = x,
-                    streetNumber = y
-
-                };
-
+                
 
 
 
@@ -96,24 +109,44 @@ namespace SUP2021.Views.Test
                 var client3 = new RestClient(url2);
                 var request2 = new RestRequest(Method.GET);
 
+               var deserilzaer = new RestSharp.Deserializers.DotNetXmlDeserializer(); //Ny
 
-               // request2.AddParameter("city", city, ParameterType.RequestBody);
+
+                // request2.AddParameter("city", city, ParameterType.RequestBody);
                 //request2.AddParameter("postalCode", postalCode, ParameterType.RequestBody);
 
+               IRestResponse<List<Models.ServicePointNames>> response4 = client3.Get<List<Models.ServicePointNames>>(request2); //Ny
 
-               
 
                 //request2.AddJsonBody(body);
 
-               
-                IRestResponse response = client3.Execute(request2);
-                Console.WriteLine("Svaret kommer här"+ response.Content);
 
-                HttpStatusCode statusCode = response.StatusCode;
+                //IRestResponse response = client3.Execute(request2);
+                // Console.WriteLine("Svaret kommer här"+ response4.Content);
+
+                HttpStatusCode statusCode = response4.StatusCode;
                 int numericStatusCode = (int)statusCode;
 
+                if (response4.IsSuccessful)
+                {
+                    
 
-                await DisplayActionSheet("Vales from Api", response.Content, "OK", "Cancel");
+
+                    Console.WriteLine(numericStatusCode);
+                    Models.ServicePointNames data = deserilzaer.Deserialize<Models.ServicePointNames>(response4);
+
+
+
+                    // await DisplayActionSheet("Vales from Api", data.name, "OK", "Cancel");
+                    Console.WriteLine(data.name);
+                    }
+                else {
+
+                    await DisplayActionSheet("Vales from Api", "Something went wrong", "OK", "Cancel");
+                    Console.WriteLine(numericStatusCode);
+                }
+
+               
 
                 
                 

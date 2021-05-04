@@ -44,17 +44,17 @@
                 </Label>
                
               <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
-    <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-    <ImageButton Source="facebook.png" HeightRequest="50" WidthRequest="50" Clicked="Button_ClickedFacebook"/>
+    <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+    <ImageButton Source="facebook.png" HeightRequest="50" WidthRequest="50" Clicked="Button_ClickedFacebook" BackgroundColor="Transparent"/>
     </StackLayout>
     <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-    <ImageButton Source="instagram.png" HeightRequest="50" WidthRequest="50" Clicked="Button_ClickedInstagram"/>
+     <ImageButton Source="instagram.png" HeightRequest="50" WidthRequest="50" Clicked="Button_ClickedInstagram"  BackgroundColor="Transparent"/>
     </StackLayout>
     <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-    <ImageButton Source="twitter.png" HeightRequest="50" WidthRequest="50" Clicked="Button_ClickedTwitter"/>
+      <ImageButton Source="twitter.png" HeightRequest="50" WidthRequest="50" Clicked="Button_ClickedTwitter"  BackgroundColor="Transparent"/>
     </StackLayout>
     <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-    <ImageButton Source="linkedin.png" HeightRequest="50" WidthRequest="50" Clicked="Button_ClickedLinkedIn"/>
+     <ImageButton Source="linkedin.png" HeightRequest="50" WidthRequest="50" Clicked="Button_ClickedLinkedIn"  BackgroundColor="Transparent"/>
     </StackLayout>
 </StackLayout>
 

@@ -4,6 +4,7 @@
              x:Class="SUP2021.Views.AddProductPage">
              
     <ContentPage.Content>
+        <ScrollView> 
         <StackLayout>
             
             <!--Labels-->
@@ -11,8 +12,13 @@
             <Entry x:Name="ProductName" Placeholder="ProductName" ReturnType="Next" />
             
             <!-- Buttons-->
-            <Button x:Name="Picker" Clicked="btnPick_Clicked" Text="Pick_an_image"></Button>
+           <Button x:Name="Picker" Clicked="btnPick_Clicked" Text="Pick_an_image"></Button>
             <Button x:Name="Insert" Clicked="InsertIntoCloudDatabase_Clicked" Text="Insert to firebase"></Button>
+             <Picker x:Name="picker" TitleColor="Red" Title="Select a category">
+            <Picker.ItemDisplayBinding>
+                <Binding Path="CategoryName"/>
+            </Picker.ItemDisplayBinding>
+        </Picker>
 
 
           <!--  <Button x:Name="AddtoFB" Clicked="BtnAdd_Clicked" Text="Add_to_FB"></Button>
@@ -20,18 +26,12 @@
 
 
 
-            <ListView x:Name="lstPersons">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding ProductName}"></TextCell>
-                        
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+           
 
 
 
 
         </StackLayout>
+            </ScrollView>
     </ContentPage.Content>
 </ContentPage>

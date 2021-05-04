@@ -17,6 +17,7 @@ using System.Linq;
 using Firebase.Database.Query;
 using SUP2021.Services;
 using System.Collections.ObjectModel;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace SUP2021.Views
 {
@@ -29,13 +30,21 @@ namespace SUP2021.Views
 
         public Guid ProductId { get; set; }
 
+       public Guid CategoryId { get; set; }
+      
+
+
+
         public static FirebaseClient firebase = new FirebaseClient("https://sup2021-c58ec-default-rtdb.europe-west1.firebasedatabase.app/");
+        private object user;
 
         public AddProductPage()
         {
             InitializeComponent();
            
             this.ProductId = Guid.NewGuid();
+            this.CategoryId = Guid.NewGuid();
+         
 
 
             //standard bilder om ingen bild valts
@@ -50,7 +59,71 @@ namespace SUP2021.Views
             base.OnAppearing();
 
             var AllProducts = await GetAllofTheProducts();
+
+    
             lstPersons.ItemsSource = AllProducts;
+
+
+
+
+
+            
+                
+            
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                    
+                {
+                conn.CreateTable<CategoryModel>();
+
+                List<CategoryModel> collection = new List<CategoryModel>();
+
+
+
+                {
+                    collection.Add(new CategoryModel() { CategoryName = "Kläder", CategoryId = Guid.NewGuid()});
+                    collection.Add(new CategoryModel() { CategoryName = "Elektronik", CategoryId = Guid.NewGuid() });
+                    collection.Add(new CategoryModel() { CategoryName = "Mat", CategoryId = Guid.NewGuid() });
+                    collection.Add(new CategoryModel() { CategoryName = "Annat", CategoryId = Guid.NewGuid() });
+
+                   /* collection.Add(new CategoryModel() { CategoryName = "Kläder", CategoryId = CategoryId });
+                    collection.Add(new CategoryModel() { CategoryName = "Elektronik", CategoryId = CategoryId });
+                    collection.Add(new CategoryModel() { CategoryName = "Mat", CategoryId = CategoryId });
+                    collection.Add(new CategoryModel() { CategoryName = "Annat", CategoryId = CategoryId });*/
+
+
+
+
+                };
+
+                conn.InsertAll(collection);
+                
+
+                picker.ItemsSource = conn.Table<CategoryModel>().ToList();
+
+
+                 
+
+                    var Pickerlist = conn.Table<CategoryModel>().ToList();
+
+
+                    List<CategoryModel> Finallist = new List<CategoryModel>();
+
+
+                    foreach (var item in Pickerlist)
+            {
+                var exit = Finallist.Where(i => i.CategoryName == item.CategoryName).ToList();
+                if (exit.Count == 0)
+                {
+                    Finallist.Add(item);
+                }
+            }
+
+                 }    
+            
+
+            
+
+
 
 
         }

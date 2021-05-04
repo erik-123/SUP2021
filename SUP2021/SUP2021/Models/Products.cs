@@ -9,7 +9,7 @@ namespace SUP2021.Models
    public class Products
     {
         [PrimaryKey, AutoIncrement]
-        public Guid ProductId { get; set; }       
+        public Guid ProductId { get; set; }
 
         [ForeignKey(typeof(Products))]
         public int RefUserID { get; set; }
@@ -17,7 +17,10 @@ namespace SUP2021.Models
         public string Price { get; set; }
         public string ProductName { get; set; }
         public string URL { get; set; }
-        public Products() { }
+        [ForeignKey(typeof(CategoryModel))]
+        public Guid CategoryId { get; set; }
+        public Products() {}
+
 
     }
 }

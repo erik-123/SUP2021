@@ -23,6 +23,14 @@
              <SearchBar x:Name="ProductSearch"  
                  TextChanged="Handle_SearchButtonPressed"
                  />
+            
+             <Label Text="Filter Items:" 
+               VerticalOptions="Center"/>
+        <Picker ItemsSource="{Binding FilterOptions}" 
+                SelectedItem="{Binding SelectedFilter}" 
+                VerticalOptions="Center" 
+                HorizontalOptions="FillAndExpand" />
+                
 
               
             <Image x:Name="test2"/>

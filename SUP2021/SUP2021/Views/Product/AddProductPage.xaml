@@ -14,14 +14,14 @@
             <!-- Buttons-->
            <Button x:Name="Picker" Clicked="btnPick_Clicked" Text="Pick_an_image"></Button>
             <Button x:Name="Insert" Clicked="InsertIntoCloudDatabase_Clicked" Text="Insert to firebase"></Button>
-             <Picker x:Name="picker" TitleColor="Red" Title="Select a category">
+                <Picker x:Name="picker" TitleColor="Black" Title="Select a category" SelectedIndexChanged="OnPickerSelectedIndexChanged">
             <Picker.ItemDisplayBinding>
                 <Binding Path="CategoryName"/>
             </Picker.ItemDisplayBinding>
         </Picker>
+               
 
-
-          <!--  <Button x:Name="AddtoFB" Clicked="BtnAdd_Clicked" Text="Add_to_FB"></Button>
+                <!--  <Button x:Name="AddtoFB" Clicked="BtnAdd_Clicked" Text="Add_to_FB"></Button>
             <Button x:Name="DeleteFB" Clicked="BtnDelete_Clicked" Text="Delete"></Button> -->
 
 

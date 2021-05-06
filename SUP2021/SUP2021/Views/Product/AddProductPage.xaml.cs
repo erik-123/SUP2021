@@ -86,39 +86,40 @@ namespace SUP2021.Views
                     collection.Add(new CategoryModel() { CategoryName = "Mat", CategoryId = Guid.NewGuid() });
                     collection.Add(new CategoryModel() { CategoryName = "Annat", CategoryId = Guid.NewGuid() });
 
-                   /* collection.Add(new CategoryModel() { CategoryName = "Kläder", CategoryId = CategoryId });
-                    collection.Add(new CategoryModel() { CategoryName = "Elektronik", CategoryId = CategoryId });
-                    collection.Add(new CategoryModel() { CategoryName = "Mat", CategoryId = CategoryId });
-                    collection.Add(new CategoryModel() { CategoryName = "Annat", CategoryId = CategoryId });*/
-
-
-
-
+                
                 };
                     
-                    foreach (var x in collection)
-                {
-                    if (collection.Count > 0)
+                    var control = conn.Table<CategoryModel>().ToList();
+                    
+
+                    if (control.Count == 0) 
                     {
 
-                    }
-
-
-
-                   else
-                    {
                         conn.InsertAll(collection);
-
                     }
-                }
+                    else { 
+                    
+                        foreach (var x in control)
+                         {
+                            var test = collection.Where(a => a.CategoryName == x.CategoryName);
+                           
+
+                            if (test.Any() == true)
+                            {
+                                Console.WriteLine("Category already exists");
+                            }
+                            else if (test.Any() == false){
+
+                                conn.InsertAll(collection);
+                            }
+
+                        }
+
+                    }              
                 
 
 
-
-
-
-
-                picker.ItemsSource = conn.Table<CategoryModel>().ToList();
+                    picker.ItemsSource = conn.Table<CategoryModel>().ToList();
 
 
                  
@@ -155,7 +156,15 @@ namespace SUP2021.Views
 
         }
 
-            public async Task<List<Products>> GetAllofTheProducts()
+
+        private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            var myThinging = (CategoryModel)picker.SelectedItem;
+            Console.WriteLine(myThinging.CategoryId);
+        }
+
+        public async Task<List<Products>> GetAllofTheProducts()
         {
 
             return (await firebase
@@ -167,12 +176,12 @@ namespace SUP2021.Views
               }).ToList();
         }
 
-        public async Task InsertProduct(int PID, string productName, string price, string url)
+        public async Task InsertProduct(int PID, string productName, string price, string url, Guid categoryid)
         {
 
             await firebase
               .Child("Products")
-              .PostAsync(new Products() { ProductId = ProductId, RefUserID = PID, ProductName = productName, Price = price, URL = url});
+              .PostAsync(new Products() { ProductId = ProductId, RefUserID = PID, ProductName = productName, Price = price, URL = url, CategoryId = categoryid });
         }
 
         private async void BtnAdd_Clicked(object sender, EventArgs e)
@@ -389,6 +398,14 @@ namespace SUP2021.Views
 
 
                 var value = Application.Current.Properties["Username"].ToString();
+                var categoryid = (CategoryModel)picker.SelectedItem;
+
+                if(categoryid == null)
+                {
+                    await DisplayAlert("Alert!","Please select a category!","OK");
+                }
+                else { 
+
 
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                 {
@@ -405,52 +422,58 @@ namespace SUP2021.Views
 
 
                     var useridcheck = conn.Table<User>().Where(c => c.Username == value).ToList();
+                   
 
 
                     var Rows = new ObservableCollection<User>();
                     Rows.Clear();
 
 
-                    foreach (var entry in useridcheck)
-                    {
-
-                        int pid = entry.UID;
-                        Console.WriteLine("test av URL: " + entry.UID);
-
-
-
-                        var length = entry.password.Length;
-
-
-
-
-
-
-                        string Price = price.Text;
-                        string productName = ProductName.Text;
-
-                        Console.WriteLine("Första url visas här:" + Imgurl);
-
-                        var products = new Products
+                        foreach (var entry in useridcheck)
                         {
-                            ProductId = ProductId,
-                            RefUserID = pid,
-                            Price = Price,
-                            ProductName = productName,
-                            URL = Imgurl,
-                        };
+                           
 
-                        await InsertProduct(pid, ProductName.Text, price.Text, Imgurl);
+                                int pid = entry.UID;
+                               
+                                Console.WriteLine("test av URL: " + entry.UID);
 
 
-                        //  var InsertFB = await AddProduct(pid, Price, productName, Imgurl);
+
+                                var length = entry.password.Length;
 
 
-                        conn.CreateTable<Products>();
-                        int rowsAdded = conn.Insert(products);
 
-                        await DisplayAlert("Congrats!", "A new product have been added!", "OK");
-                        await Navigation.PushAsync(new ProductPage());
+
+
+
+                                string Price = price.Text;
+                                string productName = ProductName.Text;
+
+                                Console.WriteLine("Första url visas här:" + Imgurl);
+
+                                var products = new Products
+                                {
+                                    ProductId = ProductId,
+                                    RefUserID = pid,
+                                    Price = Price,
+                                    ProductName = productName,
+                                    URL = Imgurl,
+                                    CategoryId = categoryid.CategoryId
+                                };
+
+                               await InsertProduct(pid, ProductName.Text, price.Text, Imgurl, categoryid.CategoryId);
+
+
+                                //  var InsertFB = await AddProduct(pid, Price, productName, Imgurl);
+
+
+                                conn.CreateTable<Products>();
+                                int rowsAdded = conn.Insert(products);
+
+                                await DisplayAlert("Congrats!", "A new product have been added!", "OK");
+                                await Navigation.PushAsync(new ProductPage());
+                            
+                        }
                     }
                 }
             }

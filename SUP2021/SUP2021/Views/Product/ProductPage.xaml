@@ -26,13 +26,20 @@
             
              <Label Text="Filter Items:" 
                VerticalOptions="Center"/>
-        <Picker ItemsSource="{Binding FilterOptions}" 
-                SelectedItem="{Binding SelectedFilter}" 
-                VerticalOptions="Center" 
-                HorizontalOptions="FillAndExpand" />
+            <Picker x:Name ="categorypicker" Title="Select a value" ItemsSource="{Binding FilterOptions}" 
                 
+                SelectedIndexChanged="Picker_SelectedIndexChanged"
+                
+                VerticalOptions="Center" 
+                HorizontalOptions="FillAndExpand">
 
-              
+                <Picker.ItemDisplayBinding>
+                <Binding Path="CategoryName"/>
+                </Picker.ItemDisplayBinding>
+                </Picker>
+
+            
+
             <Image x:Name="test2"/>
             <Image x:Name="NewImage" >
                 <Image.Source>

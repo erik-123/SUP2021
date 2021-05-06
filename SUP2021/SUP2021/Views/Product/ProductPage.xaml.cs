@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Firebase.Storage;
@@ -17,11 +18,14 @@ namespace SUP2021.Views
     {
         public Guid ShoppingId { get; set; }
         public Guid productId { get; }
+
+        public string value5 { get; set; }
         public ProductPage()
         {
             InitializeComponent();
             this.BindingContext = new ProductViewModel();
             this.ShoppingId = Guid.NewGuid();
+            this.value5 = value5;
            
 
     }
@@ -37,29 +41,86 @@ namespace SUP2021.Views
                     conn.CreateTable<Products>();
                     var products = conn.Table<Products>().ToList();
                     usersListView.ItemsSource = products;
+                    categorypicker.ItemsSource = conn.Table<CategoryModel>().ToList();
+
+
+
+
+
 
                 }
             }
-            catch (Exception ex)
+            catch (NullReferenceException e)
             {
-                await DisplayAlert("Alert", "Product list is empty or an error occured!", "OK");
-                Console.WriteLine("Felmeddelande");
-                Console.WriteLine(ex);
-                Console.WriteLine("Felmeddelande");
+
+                Console.WriteLine(e);
+            }
+
+
 
             }
 
+
+
+
+        private void Picker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Products>();
+                conn.CreateTable<CategoryModel>();
+                var categories = conn.Table<CategoryModel>().ToList();
+                var products = conn.Table<Products>().ToList();
+                
+
+                foreach (var z in products)
+                {
+                    foreach (var v in categories)
+                    {
+                        var test = categorypicker.SelectedItem;
+                        var categoryid = (CategoryModel)categorypicker.SelectedItem;
+
+                        
+                        if (categorypicker.SelectedItem == null)
+                        {
+                            Console.WriteLine("Fel!");
+                        
+                        }else if (categoryid.CategoryName != null)
+                        {
+                            value5 = categoryid.CategoryName;
+
+
+
+                            if (v.CategoryName == value5 && value5 != null) //fel
+                            {
+                                var item2 = products.Where(s => s.CategoryId == v.CategoryId && v.CategoryId == categoryid.CategoryId);
+                                //var item3 = categories.Where(s => s.CategoryName == categoryid.CategoryName);
+                                usersListView.ItemsSource = item2;
+
+
+                            }
+                        }
+                        
+                      }
+                  
+                }
+             
+            }
         }
-       
 
-   
-
-
+        
+            
 
 
+        protected override void OnDisappearing()
+        {
+            value5 = "value";
+            categorypicker.SelectedItem = null;
+            categorypicker.SelectedIndex = -1;
+        }
 
 
-    private void CursoView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void CursoView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             
             Navigation.PushAsync(new ProductDetailPage(SelectedPerson.ProductId));

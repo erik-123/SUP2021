@@ -26,9 +26,9 @@ namespace SUP2021.Views
             this.BindingContext = new ProductViewModel();
             this.ShoppingId = Guid.NewGuid();
             this.value5 = value5;
-           
 
-    }
+
+        }
 
         protected override async void OnAppearing()
         {
@@ -58,7 +58,7 @@ namespace SUP2021.Views
 
 
 
-            }
+        }
 
 
 
@@ -71,7 +71,7 @@ namespace SUP2021.Views
                 conn.CreateTable<CategoryModel>();
                 var categories = conn.Table<CategoryModel>().ToList();
                 var products = conn.Table<Products>().ToList();
-                
+
 
                 foreach (var z in products)
                 {
@@ -80,12 +80,13 @@ namespace SUP2021.Views
                         var test = categorypicker.SelectedItem;
                         var categoryid = (CategoryModel)categorypicker.SelectedItem;
 
-                        
+
                         if (categorypicker.SelectedItem == null)
                         {
                             Console.WriteLine("Fel!");
-                        
-                        }else if (categoryid.CategoryName != null)
+
+                        }
+                        else if (categoryid.CategoryName != null)
                         {
                             value5 = categoryid.CategoryName;
 
@@ -100,16 +101,16 @@ namespace SUP2021.Views
 
                             }
                         }
-                        
-                      }
-                  
+
+                    }
+
                 }
-             
+
             }
         }
 
-        
-            
+
+
 
 
         protected override void OnDisappearing()
@@ -122,7 +123,7 @@ namespace SUP2021.Views
 
         private void CursoView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            
+
             Navigation.PushAsync(new ProductDetailPage(SelectedPerson.ProductId));
         }
 
@@ -143,7 +144,7 @@ namespace SUP2021.Views
 
 
 
-            }
+                }
             }
             catch (Exception ex)
             {
@@ -158,7 +159,7 @@ namespace SUP2021.Views
         private Products SelectedPerson => (Products)usersListView.SelectedItem;
 
 
-         async void Handle_SearchButtonPressed(object sender, System.EventArgs e)
+        async void Handle_SearchButtonPressed(object sender, System.EventArgs e)
         {
 
             try
@@ -174,7 +175,7 @@ namespace SUP2021.Views
 
             }
 
-            catch(Exception ep)
+            catch (Exception ep)
             {
                 Console.WriteLine(ep);
                 await DisplayAlert("Alert", "Something went wrong!", "OK");
@@ -182,8 +183,60 @@ namespace SUP2021.Views
 
         }
 
-    }
+        private async void displayActionSheetBtn_Clicked(object sender, EventArgs e)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Products>();
+                var products = conn.Table<Products>().ToList();
 
+                var actionSheet = await DisplayActionSheet("Title", "Cancel", null, "A-Z", "Z-A", "Price: High-Low", "Price: Low-High");
+
+                switch (actionSheet)
+                {
+                    case "Cancel":
+
+                     
+
+                        break;
+
+                    case "A-Z":
+
+                       var item1= products.OrderBy(w => w.ProductName).ToList();
+                        usersListView.ItemsSource = item1;
+
+                        break;
+
+                    case "Z-A":
+
+                       var item2= products.OrderByDescending(w => w.ProductName).ToList();
+                        usersListView.ItemsSource = item2;
+
+                        break;
+                    case "Price: High-Low":
+
+                     var item3= products.OrderBy(w => w.Price.Max()).ToList();
+                        usersListView.ItemsSource = item3;
+                      
+                        break;
+
+                    case "Price: Low-High":
+
+                     var item4= products.OrderByDescending(w => w.Price.Min()).ToList();
+                        usersListView.ItemsSource = item4;
+
+
+
+                        break;
+
+
+                }
+
+            }
+
+        }
+
+    }
 }
         
 

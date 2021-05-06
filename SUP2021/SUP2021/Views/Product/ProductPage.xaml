@@ -38,6 +38,8 @@
                 </Picker.ItemDisplayBinding>
                 </Picker>
 
+            <Button Text="Display Action Sheet" x:Name="displayActionSheetBtn" Clicked="displayActionSheetBtn_Clicked"></Button>
+
             
 
             <Image x:Name="test2"/>

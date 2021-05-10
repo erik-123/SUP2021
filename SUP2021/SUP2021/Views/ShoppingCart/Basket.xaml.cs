@@ -95,14 +95,38 @@ namespace SUP2021.Views
         public async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
 
-            var mi = ((MenuItem)sender);
-            await DisplayAlert("Delete Context Action", mi.CommandParameter + " delete context action", "OK");
+            // var mi = ((MenuItem)sender);
+            // await DisplayAlert("Delete Context Action", mi.CommandParameter + " delete context action", "OK");
 
 
             // Guid test = new Guid();
             // await DeleteShoppingCartModel(test);
+            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            //{
+           
+            var ShoppinCartItemID = ShoppingCart.SelectedItem;
+                var categoryid = (ShoppingCartModel)ShoppingCart.SelectedItem;
+                  Console.WriteLine("Test av idt" + categoryid.ShoppingId);
+
+            //    var data = conn.Table<ShoppingCartModel>();
+            //    var data1 = data.Where(x => x.ShoppingId == categoryid.ShoppingId).FirstOrDefault();
+
+                
+            //    if (data1.ShoppingId != null)
+            //    {
+            //        conn.Delete(data1);
+            //        await DisplayAlert("Congrats!", "Delete Successfully", "OK");
+                   
+            //    }
+            //    else
+            //    {
+            //        await DisplayAlert("Alert", "No Product found!", "OK");
+            //    }
 
 
+
+
+            //}
 
         }
 

@@ -203,6 +203,12 @@
             <Button Text="Go to settings" Clicked="OnEditProfilebuttonclicked" BorderWidth="20"/>
             </FlexLayout>
 
+            <FlexLayout JustifyContent="SpaceBetween">
+                <Label Text="Send newsletter"></Label>
+                <Button x:Name="email" Clicked="BtnSend_Clicked" Text="Newsletter"></Button>
+            </FlexLayout>
+
+
         </StackLayout> 
 
 

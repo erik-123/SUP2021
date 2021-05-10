@@ -215,15 +215,16 @@ namespace SUP2021.Views
                         break;
                     case "Price: High-Low":
 
-                     var item3= products.OrderBy(w => w.Price.Max()).ToList();
-                        usersListView.ItemsSource = item3;
+                     var item4= products.OrderByDescending(w => w.Price.Min()).ToList();
+                        usersListView.ItemsSource = item4;
                       
                         break;
 
                     case "Price: Low-High":
+                    
 
-                     var item4= products.OrderByDescending(w => w.Price.Min()).ToList();
-                        usersListView.ItemsSource = item4;
+                        var item3 = products.OrderBy(w => w.Price.Max()).ToList();
+                        usersListView.ItemsSource = item3;
 
 
 

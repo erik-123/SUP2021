@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-
+using System.Threading.Tasks;
+using SQLite;
+using SUP2021.Models;
 using SUP2021.Services;
 using SUP2021.ViewModels;
 using SUP2021.Views.Settings;
@@ -28,9 +30,61 @@ namespace SUP2021.Views
             await Navigation.PushAsync(new EditPermissions());
 
         }
+        public async void BtnSend_Clicked(object sender, System.EventArgs e)
+        {
+
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<User>();
+
+                var products = conn.Table<User>().ToList();
+                foreach (var a in products)
+                {
+                    List<string> toAddress = new List<string>();
+                    var email = a.email;
+                    toAddress.Add(email);
+
+                    toAddress.Add("projektbloggsup@gmail.com");
+
+                    string subject = "Rabatt";
+                    string body = "har du hört...";
+                    await SendEmail(subject, body, toAddress);
+                }
+            }
+        }
+
+        public async Task SendEmail(string subject, string body, List<string> recipients)
+        {
+            try
+            {
+                var message = new EmailMessage
+                {
+                    Subject = subject,
+                    Body = body,
+                    To = recipients,
+                    //Cc = ccRecipients,
+                    //Bcc = bccRecipients
+                };
+                await Email.ComposeAsync(message);
+            }
+            catch (FeatureNotSupportedException fbsEx)
+            {
+                Console.WriteLine(fbsEx);
+                await DisplayAlert("Alert!", "Missing feature!", "OK");
+            }
+            catch (Exception ex)
+            {
+                // Some other exception occurred
+                Console.WriteLine(ex);
+                await DisplayAlert("Alert!","Something went wrong!","OK");
+            }
+        }
 
 
-            public async void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)
+
+
+
+        public async void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             
 

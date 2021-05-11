@@ -19,8 +19,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-<key>NSPhotoLibraryUsageDescription</key>
-<string>Photo Library Access Warning</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mailto</string>
+	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photo Library Access Warning</string>
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
@@ -35,5 +39,15 @@
 	<string>SUP2021</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allows the developer to describe why the app wants to access the device&apos;s camera.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allows the developer to describe why the app wants to access the devices microphone.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Allows the developer to describe why the app wants to always have access to the user&apos;s location.
+Allows the developer to describe why the app wants to always have access to the user&apos;s location.
+Allows the developer to describe why the app wants to always have access to the user&apos;s location.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allows the developer to describe why the app wants to access the user&apos;s location while it is running.</string>
 </dict>
 </plist>

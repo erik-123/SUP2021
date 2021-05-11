@@ -70,7 +70,13 @@ namespace SUP2021.Views
             catch (FeatureNotSupportedException fbsEx)
             {
                 Console.WriteLine(fbsEx);
-                await DisplayAlert("Alert!", "Missing feature!", "OK");
+                await DisplayAlert("Alert!", "Saknar mailfunktion på din enhet! Var god att logga in via webbläsare istället!", "OK");
+
+                await Launcher.CanOpenAsync("https://accounts.google.com/signin/v2/identifier?passive=1209600&continue=https%3A%2F%2Faccounts.google.com%2Fb%2F1%2FAddMailService&followup=https%3A%2F%2Faccounts.google.com%2Fb%2F1%2FAddMailService&flowName=GlifWebSignIn&flowEntry=ServiceLogin");
+                
+                await Launcher.OpenAsync("https://accounts.google.com/signin/v2/identifier?passive=1209600&continue=https%3A%2F%2Faccounts.google.com%2Fb%2F1%2FAddMailService&followup=https%3A%2F%2Faccounts.google.com%2Fb%2F1%2FAddMailService&flowName=GlifWebSignIn&flowEntry=ServiceLogin");
+                
+               
             }
             catch (Exception ex)
             {

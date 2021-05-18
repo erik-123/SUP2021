@@ -81,29 +81,13 @@
 
     <FlyoutItem Title= "" FlyoutItemIsVisible="False">
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage} "/>
-      
-    </FlyoutItem>
-    
+      </FlyoutItem>
     <FlyoutItem Title="About" Icon="icon_about.png">
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>
-   <!-- <FlyoutItem Title="Browse" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
-    </FlyoutItem> -->
-   <!-- <FlyoutItem Title="Test" Icon="icon_feed.png">
-        <ShellContent Route="Test" ContentTemplate="{DataTemplate local:Test}" />
-    </FlyoutItem> -->
-     <!-- <FlyoutItem Title="Test2" Icon="icon_feed.png">  
-        <ShellContent Route="Test2" ContentTemplate="{DataTemplate local:Test2}" />
-    </FlyoutItem> -->
-     <FlyoutItem Title= "Profilepage" Icon="icon_feed.png">
+    <FlyoutItem Title= "Profilepage" Icon="icon_feed.png">
         <ShellContent Route="Profilepage" ContentTemplate="{DataTemplate local:Profilepage} "/>
     </FlyoutItem>
-    
-   
-   <!-- <FlyoutItem Title= "TestUserDB" Icon="icon_about.png">
-        <ShellContent Route="settings" ContentTemplate="{DataTemplate local:TestUserDB} "/>
-    </FlyoutItem> -->
     <FlyoutItem Title= "Products" Icon="icon_about.png">
         <ShellContent Route="settings" ContentTemplate="{DataTemplate local:ProductPage} "/>
     </FlyoutItem>
@@ -119,15 +103,12 @@
     <FlyoutItem Title= "Settings" Icon="icon_about.png">
         <ShellContent Route="settings" ContentTemplate="{DataTemplate local:settings} "/>
     </FlyoutItem>
-
     <FlyoutItem Title= "FAQ" Icon="icon_about.png">
         <ShellContent Route="FAQ" ContentTemplate="{DataTemplate local:Test.FAQ} "/>
     </FlyoutItem>
     <FlyoutItem Title= "Wishlist" Icon="icon_about.png">
         <ShellContent Route="Wishlist" ContentTemplate="{DataTemplate local:Test.Wishlist} "/>
     </FlyoutItem>
-
-
     <FlyoutItem Title= "Logout" Icon="icon_about.png">
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage} "/>
     </FlyoutItem>

@@ -15,14 +15,14 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.ForegroundColor" Value="Black" />
+                <Setter Property="Shell.TitleColor" Value="Black" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="Black" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="Black"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="Black"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="Black"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
@@ -32,7 +32,7 @@
             https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyoutitem-and-menuitem-style-classes
             -->
             <Style Class="FlyoutItemLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="Black"></Setter>
             </Style>
             <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -41,7 +41,7 @@
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{x:OnPlatform UWP=Transparent, iOS=White}" />
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="Black" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Selected">
@@ -96,7 +96,7 @@
      <!-- <FlyoutItem Title="Test2" Icon="icon_feed.png">  
         <ShellContent Route="Test2" ContentTemplate="{DataTemplate local:Test2}" />
     </FlyoutItem> -->
-     <FlyoutItem Title= "Profilepage" Icon="icon_feed.png">
+     <FlyoutItem Title= "Profilepage" Icon="navicon_profile.png">
         <ShellContent Route="Profilepage" ContentTemplate="{DataTemplate local:Profilepage} "/>
     </FlyoutItem>
     
@@ -104,10 +104,10 @@
    <!-- <FlyoutItem Title= "TestUserDB" Icon="icon_about.png">
         <ShellContent Route="settings" ContentTemplate="{DataTemplate local:TestUserDB} "/>
     </FlyoutItem> -->
-    <FlyoutItem Title= "Products" Icon="icon_about.png">
+    <FlyoutItem Title= "Products" Icon="navicon_products.png">
         <ShellContent Route="settings" ContentTemplate="{DataTemplate local:ProductPage} "/>
     </FlyoutItem>
-    <FlyoutItem Title= "ShoppingCart" Icon="icon_about.png">
+    <FlyoutItem Title= "ShoppingCart" Icon="navicon_shoppingcart.png">
         <ShellContent Route="Basket" ContentTemplate="{DataTemplate local:Basket} "/>
     </FlyoutItem>
     <FlyoutItem Title="Payment test" Icon="icon_about.png">
@@ -116,19 +116,19 @@
     <FlyoutItem Title="Shipping" Icon="icon_about.png">
         <ShellContent Route="CountryTest" ContentTemplate="{DataTemplate local:Test.CountryTest} "/>
     </FlyoutItem> 
-    <FlyoutItem Title= "Settings" Icon="icon_about.png">
+    <FlyoutItem Title= "Settings" Icon="navicon_settings.png">
         <ShellContent Route="settings" ContentTemplate="{DataTemplate local:settings} "/>
     </FlyoutItem>
 
-    <FlyoutItem Title= "FAQ" Icon="icon_about.png">
+    <FlyoutItem Title= "FAQ" Icon="navicon_FAQ.png">
         <ShellContent Route="FAQ" ContentTemplate="{DataTemplate local:Test.FAQ} "/>
     </FlyoutItem>
-    <FlyoutItem Title= "Wishlist" Icon="icon_about.png">
+    <FlyoutItem Title= "Wishlist" Icon="navicon_wishlist.png">
         <ShellContent Route="Wishlist" ContentTemplate="{DataTemplate local:Test.Wishlist} "/>
     </FlyoutItem>
 
 
-    <FlyoutItem Title= "Logout" Icon="icon_about.png">
+    <FlyoutItem Title= "Logout" Icon="navicon_logout.png">
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage} "/>
     </FlyoutItem>
     

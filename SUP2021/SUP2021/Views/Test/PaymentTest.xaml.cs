@@ -146,7 +146,7 @@ async void OnOpenSwishButton_Clicked(System.Object sender, System.EventArgs e)
                 var customerService = new CustomerService();
                 var cust = customerService.Create(customer);
 
-                // step 5: charge option
+                // Charge option
                 var chargeoption = new ChargeCreateOptions
                 {
                     Amount = 1500, //Måste vara högre än 3,00 dvs 300
@@ -156,7 +156,7 @@ async void OnOpenSwishButton_Clicked(System.Object sender, System.EventArgs e)
                     Source = source.Id
                 };
 
-                // step 6: charge the customer
+                // Charge the customer
                 var chargeService = new ChargeService();
                 Charge charge = chargeService.Create(chargeoption);
                 if (charge.Status == "succeeded")

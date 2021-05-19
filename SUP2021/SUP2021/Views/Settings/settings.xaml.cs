@@ -62,8 +62,7 @@ namespace SUP2021.Views
                     Subject = subject,
                     Body = body,
                     To = recipients,
-                    //Cc = ccRecipients,
-                    //Bcc = bccRecipients
+                  
                 };
                 await Email.ComposeAsync(message);
             }

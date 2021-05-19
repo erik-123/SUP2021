@@ -253,13 +253,9 @@ namespace SUP2021.Views
         }
 
         public async void BtnSmsToSeller(object sender, EventArgs e)
-            {
-            
-                   //await  Navigation.PushAsync(new SendSMStoSellerPage());
+            {                              
             try
             {
-
-
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                 {
                     conn.CreateTable<Products>();
@@ -267,27 +263,18 @@ namespace SUP2021.Views
 
                     foreach (var entry in products)
                     {
+                        int pid = entry.RefUserID;                      
 
-                        int pid = entry.RefUserID;
-                        Console.WriteLine("test av URL: " + entry.RefUserID);
-
-                        conn.CreateTable<User>();
-                        //var data = conn.Table<User>().ToList();
+                        conn.CreateTable<User>();                       
                         var checkquery = conn.Table<User>().Where(a => a.UID == pid).ToList();
-
 
                         foreach (var entries in checkquery)
                         {
-
-
                             var number = entries.nummber;
-
 
                             await Sms.ComposeAsync(new SmsMessage
                             {
-                                //Body = EntryMessage.Text,
-                                Recipients = new List<string> { number }
-
+                                 Recipients = new List<string> { number }
 
                             });
 

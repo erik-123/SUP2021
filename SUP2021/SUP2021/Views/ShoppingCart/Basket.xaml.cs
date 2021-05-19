@@ -104,7 +104,7 @@ namespace SUP2021.Views
             //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             //{
            
-            var ShoppinCartItemID = ShoppingCart.SelectedItem;
+                var ShoppinCartItemID = ShoppingCart.SelectedItem;
                 var categoryid = (ShoppingCartModel)ShoppingCart.SelectedItem;
                   Console.WriteLine("Test av idt" + categoryid.ShoppingId);
 

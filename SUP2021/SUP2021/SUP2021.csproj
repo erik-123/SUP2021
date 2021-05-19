@@ -21,7 +21,6 @@
     <PackageReference Include="libphonenumber-csharp" Version="8.12.21" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Plugin.GoogleClient" Version="2.1.12" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.11" />
     <PackageReference Include="shortid" Version="3.0.0" />

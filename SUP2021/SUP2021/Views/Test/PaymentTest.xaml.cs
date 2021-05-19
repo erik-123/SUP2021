@@ -53,7 +53,7 @@ namespace SUP2021.Views.Test
         {
             var notification = new Notification
             {
-                Title = "Du har 2 minuter på dig att betala",
+                Title = "Har du fått med dig allt?",
                 Message = "",
             };
 
@@ -64,7 +64,7 @@ namespace SUP2021.Views.Test
         {
             var notification = new Notification
             {
-                Title = "30 sekunder kvar",
+                Title = "Tack för att du handlar hos oss!",
                 Message = "",
                 ScheduleDate = scheduledTime
             };

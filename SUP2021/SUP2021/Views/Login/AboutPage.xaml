@@ -11,7 +11,7 @@
     
     <ContentPage.Resources>
         <ResourceDictionary>
-          <Color x:Key="Accent">Darkblue</Color>
+          <Color x:Key="Accent">#E9EAEC</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -21,17 +21,17 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
       <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="30,24,30,40" Spacing="10" BackgroundColor="DarkBlue" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-                <Label Text="Välkomna till alexanders garage shopping" FontSize="Title" TextColor="White"/>
-                <Label Text="Detta är en ny garangeshopping app som som säljer allt ifrån korv till målafärg " FontSize="16" Padding="0,0,0,0" TextColor="White"/>
-                <Label Text="Om applikationen" FontSize="Title" TextColor="White"/>
-                 <Label Text="Applikationen är byggd i Xamarin och dess mål är att fungera på både android och ios enheter så alla får möjligheten att handla" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
-                <Label Text="Våran passion" FontSize="Title" TextColor="White"/>
-                 <Label Text="Våran passion är att bli markandsledande inom garageshopping hemma hos alex då hans granne även har gått in i markaden" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
-                <Label Text="Om oss" FontSize="Title" TextColor="White"/>
-                <Label Text="Vi är fyra studenter på örebro universitet" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
-                 <Label Text="Contact us" FontSize="Title" TextColor="White"/>
-                 <Label Text="Alex@garage.nu eller korv@shopping.nu" FontSize="16" Padding="0,0,0,0" TextColor="White"/>
+            <StackLayout Orientation="Vertical" Padding="30,24,30,40" Spacing="10" BackgroundColor="#E9EAEC" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                <Label Text="Välkomna till vår handelsapplikation" FontSize="Title" TextColor="Black"/>
+                <Label Text="Gå gärna in och se vilka produkter som finns till salu! " FontSize="16" Padding="0,0,0,0" TextColor="Black"/>
+                <Label Text="Om applikationen" FontSize="Title" TextColor="Black"/>
+                 <Label Text="Applikationen är byggd i Xamarin och dess mål är att fungera på både android och ios enheter så alla får möjligheten att handla." FontSize="16" Padding="0,0,0,0" TextColor="Black"/>
+                <Label Text="Våran passion" FontSize="Title" TextColor="Black"/>
+                 <Label Text="Våran passion är att bli markandsledande inom eHandel!" FontSize="16" Padding="0,0,0,0" TextColor="Black"/>
+                <Label Text="Om oss" FontSize="Title" TextColor="Black"/>
+                <Label Text="Vi är fyra studenter på örebro universitet som läser kursen systemutvecklingsprojekt." FontSize="16" Padding="0,0,0,0" TextColor="Black"/>
+                 <Label Text="Contact us" FontSize="Title" TextColor="Black"/>
+                 <Label Text="axelrosen27@gmail.com, alexander@olenäs.se, erik.sondell@outlock.com" FontSize="16" Padding="0,0,0,0" TextColor="Black"/>
                 <Label FontSize="16" Padding="0,24,0,0">
                     <Label.FormattedText>
                         <FormattedString>

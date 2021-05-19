@@ -9,12 +9,14 @@
   
 
   
-
+     
      
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Varukorg" Clicked="OnVarukorgButtonClicked" Priority="1" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
+
+        
         
         
         

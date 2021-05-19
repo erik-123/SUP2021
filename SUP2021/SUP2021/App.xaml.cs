@@ -92,7 +92,7 @@ namespace SUP2021
         {
             var notification = new Notification
             {
-                Title = "Alltid bra priser",
+                Title = "Alltid bra priser och erbjudanden",
                 Message = "",
                 ScheduleDate = scheduledTime
             };

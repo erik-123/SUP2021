@@ -10,12 +10,18 @@ namespace SUP2021.ViewModels
     {
         public Command registedCommand{ get; }
        public Command regCommand { get; }
+        public Command logInCommand { get; }
 
 
         public createaccountViewModel()
         {
             registedCommand = new Command(OnRegistedClicked);
             regCommand = new Command(OnRegClicked);
+            logInCommand = new Command(LoginClicked);
+        }
+        private async void LoginClicked(object obj)
+        {
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new LoginPage());//koppling till Loginpage
         }
 
         private async void OnRegistedClicked(object obj)

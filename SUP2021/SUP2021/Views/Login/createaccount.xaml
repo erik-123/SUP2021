@@ -15,16 +15,44 @@
     <ContentPage.Content>
          <StackLayout Padding="20,10,20,10" VerticalOptions="Center">
            <Label Text="Please fill out your personal information"/>
-             <Entry x:Name="Firstname" Placeholder="Name" ReturnType="Next" PlaceholderColor="Blue" />
-             <Entry x:Name="surname" Placeholder="Surname" ReturnType="Next" PlaceholderColor="Blue" />
-             <Entry x:Name="email" Placeholder="Email" ReturnType="Next" PlaceholderColor="Blue" />
-             <Entry x:Name="username" Placeholder="Username" ReturnType="Next" PlaceholderColor="Blue" />
-             <Entry x:Name="phone" MaxLength="10" Placeholder="Phone" ReturnType="Next" Keyboard="Telephone" PlaceholderColor="Blue" />
-             <Entry x:Name="password" IsPassword="true" Placeholder="Password" PlaceholderColor="Blue" ReturnType="Next" />
-             <Entry x:Name="adress" Placeholder="Adress" ReturnType="Next" PlaceholderColor="Blue" />
-             <Entry x:Name="postcode" MaxLength="5" Placeholder="Postcode" ReturnType="Next" Keyboard="Telephone" PlaceholderColor="Blue" />
+             <Entry x:Name="Firstname" Placeholder="Name" ReturnType="Next" PlaceholderColor="Black" />
+             <Entry x:Name="surname" Placeholder="Surname" ReturnType="Next" PlaceholderColor="Black" />
+             <Entry x:Name="email" Placeholder="Email" ReturnType="Next" PlaceholderColor="Black" />
+             <Entry x:Name="username" Placeholder="Username" ReturnType="Next" PlaceholderColor="Black" />
+             <Entry x:Name="phone" MaxLength="10" Placeholder="Phone" ReturnType="Next" Keyboard="Telephone" PlaceholderColor="Black" />
+             <Entry x:Name="password" IsPassword="true" Placeholder="Password" PlaceholderColor="Black" ReturnType="Next" />
+             <Entry x:Name="adress" Placeholder="Adress" ReturnType="Next" PlaceholderColor="Black" />
+             <Entry x:Name="postcode" MaxLength="5" Placeholder="Postcode" ReturnType="Next" Keyboard="Telephone" PlaceholderColor="Black" />
              <!--<Button VerticalOptions="Center" Text="Register" Command="{Binding regCommand}"/>-->
              <Button x:Name="Back" Clicked="Back_Clicked" Text="Register"></Button>
+             <!-- <Button x:Name="BackTo" Text="Go back to Login" BindingContext="{DataTemplate local:LoginPage}"></Button>-->
+              <StackLayout Padding="10,150,10,0" VerticalOptions="Center">
+
+                <FlexLayout JustifyContent="Center" AlignItems="End">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Already a member?" />
+                            <Span Text=" Login"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding logInCommand}"
+                                          />
+                                </Span.GestureRecognizers>
+                            </Span>                          
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                </FlexLayout>
+
+                <!--<Label Text="Don't have an account?"></Label>
+                <ImageButton Command="{Binding createCommand}"></ImageButton>-->                
+                
+              
+                
+            </StackLayout>
+     
              </StackLayout>
          </ContentPage.Content>
 </ContentPage>

@@ -4,8 +4,14 @@
              x:Class="SUP2021.Views.ProductPage"
               Title="{Binding Title}"
              >
-    
-        <ContentPage.ToolbarItems>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            IconImageSource="productpage_filtericon.png" Clicked="displayActionSheetBtn_Clicked"
+            />
+
+    </ContentPage.ToolbarItems>
+       <!-- <ContentPage.ToolbarItems>
             <ToolbarItem Text="Add"
                      
                          Command="{Binding AddNewCommand}"/>
@@ -13,20 +19,79 @@
                            Clicked="OnDeleteAllClicked"
             
                             />
-        </ContentPage.ToolbarItems>
+        </ContentPage.ToolbarItems> -->
   <!--  Clicked="OnAddProductClicked" -->
 <ContentPage.Content>
 
     
         <StackLayout>
+            
+            
 
-             <SearchBar x:Name="ProductSearch"  
+             <SearchBar x:Name="ProductSearch"  Text="Search" 
                  TextChanged="Handle_SearchButtonPressed"
                  />
-            
-             <Label Text="Filter Items:" 
-               VerticalOptions="Center"/>
-            <Picker x:Name ="categorypicker" Title="Select a value" ItemsSource="{Binding FilterOptions}" 
+
+            <FlexLayout JustifyContent="Start">
+                <Label Text="Category"></Label>                
+            </FlexLayout>
+
+            <FlexLayout Direction="Row">
+
+                <Frame x:Name="allframe" Padding="5" HorizontalOptions="Center" WidthRequest="64" HeightRequest="64" CornerRadius="10" Margin="5">
+                    <ImageButton Source="category_all.png" BackgroundColor="Transparent" Clicked="OnAllClicked"></ImageButton>
+                </Frame>
+
+                <Frame x:Name="electronicsframe" Padding="5" HorizontalOptions="Center" WidthRequest="64" HeightRequest="64" CornerRadius="10" Margin="5">
+                    <ImageButton Source="category_electronics.png" BackgroundColor="Transparent" Clicked="OnElectronicsClicked"></ImageButton>                    
+                </Frame>
+
+                <Frame x:Name="clothesframe" Padding="5" HorizontalOptions="Center" WidthRequest="64" HeightRequest="64" CornerRadius="10" Margin="5">
+                    <ImageButton Source="category_clothes.png" BackgroundColor="Transparent" Clicked="OnClothesClicked"></ImageButton>
+                </Frame>
+
+                <Frame x:Name="foodframe" Padding="5" HorizontalOptions="Center" WidthRequest="64" HeightRequest="64" CornerRadius="10" Margin="5">
+                <ImageButton Source="category_food.png" BackgroundColor="Transparent" Clicked="OnFoodClicked"></ImageButton>
+                </Frame>
+
+                <Frame x:Name="otherframe" Padding="5" HorizontalOptions="Center" WidthRequest="64" HeightRequest="64" CornerRadius="10" Margin="5">
+                    <ImageButton Source="category_other.png" BackgroundColor="Transparent" Clicked="OnOtherClicked"></ImageButton>
+                </Frame>
+
+
+
+                <!-- Kläder,Mat, Elektronik, Annat-->
+
+                <!-- <ImageButton Source="clothes.png" BackgroundColor="Transparent"></ImageButton>
+                <ImageButton Source="electronics.png" BackgroundColor="Transparent"></ImageButton>
+                <ImageButton Source="other.png" BackgroundColor="Transparent"></ImageButton> -->
+
+            </FlexLayout>
+
+            <FlexLayout JustifyContent="SpaceEvenly">
+                <Label Text="All" TextColor="Black"></Label>
+                <Label Text=" Electronics" TextColor="Black"></Label>
+                <Label Text="Clothes" TextColor="Black"></Label>
+                <Label Text="Food" TextColor="Black"></Label>
+                <Label Text="    Other" TextColor="Black"></Label>                
+            </FlexLayout>
+
+
+            <!-- <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <CarouselView ItemsSource="{Binding FilterOptions}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding CategoryName}" />
+                            
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </ContentView> -->
+
+
+
+
+          <!--   <Picker x:Name ="categorypicker" Title="Select a value" ItemsSource="{Binding FilterOptions}" 
                 
                 SelectedIndexChanged="Picker_SelectedIndexChanged"
                 
@@ -38,7 +103,9 @@
                 </Picker.ItemDisplayBinding>
                 </Picker>
 
-            <Button Text="Display Action Sheet" x:Name="displayActionSheetBtn" Clicked="displayActionSheetBtn_Clicked"></Button>
+            <FlexLayout JustifyContent="End">           
+            <ImageButton x:Name="displayActionSheetBtn" Source="productpage_filtericon.png" Clicked="displayActionSheetBtn_Clicked" BackgroundColor="Transparent"></ImageButton>
+            </FlexLayout>  -->
 
             
 

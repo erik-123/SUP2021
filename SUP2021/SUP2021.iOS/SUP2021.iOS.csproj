@@ -230,4 +230,31 @@
   <ItemGroup>
     <BundleResource Include="Resources\main_logo_xamarin.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\category_all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\category_clothes.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\category_electronics.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\category_food.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\category_other.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\productpage_filtericon.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
 </Project>

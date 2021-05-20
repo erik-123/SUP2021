@@ -41,7 +41,7 @@ namespace SUP2021.Views
                     conn.CreateTable<Products>();
                     var products = conn.Table<Products>().ToList();
                     usersListView.ItemsSource = products;
-                    categorypicker.ItemsSource = conn.Table<CategoryModel>().ToList();
+                    //categorypicker.ItemsSource = conn.Table<CategoryModel>().ToList();
 
 
 
@@ -62,7 +62,127 @@ namespace SUP2021.Views
 
 
 
+        public void FilterCaregory(string categoryName)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Products>();
+                conn.CreateTable<CategoryModel>();
+                var categories = conn.Table<CategoryModel>().ToList();
+                var products = conn.Table<Products>().ToList();
 
+
+                if (categoryName == "all")
+                {
+
+                    usersListView.ItemsSource = products;
+                }
+                else
+                {
+
+                    foreach (var z in products)
+                    {
+                        foreach (var v in categories)
+                        {
+                            var categoryname = v.CategoryName;
+                            var item3 = categories.Where(o => o.CategoryName == categoryName);
+
+                            foreach (var q in item3)
+                            {
+                                var item4 = products.Where(k => k.CategoryId == q.CategoryId && q.CategoryName == categoryName);
+                                usersListView.ItemsSource = item4;
+                            }
+
+
+                        }
+
+                    }
+                }
+            }
+        }
+
+        //Kläder,Mat, Elektronik, Annat 
+        
+        public void OnAllClicked(object sender, EventArgs e)
+        {
+            string all = "all";
+            FilterCaregory(all);
+            allframe.BackgroundColor = Color.FromHex("#e9eaec");
+
+
+            //allframe.BackgroundColor = Color.White;
+            electronicsframe.BackgroundColor = Color.White;
+            foodframe.BackgroundColor = Color.White; 
+            clothesframe.BackgroundColor = Color.White;
+            otherframe.BackgroundColor = Color.White;
+
+
+        }
+
+        public void OnElectronicsClicked(object sender, EventArgs e) 
+            {
+            string electronics = "Elektronik";
+            FilterCaregory(electronics);
+            electronicsframe.BackgroundColor = Color.FromHex("#e9eaec");
+
+
+            allframe.BackgroundColor = Color.White;            
+            foodframe.BackgroundColor = Color.White;
+            clothesframe.BackgroundColor = Color.White;
+            otherframe.BackgroundColor = Color.White;
+
+
+        }
+        public void OnFoodClicked(object sender, EventArgs e)
+        {
+            string food = "Mat";
+            FilterCaregory(food);
+            foodframe.BackgroundColor = Color.FromHex("#e9eaec");
+
+
+            allframe.BackgroundColor = Color.White;
+            electronicsframe.BackgroundColor = Color.White;
+            clothesframe.BackgroundColor = Color.White;
+            otherframe.BackgroundColor = Color.White;
+
+        }
+        public void OnClothesClicked(object sender, EventArgs e)
+        {
+            string clothes = "Kläder";
+            FilterCaregory(clothes);
+            clothesframe.BackgroundColor = Color.FromHex("#e9eaec");
+
+            allframe.BackgroundColor = Color.White;
+            electronicsframe.BackgroundColor = Color.White;
+            foodframe.BackgroundColor = Color.White;
+            otherframe.BackgroundColor = Color.White;
+
+        }
+        public void OnOtherClicked(object sender, EventArgs e)
+        {
+            string other = "Annat";
+            FilterCaregory(other);
+            otherframe.BackgroundColor = Color.FromHex("#e9eaec");
+
+            allframe.BackgroundColor = Color.White;
+            electronicsframe.BackgroundColor = Color.White;
+            foodframe.BackgroundColor = Color.White;
+            clothesframe.BackgroundColor = Color.White;
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+        //alternativ metod
+        /*
         private void Picker_SelectedIndexChanged(object sender, EventArgs e)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
@@ -109,17 +229,17 @@ namespace SUP2021.Views
             }
         }
 
+        */
 
 
-
-
+/*
         protected override void OnDisappearing()
         {
             value5 = "value";
             categorypicker.SelectedItem = null;
             categorypicker.SelectedIndex = -1;
         }
-
+*/
 
         private void CursoView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

@@ -22,7 +22,7 @@ namespace SUP2021.Views.Test
         public CountryTest()
         {
             InitializeComponent();
-            this.BindingContext = new ShippingViewModel();
+           // this.BindingContext = new ShippingViewModel();
         }
         public async void Postnordtest(object sender, EventArgs e)
         {

@@ -5,7 +5,7 @@
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:vm="clr-namespace:SUP2021.ViewModels" xmlns:custom="clr-namespace:SUP2021.Views.Test"
              x:Class="SUP2021.Views.Test.CountryTest"
-             Title="{Binding Title}">
+             Title="Shipping">
 
     <ContentPage.BindingContext>
         <vm:PaymentViewModel />

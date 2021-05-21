@@ -31,7 +31,8 @@ namespace SUP2021.ViewModels
         private async void OnAddNewClicked(object obj)
         {
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync($"//{nameof(AddProductPage)}");
+            // await Shell.Current.GoToAsync($"//{nameof(AddProductPage)}");
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new AddProductPage());
         }
 
     }

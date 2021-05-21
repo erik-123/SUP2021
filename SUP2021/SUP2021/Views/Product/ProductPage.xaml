@@ -9,7 +9,13 @@
         <ToolbarItem 
             IconImageSource="productpage_filtericon.png" Clicked="displayActionSheetBtn_Clicked"
             />
-
+        <ToolbarItem Text="Add"
+                     
+                         Command="{Binding AddNewCommand}"/>
+        <ToolbarItem Text="Clear"
+                           Clicked="OnDeleteAllClicked"
+            
+                            />
     </ContentPage.ToolbarItems>
        <!-- <ContentPage.ToolbarItems>
             <ToolbarItem Text="Add"

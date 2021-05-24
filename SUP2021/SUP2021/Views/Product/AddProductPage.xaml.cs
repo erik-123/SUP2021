@@ -511,10 +511,13 @@ namespace SUP2021.Views
 
 
        }
-       /* private Products SelectedPerson => (Products)lstPersons.SelectedItem;*/
+        /* private Products SelectedPerson => (Products)lstPersons.SelectedItem;*/
 
 
-       
+        public async void OnBackButtonClicked(object sender, EventArgs e)
+        {
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new ProductPage());
+        }
 
-}
+    }
 }

@@ -16,7 +16,7 @@
             <Entry x:Name="email" Placeholder="Email" ReturnType="Next" />
             <Entry x:Name="username" Placeholder="Username" ReturnType="Next" />
             <Entry x:Name="phone" MaxLength="10" Placeholder="Phone" ReturnType="Next" Keyboard="Telephone" />
-            <Entry x:Name="password" IsPassword="true" Placeholder="Password" PlaceholderColor="Blue" ReturnType="Next" />
+            <Entry x:Name="password" IsPassword="true" Placeholder="Password" ReturnType="Next" />
             <Entry x:Name="adress" Placeholder="Adress" ReturnType="Next" />
             <Entry x:Name="postcode" MaxLength="5" Placeholder="Postcode" ReturnType="Next" Keyboard="Telephone" />
            

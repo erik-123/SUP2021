@@ -148,7 +148,8 @@ namespace SUP2021.Views
 
                         await DisplayAlert("Congrats!", "A new product have been added to the ShoppingCart!", "OK");
                         Console.WriteLine(uid.ToString(), ShoppingId, productId);
-                        await Navigation.PushAsync(new ProductPage()); 
+                      //  await Navigation.PushAsync(new ProductPage());
+                        await Shell.Current.GoToAsync($"//{nameof(ProductPage)}");
 
                     }
                 }

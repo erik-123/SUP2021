@@ -12,6 +12,9 @@ using RestSharp;
 using SUP2021.Models;
 using System.Net;
 using SUP2021.ViewModels;
+using System.Text.RegularExpressions;
+using SQLite;
+using System.Collections.ObjectModel;
 
 namespace SUP2021.Views.Test
 {
@@ -24,32 +27,51 @@ namespace SUP2021.Views.Test
             InitializeComponent();
            // this.BindingContext = new ShippingViewModel();
         }
+        protected override void OnAppearing()
+        {
+
+            base.OnAppearing();
+
+            checkboxstandard.IsEnabled = false;
+
+        }
+
         public async void Postnordtest(object sender, EventArgs e)
         {
             //Api key: 03f0da2b63d3bf80b62eb88c4e1c40c8
             // new API key: 0ba91457361a67d1495aefa8519ba3cb
             //await DisplayAlert("","","");
 
-            if ((string.IsNullOrWhiteSpace(txtCity.Text) || string.IsNullOrWhiteSpace(txtPostalCode.Text) || string.IsNullOrWhiteSpace(txtAdress.Text)
-                 || string.IsNullOrEmpty(txtCity.Text) || string.IsNullOrEmpty(txtPostalCode.Text) || (string.IsNullOrEmpty(txtAdress.Text))))
+            //if ((string.IsNullOrWhiteSpace(txtCity.Text) || string.IsNullOrWhiteSpace(txtPostalCode.Text) || string.IsNullOrWhiteSpace(txtAdress.Text)
+            //     || string.IsNullOrEmpty(txtCity.Text) || string.IsNullOrEmpty(txtPostalCode.Text) || (string.IsNullOrEmpty(txtAdress.Text))))
 
 
 
+
+            //{
+            //    await DisplayAlert("Alert", "A textfield can't be empty or lack value", "OK");
+            //}
+            //else
+            //{
+
+            if ((string.IsNullOrWhiteSpace(txtPostalCode.Text) || string.IsNullOrEmpty(txtPostalCode.Text)))
 
             {
-                await DisplayAlert("Alert", "A textfield can't be empty or lack value", "OK");
+                await DisplayAlert("Alert", "Postcode needs to have a value!", "OK");
             }
             else
             {
+
+
 
 
                 //Beräknar transportid
                 //var client = new RestClient("https://atapi2.postnord.com/rest/transport/v1/transittime/getTransitTimeInformation.json?apikey=03f0da2b63d3bf80b62eb88c4e1c40c8&dateOfDeparture=2021-02-09&serviceCode=18&serviceGroupCode=SE&fromAddressStreetName=teststreet&fromAddressStreetNumber=1&fromAddressPostalCode=11759&fromAddressCountryCode=SE&toAddressStreetName=teststreet&toAddressStreetNumber=2&toAddressPostalCode=17173&toAddressCountryCode=SE&responseContent=simple");
 
 
-                string city = txtCity.Text; //Working
+                //string city = txtCity.Text; 
                 string postalCode = txtPostalCode.Text;
-                string streetName = txtAdress.Text;
+                //string streetName = txtAdress.Text;
                 //int streetNumber = 6;
 
 
@@ -59,41 +81,41 @@ namespace SUP2021.Views.Test
                 //City: Örebro
 
 
-                try
-                {
-                    string[] subs = streetName.Split(' ');
+                //try
+                //{
+                //    string[] subs = streetName.Split(' ');
 
-                    foreach (var sub in subs)
-                    {
-                        Console.WriteLine($"Substring: {sub}");
-
-
-                    }
+                //    foreach (var sub in subs)
+                //    {
+                //        Console.WriteLine($"Substring: {sub}");
 
 
-                    string x = subs[0];
-                    string y = subs[1];
-                    Console.WriteLine(city + postalCode + x + y);
+                //    }
 
 
-                    var body = new JsonRootAdressObject
+                //    string x = subs[0];
+                //    string y = subs[1];
+                //    Console.WriteLine(city + postalCode + x + y);
 
-                    {
-                        city = city,
-                        postalCode = postalCode,
-                        streetName = x,
-                        streetNumber = y
 
-                    };
+                //    var body = new JsonRootAdressObject
 
-                }
-                catch (Exception ex)
+                //    {
+                //        city = city,
+                //        postalCode = postalCode,
+                //        streetName = x,
+                //        streetNumber = y
 
-                {
-                    Console.WriteLine(ex);
-                    await DisplayAlert("Alert!", "Incorrect adress, try again", "OK");
+                //    };
 
-                }
+                //}
+                //catch (Exception ex)
+
+                //{
+                //    Console.WriteLine(ex);
+                //    await DisplayAlert("Alert!", "Incorrect adress, try again", "OK");
+
+                //}
 
                 
 
@@ -109,40 +131,39 @@ namespace SUP2021.Views.Test
                 var client3 = new RestClient(url2);
                 var request2 = new RestRequest(Method.GET);
 
-               var deserilzaer = new RestSharp.Deserializers.DotNetXmlDeserializer(); //Ny
+                //var deserilzaer = new RestSharp.Deserializers.DotNetXmlDeserializer(); 
 
 
                 // request2.AddParameter("city", city, ParameterType.RequestBody);
                 //request2.AddParameter("postalCode", postalCode, ParameterType.RequestBody);
 
-               IRestResponse<List<Models.ServicePointNames>> response4 = client3.Get<List<Models.ServicePointNames>>(request2); //Ny
+              // IRestResponse<List<Models.ServicePointNames>> response4 = client3.Get<List<Models.ServicePointNames>>(request2); //Ny
 
 
                 //request2.AddJsonBody(body);
 
 
-                //IRestResponse response = client3.Execute(request2);
+                IRestResponse response = client3.Execute(request2);
                 // Console.WriteLine("Svaret kommer här"+ response4.Content);
 
-                HttpStatusCode statusCode = response4.StatusCode;
+                HttpStatusCode statusCode = response.StatusCode;
                 int numericStatusCode = (int)statusCode;
 
-                if (response4.IsSuccessful)
-                {
-                    
+                if (response.IsSuccessful)
+                {                  
 
 
                     Console.WriteLine(numericStatusCode);
-                    Models.ServicePointNames data = deserilzaer.Deserialize<Models.ServicePointNames>(response4);
+                    //Models.ServicePointNames data = deserilzaer.Deserialize<Models.ServicePointNames>(response4);
+                   // Console.WriteLine(data.name);
 
 
-
-                    // await DisplayActionSheet("Vales from Api", data.name, "OK", "Cancel");
-                    Console.WriteLine(data.name);
+                    await DisplayAlert("Vales from Api", response.Content, "OK", "Cancel");
+                    
                     }
                 else {
 
-                    await DisplayActionSheet("Vales from Api", "Something went wrong", "OK", "Cancel");
+                    await DisplayActionSheet("Error", "Something went wrong", "OK", "Cancel");
                     Console.WriteLine(numericStatusCode);
                 }
 
@@ -188,13 +209,116 @@ namespace SUP2021.Views.Test
                 //await DisplayAlert("Vales from Api", response.Content, "OK", "Cancel");
 
 
-            }
+           }
             
         }
         public async void OnNextButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PaymentTest());
+
+            //lblAddress
+            //lblPostalCode
+            //lblCity
+
+            if ((string.IsNullOrWhiteSpace(txtAdress.Text) || string.IsNullOrWhiteSpace(txtPostalCode.Text) || string.IsNullOrWhiteSpace(txtCity.Text) ||
+                string.IsNullOrEmpty(txtAdress.Text) || string.IsNullOrEmpty(txtPostalCode.Text) || string.IsNullOrEmpty(txtCity.Text)))
+
+            {
+                await DisplayAlert("Alert", "A textfield can't be empty or lack value", "OK");              
+
+            }
+            else
+            {               //(txtAdress.Text, @"^[0-9]+\s+([a-zA-Z]+|[a-zA-Z]+\s[a-zA-Z]+)$").Success)       
+
+                string input = txtCity.Text;
+                bool isDigitPresent = input.Any(c => char.IsDigit(c));
+
+                if (!Regex.Match(txtAdress.Text, @"(^[a-zA-Z]+\s+\d+[0-9]$)$").Success)
+                {
+
+                    await DisplayAlert("Alert", "Address has the wrong format! Addresses need to have the following format: street 124 ", "OK");
+                }
+                else if (txtPostalCode.Text.Length < 5)
+                {
+                    await DisplayAlert("Alert", "Postcodes need to have a 5 digit number!", "OK");
+
+                }
+                else if (isDigitPresent) 
+                {
+                    await DisplayAlert("Alert", "City cannot contain numbers!", "OK");
+                }
+                else
+                {
+                    var value = Application.Current.Properties["Username"].ToString();
+
+                    using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                    {
+
+                        conn.CreateTable<User>();
+                        var data = conn.Table<User>().ToList();
+                        var checkquery = conn.Table<User>().Where(a => a.Username == value).FirstOrDefault();
+
+                        Console.WriteLine(value);
+
+
+
+
+
+
+                        var useridcheck = conn.Table<User>().Where(c => c.Username == value).ToList();
+
+
+
+                        var Rows = new ObservableCollection<User>();
+                        Rows.Clear();
+
+
+                        foreach (var entry in useridcheck)
+                        {
+
+                            int pid = entry.UID;                       
+
+                            var length = entry.password.Length;
+
+
+                            string city = txtCity.Text;
+                            string postalCode = txtPostalCode.Text;
+                            string streetName = txtAdress.Text;
+
+
+
+                            var shippingInfo = new ShippingModel
+                            {
+                                ShippingId = Guid.NewGuid(),
+                                Address = streetName,
+                                City = city,
+                                Postalcode = postalCode,
+                                UID = pid,
+                               
+                            };
+
+
+
+
+                            conn.CreateTable<ShippingModel>();
+                            int rowsAdded = conn.Insert(shippingInfo);
+
+                            await DisplayAlert("Congrats!", "A new product have been added!", "OK");
+
+                            await Navigation.PushAsync(new PaymentTest());
+
+
+                        }
+                    } 
+                }
+            }
         }
+
+        private async void OnCancelButtonClicked(object sender, EventArgs e) 
+        {
+            await Shell.Current.GoToAsync($"//{nameof(Basket)}");
+        }
+
+          
 
 
         public class PostObject

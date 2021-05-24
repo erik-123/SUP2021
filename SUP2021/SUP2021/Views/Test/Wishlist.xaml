@@ -4,22 +4,22 @@
              x:Class="SUP2021.Views.Test.Wishlist">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="listWish" HeightRequest="400">
+            <ListView x:Name="listWish" HeightRequest="400" ItemSelected="WishListTapped" IsPullToRefreshEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <ViewCell.ContextActions>
+                          <!--  <ViewCell.ContextActions>
                                 <MenuItem Clicked="OnDeleteButtonClicked"
                                  CommandParameter="{Binding .}"
                                  Text="Delete" IsDestructive="True" />
-                            </ViewCell.ContextActions>
-                            <ViewCell.View>
+                            </ViewCell.ContextActions> -->
+                            <ViewCell.View> 
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding URL}" Aspect="AspectFit"></Image>
                                     <Label Text="{Binding ProductName}"></Label>
                                     <Label Text="{Binding Price}"></Label>
-                                    <Button Text="Delete" HeightRequest="50" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Clicked="OnDeleteButtonClicked">
-                                    </Button>
+                                  <!--  <Button Text="Delete" HeightRequest="50" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Clicked="OnDeleteButtonClicked">
+                                    </Button> -->
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>

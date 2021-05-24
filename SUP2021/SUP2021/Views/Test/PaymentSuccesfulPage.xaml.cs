@@ -27,7 +27,9 @@ namespace SUP2021.Views.Test
 
         public async void OnButtonClosedClicked(Object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ProductPage());
+            //await Navigation.PushAsync(new ProductPage());
+            await Shell.Current.GoToAsync($"//{nameof(ProductPage)}");
+
 
         }
 

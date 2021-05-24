@@ -24,6 +24,12 @@
             <StackLayout Orientation="Vertical" Padding="30,24,30,40" Spacing="10" BackgroundColor="#E9EAEC" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
                 <Label Text="Välkomna till vår handelsapplikation" FontSize="Title" TextColor="Black"/>
                 <Label Text="Gå gärna in och se vilka produkter som finns till salu! " FontSize="16" Padding="0,0,0,0" TextColor="Black"/>
+                <Label Text="Klick på knappen här nedan!" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+                <FlexLayout JustifyContent="Center">
+                    
+                    <ImageButton Source="main_logo_xamarin.png" Clicked="Button_ClickedStart" WidthRequest="50" HeightRequest="50"></ImageButton>
+
+                </FlexLayout>
                 <Label Text="Om applikationen" FontSize="Title" TextColor="Black"/>
                  <Label Text="Applikationen är byggd i Xamarin och dess mål är att fungera på både android och ios enheter så alla får möjligheten att handla." FontSize="16" Padding="0,0,0,0" TextColor="Black"/>
                 <Label Text="Våran passion" FontSize="Title" TextColor="Black"/>

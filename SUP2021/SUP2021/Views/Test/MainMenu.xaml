@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SUP2021.Views.Test.MainMenu"
+            xmlns:SUP2021="clr-namespace:SUP2021;assembly=SUP2021"
+           xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+           android:TabbedPage.ToolbarPlacement="Bottom"
+           BarBackgroundColor="#e9eaec"
+           BarTextColor="Black"
+            >
+  <!--Pages can be added as references or inline-->
+
+
+    
+
+<!-- <ContentPage Title="Home" />
+  <ContentPage Title="Category" />
+    <ContentPage Title="Cart" IconImageSource="navicon_shoppingcart.png">
+        
+    </ContentPage>
+  <ContentPage Title="Wishlist" />
+  <ContentPage Title="Profile" /> -->
+    
+</TabbedPage> 

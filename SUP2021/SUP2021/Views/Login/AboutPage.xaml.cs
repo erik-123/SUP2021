@@ -13,6 +13,11 @@ namespace SUP2021.Views
             InitializeComponent();
         }
 
+       public async void Button_ClickedStart(object sender, EventArgs e)
+       {
+            await Shell.Current.GoToAsync($"//{nameof(Test.MainMenu)}");
+        }
+
        async void Button_ClickedFacebook(System.Object sender, System.EventArgs e)
         {
             if (await Launcher.CanOpenAsync("https://m.facebook.com"))

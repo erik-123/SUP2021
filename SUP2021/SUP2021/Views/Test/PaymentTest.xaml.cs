@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Firebase.Storage;
 using Shiny;
 using Shiny.Notifications;
 using SQLite;
@@ -23,7 +24,14 @@ namespace SUP2021.Views.Test
         private string Firstname { get; set; }
         private string Surname { get; set; }
         private string Fullname { get; set; }
-       
+
+        private string CityName { get; set; }
+        private string PostalCode { get; set; }
+        private string StreetName { get; set; }
+
+        private int ResultCurrency { get; set; }
+        private int Price { get; set; }
+
 
         public PaymentTest()
         {
@@ -43,7 +51,7 @@ namespace SUP2021.Views.Test
             await SendNotificationNow();
             await ScheduleLocalNotification(DateTimeOffset.UtcNow.AddMinutes(1));
 
-            await DisplayAlert("Alert","Skriv inte in ditt eget kort","OK");
+            await DisplayAlert("Alert", "Skriv inte in ditt eget kort", "OK");
 
 
 
@@ -71,14 +79,14 @@ namespace SUP2021.Views.Test
 
             return ShinyHost.Resolve<INotificationManager>().Send(notification);
         }
-    
 
 
-async void OnOpenSwishButton_Clicked(System.Object sender, System.EventArgs e)
+
+        async void OnOpenSwishButton_Clicked(System.Object sender, System.EventArgs e)
         {
 
             GetUserInfo();
-            await DisplayAlert("Alert",Fullname,"OK");
+            await DisplayAlert("Alert", Fullname, "OK");
 
             //if (await Launcher.CanOpenAsync("swish://"))
             //{
@@ -94,7 +102,7 @@ async void OnOpenSwishButton_Clicked(System.Object sender, System.EventArgs e)
 
 
         public async void PayViaStripe()
-            {
+        {
             //GetUserInfo();
 
             try
@@ -133,23 +141,30 @@ async void OnOpenSwishButton_Clicked(System.Object sender, System.EventArgs e)
                 var sourceService = new SourceService();
                 Source source = sourceService.Create(option);
 
+
+
+                TestSum();
                 GetUserInfo();
+                GetShippingInfo();
                 // Skapar testkund
                 CustomerCreateOptions customer = new CustomerCreateOptions
                 {
                     Name = Fullname,
-                    Email = "projektbloggsup@gmail.com",
-                    Description = "Paying 5 sek",
-                    Address = new AddressOptions { City = "Sthlm", Country = "Sweden", Line1 = "Sample Address", Line2 = "Sample Address 2", PostalCode = "10030" }
+                    Email = "projektbloggsup@gmail.com", //test email can be changed
+                    Description = "Paying " + Price + " sek",
+                    // Address = new AddressOptions { City = "Sthlm", Country = "Sweden", Line1 = "Sample Address", Line2 = "Sample Address 2", PostalCode = "10030" }
+                    Address = new AddressOptions { City = CityName, Country = "Sweden", Line1 = StreetName, Line2 = "Sample Address 2", PostalCode = PostalCode }
                 };
 
                 var customerService = new CustomerService();
                 var cust = customerService.Create(customer);
 
+
+
                 // Charge option
                 var chargeoption = new ChargeCreateOptions
                 {
-                    Amount = 1500, //Måste vara högre än 3,00 dvs 300
+                    Amount = ResultCurrency, //Måste vara högre än 3,00 dvs 300 //3000=30
                     Currency = "SEK",
                     ReceiptEmail = "projektbloggsup@gmail.com",
                     Customer = cust.Id,
@@ -162,13 +177,14 @@ async void OnOpenSwishButton_Clicked(System.Object sender, System.EventArgs e)
                 if (charge.Status == "succeeded")
                 {
                     Console.WriteLine("Success");
+                    RemoveFromShoppingCart();
                     await Navigation.PushAsync(new PaymentSuccesfulPage());
 
                 }
                 else
                 {
                     Console.WriteLine("Payment failed");
-                   
+
                 }
             }
             catch (Exception ex) {
@@ -176,14 +192,18 @@ async void OnOpenSwishButton_Clicked(System.Object sender, System.EventArgs e)
                 await DisplayAlert("Alert", ex.ToString(), "OK");
                 Console.WriteLine(ex);
             }
-            }
-
-                       
-
-            private void Button_Clicked(object sender, EventArgs e)
-            {
-                PayViaStripe();
         }
+
+
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            PayViaStripe();
+        }
+
+
+
+
         private async void GetUserInfo()
         {
             var value = Application.Current.Properties["Username"].ToString();
@@ -237,8 +257,8 @@ async void OnOpenSwishButton_Clicked(System.Object sender, System.EventArgs e)
 
 
                     Console.WriteLine(Fullname);
-                    await DisplayAlert("Alert", Fullname, "OK");
-                  
+
+
 
 
 
@@ -261,6 +281,111 @@ async void OnOpenSwishButton_Clicked(System.Object sender, System.EventArgs e)
 
         }
 
+        private async void GetShippingInfo()
+        {
+            var value = Application.Current.Properties["Username"].ToString();
+
+            try
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.CreateTable<ShippingModel>();
+                    conn.CreateTable<User>();
+                    var useridcheck = conn.Table<User>().Where(c => c.Username == value).ToList();
+
+
+
+
+                    var Rows = new ObservableCollection<User>();
+                    Rows.Clear();
+                    Console.WriteLine(useridcheck);
+
+
+
+                    foreach (var a in useridcheck)
+                    {
+                        var shippingModels = conn.Table<ShippingModel>().Where(c => c.UID == a.UID).ToList();
+
+                        foreach (var b in shippingModels)
+                        {
+
+                            Console.WriteLine(a.UID + a.firstname + a.sername);
+
+
+                            CityName = b.City;
+                            PostalCode = b.Postalcode;
+                            StreetName = b.Address;
+
+
+                        }
+
+                    }
+
+                }
+            }
+
+
+            catch (Exception ex)
+            {
+                await DisplayAlert("Alert", "Something went wrong!", "OK");
+
+                Console.WriteLine("testmeddelande");
+                Console.WriteLine(ex);
+                Console.WriteLine("testmeddelande");
+
+
+
+            }
+        }
+
+        private async void RemoveFromShoppingCart()
+        {
+
+            try
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.DropTable<ShoppingCartModel>();
+                    var task = new FirebaseStorage("sup2021-c58ec.appspot.com")
+                    .Child("ProductImages").DeleteAsync();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Alert", "Error occured when buying the product!", "OK");
+                Console.WriteLine("Felmeddelande");
+                Console.WriteLine(ex);
+                Console.WriteLine("Felmeddelande");
+
+            }
+
+        }  
+        
+        
+
+        private void TestSum()
+        {
+           
+            var value = Application.Current.Properties["SUM"].ToString();
+            Price = int.Parse(value);
+            
+            int currency = 100; //convert to Swedish Currency
+
+            ResultCurrency = Price * currency;
+
+
+           
+        }
 
     }
-    }
+}
+    
+    
+    
+
+
+
+
+
+

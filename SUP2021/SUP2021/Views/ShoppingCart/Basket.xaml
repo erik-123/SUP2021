@@ -4,8 +4,15 @@
              x:Class="SUP2021.Views.Basket"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <StackLayout>
 
+       
+
+
+            <StackLayout>
+
+            
+            
+            
             <!--<ListView x:Name="ShoppingCart" HeightRequest="400">
                 
                     <ListView.ItemTemplate>
@@ -32,26 +39,19 @@
             </ListView> -->
 
 
-            <ListView x:Name="ShoppingCart" HeightRequest="400">
+            <ListView x:Name="ShoppingCart" HeightRequest="400" ItemSelected="ItemTapped" IsPullToRefreshEnabled="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Clicked="OnDeleteButtonClicked"
-                                 CommandParameter="{Binding .}"
-                                 Text="Delete" IsDestructive="True" />
-                            </ViewCell.ContextActions>
+                         <ViewCell>
                             <ViewCell.View>
-                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding URL}" Aspect="AspectFit"></Image>
                                     <Label Text="{Binding ProductName}"></Label>
-                                    <Label Text="{Binding Price}"></Label>                                    
-                                    <Button Text="Delete" HeightRequest="50" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Clicked="OnDeleteButtonClicked">
-                                </Button>
+                                    <Label Text="{Binding Price}"></Label>                                  
                             </StackLayout>
-                        </ViewCell.View>
-                    </ViewCell>
-                </DataTemplate>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
             </ListView.ItemTemplate>
             </ListView>
 

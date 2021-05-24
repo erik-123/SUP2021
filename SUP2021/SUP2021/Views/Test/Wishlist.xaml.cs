@@ -18,9 +18,18 @@ namespace SUP2021.Views.Test
     public partial class Wishlist : ContentPage
     {
         public static FirebaseClient firebase = new FirebaseClient("https://sup2021-c58ec-default-rtdb.europe-west1.firebasedatabase.app/%22");
+        private ObservableCollection<Products> _wishlist;
         public Wishlist()
         {
             InitializeComponent();
+            _wishlist = new ObservableCollection<Products>();
+
+            listWish.RefreshCommand = new Command(() => {
+
+                RefreshData();
+                listWish.IsRefreshing = false;
+            });
+
         }
         protected override async void OnAppearing()
         {
@@ -34,8 +43,8 @@ namespace SUP2021.Views.Test
                     conn.CreateTable<WishListModel>();
                     var products = conn.Table<WishListModel>().ToList();
 
-                    var Rows = new ObservableCollection<Products>();
-                    Rows.Clear();
+                    //var Rows = new ObservableCollection<Products>();
+                    _wishlist.Clear();
 
                     // ShoppingCart.ItemsSource = products;
 
@@ -57,8 +66,8 @@ namespace SUP2021.Views.Test
                             row.URL = c.URL;
                             row.RefUserID = c.RefUserID;
 
-                            Rows.Add(row);
-                            listWish.ItemsSource = Rows;
+                            _wishlist.Add(row);
+                            listWish.ItemsSource = _wishlist;
                         }
 
                     }
@@ -73,6 +82,108 @@ namespace SUP2021.Views.Test
             }
 
         }
+
+        public async void RefreshData()
+        {
+
+            try
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.CreateTable<WishListModel>();
+                    var products = conn.Table<WishListModel>().ToList();
+
+                    //var Rows = new ObservableCollection<Products>();
+                    _wishlist.Clear();
+
+                    // ShoppingCart.ItemsSource = products;
+
+                    foreach (var b in products)
+                    {
+                        var test = b.ReferProductID;
+                        var query = conn.Table<Products>().Where(a => a.ProductId == test).ToList();
+                        Console.WriteLine(query);
+
+                        foreach (var c in query)
+                        {
+                            Console.WriteLine(c.ProductName);
+
+
+                            var row = new Products();
+                            row.Price = c.Price;
+                            row.ProductName = c.ProductName;
+                            row.ProductId = c.ProductId;
+                            row.URL = c.URL;
+                            row.RefUserID = c.RefUserID;
+
+                            _wishlist.Add(row);
+                            listWish.ItemsSource = _wishlist;
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                await DisplayAlert("Alert", "Something went wrong!", "OK");
+
+
+            }
+
+
+        }
+
+        private async void WishListTapped(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = e.SelectedItem as Products;
+
+
+
+            if (item != null)
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.CreateTable<WishListModel>();
+                    var shoppingcartitems = conn.Table<WishListModel>().ToList();
+                    var products = conn.Table<Products>().ToList();
+
+                    var data1 = shoppingcartitems.Where(x => x.ReferProductID == item.ProductId).FirstOrDefault();
+                    var data2 = products.Where(x => x.ProductId == item.ProductId).FirstOrDefault();
+
+                    Console.WriteLine(data2.ProductId);
+
+                    var et = new ObservableCollection<Products>();
+
+
+
+                    if (data1.WishId != null)
+                    {
+
+                        conn.Delete(data1);
+                        await DisplayAlert("Congrats!", "Delete Successfully! Please pull to refresh", "OK");
+
+                    }
+                    else
+                    {
+                        await DisplayAlert("Alert", "No Product found!", "OK");
+                    }
+
+                }
+
+
+            }
+
+            else if (item == null)
+            {
+                await DisplayAlert("Alert", "Error!", "OK");
+            }
+
+
+        }
+
+
+
         public async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
 

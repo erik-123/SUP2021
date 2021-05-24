@@ -105,17 +105,18 @@
         <ShellContent Route="settings" ContentTemplate="{DataTemplate local:TestUserDB} "/>
     </FlyoutItem> -->
     <FlyoutItem Title= "Products" Icon="navicon_products.png">
-        <ShellContent Route="settings" ContentTemplate="{DataTemplate local:ProductPage} "/>
+        <ShellContent Route="ProductPage" ContentTemplate="{DataTemplate local:ProductPage} "/>
     </FlyoutItem>
     <FlyoutItem Title= "ShoppingCart" Icon="navicon_shoppingcart.png">
         <ShellContent Route="Basket" ContentTemplate="{DataTemplate local:Basket} "/>
     </FlyoutItem>
-    <FlyoutItem Title="Payment test" Icon="icon_about.png">
+   <!-- <FlyoutItem Title="Payment test" Icon="icon_about.png">
         <ShellContent Route="PaymentTest" ContentTemplate="{DataTemplate local:Test.PaymentTest} "/>
     </FlyoutItem>
     <FlyoutItem Title="Shipping" Icon="icon_about.png">
         <ShellContent Route="CountryTest" ContentTemplate="{DataTemplate local:Test.CountryTest} "/>
     </FlyoutItem> 
+    -->
     <FlyoutItem Title= "Settings" Icon="navicon_settings.png">
         <ShellContent Route="settings" ContentTemplate="{DataTemplate local:settings} "/>
     </FlyoutItem>
@@ -124,14 +125,18 @@
         <ShellContent Route="FAQ" ContentTemplate="{DataTemplate local:Test.FAQ} "/>
     </FlyoutItem>
     <FlyoutItem Title= "Wishlist" Icon="navicon_wishlist.png">
-        <ShellContent Route="Wishlist" ContentTemplate="{DataTemplate local:Test.Wishlist} "/>
+        <ShellContent Route="WishList" ContentTemplate="{DataTemplate local:Test.Wishlist} "/>
     </FlyoutItem>
 
 
     <FlyoutItem Title= "Logout" Icon="navicon_logout.png">
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage} "/>
     </FlyoutItem>
-    
+
+    <FlyoutItem Title= "Main Menu test" Icon="navicon_logout.png">
+        <ShellContent Route="MainMenu" ContentTemplate="{DataTemplate local:Test.MainMenu} "/>
+    </FlyoutItem>
+
 
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
@@ -149,6 +154,8 @@
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
         <ShellContent Route="createaccount" ContentTemplate="{DataTemplate local:createaccount}"/>
         <ShellContent Route="AddProductPage" ContentTemplate="{DataTemplate local:AddProductPage}"/>
+      
+        
        
     </TabBar>
 

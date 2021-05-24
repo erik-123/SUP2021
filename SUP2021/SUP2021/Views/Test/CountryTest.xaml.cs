@@ -15,17 +15,21 @@ using SUP2021.ViewModels;
 using System.Text.RegularExpressions;
 using SQLite;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
+
 
 namespace SUP2021.Views.Test
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CountryTest : ContentPage
     {
-       // private string getUrl = "https://api2.postnord.com/rest/businesslocation/v5/servicepoints/nearest/byaddress?apikey=0ba91457361a67d1495aefa8519ba3cb&returnType=json&countryCode=SE&agreement";
+        // private string getUrl = "https://api2.postnord.com/rest/businesslocation/v5/servicepoints/nearest/byaddress?apikey=0ba91457361a67d1495aefa8519ba3cb&returnType=json&countryCode=SE&agreement";
+
+        public IList<Service> pickup { get; set; }
         public CountryTest()
         {
             InitializeComponent();
-           // this.BindingContext = new ShippingViewModel();
+            // this.BindingContext = new ShippingViewModel();
         }
         protected override void OnAppearing()
         {
@@ -117,14 +121,14 @@ namespace SUP2021.Views.Test
 
                 //}
 
-                
+
 
 
 
 
                 // string url = "https://api2.postnord.com/rest/businesslocation/v5/servicepoints/nearest/byaddress?apikey=0ba91457361a67d1495aefa8519ba3cb&returnType=json&countryCode=SE&agreement";
 
-               // string url = "https://api2.postnord.com/rest/businesslocation/v5/servicepoints/bypostalcode?";
+                // string url = "https://api2.postnord.com/rest/businesslocation/v5/servicepoints/bypostalcode?";
 
                 string url2 = $"https://api2.postnord.com/rest/businesslocation/v5/servicepoints/bypostalcode?apikey=0ba91457361a67d1495aefa8519ba3cb&returnType=json&countryCode=SE&postalCode={postalCode}&context=optionalservicepoint&responseFilter=public&typeId=25&callback=jsonp";
 
@@ -137,7 +141,7 @@ namespace SUP2021.Views.Test
                 // request2.AddParameter("city", city, ParameterType.RequestBody);
                 //request2.AddParameter("postalCode", postalCode, ParameterType.RequestBody);
 
-              // IRestResponse<List<Models.ServicePointNames>> response4 = client3.Get<List<Models.ServicePointNames>>(request2); //Ny
+                // IRestResponse<List<Models.ServicePointNames>> response4 = client3.Get<List<Models.ServicePointNames>>(request2); //Ny
 
 
                 //request2.AddJsonBody(body);
@@ -150,27 +154,27 @@ namespace SUP2021.Views.Test
                 int numericStatusCode = (int)statusCode;
 
                 if (response.IsSuccessful)
-                {                  
+                {
 
 
                     Console.WriteLine(numericStatusCode);
                     //Models.ServicePointNames data = deserilzaer.Deserialize<Models.ServicePointNames>(response4);
-                   // Console.WriteLine(data.name);
+                    // Console.WriteLine(data.name);
 
 
                     await DisplayAlert("Vales from Api", response.Content, "OK", "Cancel");
-                    
-                    }
+
+                }
                 else {
 
                     await DisplayActionSheet("Error", "Something went wrong", "OK", "Cancel");
                     Console.WriteLine(numericStatusCode);
                 }
 
-               
 
-                
-                
+
+
+
 
 
                 //var client = new RestClient("https://api2.postnord.com/rest/businesslocation/v5/servicepoints/nearest/byaddress?apikey=0ba91457361a67d1495aefa8519ba3cb&returnType=json&countryCode=SE&agreementCountry=SE&city=Gislaved&postalCode=33234&streetName=Holmengatan&streetNumber=14&numberOfServicePoints=3&srId=EPSG:4326&context=optionalservicepoint&responseFilter=public&typeId=24,25,54&callback=jsonp");
@@ -209,9 +213,192 @@ namespace SUP2021.Views.Test
                 //await DisplayAlert("Vales from Api", response.Content, "OK", "Cancel");
 
 
-           }
-            
+            }
+
         }
+        private async void BookNewOrder()
+        {
+            try
+            {
+
+                var streetaddress = txtAdress.Text;
+                var postalcode = txtPostalCode.Text;
+                int convertedpostalcode = int.Parse(postalcode);
+                var city = txtCity.Text;
+
+                string[] subs = streetaddress.Split(' ');
+
+                foreach (var sub in subs)
+                {
+                    Console.WriteLine($"Substring: {sub}");
+
+
+                }
+
+
+                string streetname = subs[0];
+                string streetNumber = subs[1];             
+
+
+                var additionalServiceCodeStandard = new List<string>
+            {
+                "A1"
+            };
+                var itemList = new List<long>
+            {
+                373500489530470000
+            };
+
+             
+
+                List<PickupService> newist = new List<PickupService>();
+
+                newist.Add(new PickupService() {  typeOfItem = "parcel",  noUnits = 1 });
+
+
+
+
+                Service Servicebody = new Service
+                {
+                    
+                    basicServiceCode = "19",
+                    additionalServiceCode = new List<string>
+            {
+                "A1"
+            }
+
+            };
+
+                
+
+                Service2 service2 = new Service2
+                {
+                    service = Servicebody
+
+                };
+                
+                Shipment2 shipment2 = new Shipment2
+                {
+                    shipment = service2
+                };
+
+                var Shipmentbody = new Shipment
+                {
+                     
+                    items = itemList
+
+                };
+                var LocationBody = new Location
+                {
+                    place = "Company name or information about pickup place e.g.garage",
+                    streetName = streetname,
+                    streetNumber = streetNumber,
+                    postalCode = convertedpostalcode,
+                    city = city,
+                    countryCode = "SE"
+
+
+                };
+
+                Location2 location2 = new Location2
+                {
+                     location = LocationBody
+                };
+
+                var OrderBody = new Order
+                {
+                    customerNumber = "1234567891",
+                    orderReference = "Ref-1212122A",
+                    contactName = "Nils Andersson",
+                    contactEmail = "Nils.Andersson@postnord.com",
+                    phoneNumber = "+4670788888",
+                    smsNumber = "+4670788888",
+                    entryCode = "8216"
+                };
+
+                var Order2 = new Order2
+                { 
+                     order = OrderBody
+                
+                };
+
+                var PickUpBody = new PickupService
+                {
+                    
+                    typeOfItem = "parcel",
+                    noUnits = 1
+
+                };
+
+                var PickUp2 = new PickUp2
+                {
+                    
+                     pickups = newist
+
+                };
+
+
+                var datesandtimesBody = new DateAndTimes
+                {
+                    readyPickupDate = new DateTime(2021, 5, 13),
+                    latestPickupDate = new DateTime(2021, 5, 13),
+                    earliestPickupDate = new DateTime(2021, 5, 13)
+
+            };
+
+                var datesandtimes2 = new DateAndTimes2
+                {
+                    DateAndTimes  = datesandtimesBody
+
+                };
+
+               
+
+                var client = new RestClient("https://api2.postnord.com/rest/order/v1/pickup/SE?apikey=0ba91457361a67d1495aefa8519ba3cb");
+                client.Timeout = -1;
+                var request = new RestRequest(Method.POST);
+                // request.AddParameter("text/plain", "{\r\n  \"shipment\": {\r\n    \"service\": {\r\n      \"basicServiceCode\": \"19\",\r\n      \"additionalServiceCode\": [\r\n        \"A1\"\r\n      ]\r\n    },\r\n    \"items\": [\r\n      373500489530470000\r\n    ]\r\n  },\r\n  \"location\": {\r\n    \"place\": \"Company name or information about pickup place e.g. garage\",\r\n    \"streetName\": \"streetname\",\r\n    \"streetNumber\": \"streetNumber\",\r\n    \"postalCode\": postalcode,\r\n    \"city\": \"txtCity\",\r\n    \"countryCode\": \"SE\"\r\n  },\r\n  \"order\": {\r\n    \"customerNumber\": \"1234567891\",\r\n    \"orderReference\": \"Ref-1212122A\",\r\n    \"contactName\": \"Nils Andersson\",\r\n    \"contactEmail\": \"Nils.Andersson@postnord.com\",\r\n    \"phoneNumber\": \"+4670788888\",\r\n    \"smsNumber\": \"+4670788888\",\r\n    \"entryCode\": \"8216\"\r\n  },\r\n  \"pickup\": [\r\n    {\r\n      \"typeOfItem\": \"parcel\",\r\n      \"noUnits\": 1\r\n    }\r\n  ],\r\n  \"dateAndTimes\": {\r\n    \"readyPickupDate\": \"2020-11-17T09:52:07.929Z\",\r\n    \"latestPickupDate\": \"2020-11-17T09:52:07.929Z\",\r\n    \"earliestPickupDate\": \"2020-11-17T09:52:07.929Z\"\r\n  }\r\n}", ParameterType.RequestBody);
+
+                
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+
+                 
+
+                string json = JsonConvert.SerializeObject(shipment2, Formatting.Indented);
+                string json2 = JsonConvert.SerializeObject(Shipmentbody, Formatting.Indented);
+                string json3 = JsonConvert.SerializeObject(location2, Formatting.Indented);
+                string json4 = JsonConvert.SerializeObject(Order2, Formatting.Indented);
+                string json5 = JsonConvert.SerializeObject(PickUp2, Formatting.Indented);
+                string json6 = JsonConvert.SerializeObject(datesandtimes2, Formatting.Indented);
+
+                await DisplayAlert("Alert", json+json2+json3+json4+json5+json6, "OK");
+                Console.WriteLine(json + json2 + json3 + json4 + json5 + json6);              
+
+                request.RequestFormat = DataFormat.Json;
+
+                request.AddJsonBody(shipment2);
+                request.AddJsonBody(Shipmentbody);
+                request.AddJsonBody(location2);
+                request.AddJsonBody(Order2);               
+                request.AddJsonBody(PickUp2);                
+                request.AddJsonBody(datesandtimes2);              
+
+                IRestResponse response = client.Execute(request);
+                await DisplayAlert("Alert", response.Content.ToString(), "OK");
+
+            }
+            catch (Exception ex)
+
+            {
+                Console.WriteLine(ex);
+                await DisplayAlert("Alert!", "Incorrect adress, try again", "OK");
+
+            } 
+        
+        }
+    
+
         public async void OnNextButtonClicked(object sender, EventArgs e)
         {
 
@@ -248,6 +435,7 @@ namespace SUP2021.Views.Test
                 }
                 else
                 {
+                    
                     var value = Application.Current.Properties["Username"].ToString();
 
                     using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))

@@ -174,7 +174,7 @@
 
 
 
-               
+                
                 <Button Text="Next" Clicked="OnNextButtonClicked" VerticalOptions="End" Margin="10"></Button> 
             </StackLayout>
         </ScrollView>

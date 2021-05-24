@@ -184,6 +184,7 @@ namespace SUP2021.Views.Test
                 else
                 {
                     Console.WriteLine("Payment failed");
+                    await Shell.Current.GoToAsync($"//{nameof(PaymentFailedPage)}");
 
                 }
             }

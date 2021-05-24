@@ -315,7 +315,7 @@ namespace SUP2021.Views
             var value = Application.Current.Properties["SUM"].ToString();
             int price = int.Parse(value);
 
-            if (String.IsNullOrEmpty(price.ToString()) || String.IsNullOrEmpty(CountShoppingCart.Text) || NewSum == 0)
+            if (String.IsNullOrEmpty(price.ToString()) || String.IsNullOrEmpty(CountShoppingCart.Text) || price == 0)
             {
                 await DisplayAlert("Alert", "ShoppingCart is Empty!", "OK");
               

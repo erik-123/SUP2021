@@ -133,8 +133,12 @@
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage} "/>
     </FlyoutItem>
 
-    <FlyoutItem Title= "Main Menu test" Icon="navicon_logout.png">
+    <FlyoutItem Title= "Main Menu test" Icon="navicon_logout.png" FlyoutItemIsVisible="False">
         <ShellContent Route="MainMenu" ContentTemplate="{DataTemplate local:Test.MainMenu} "/>
+    </FlyoutItem>
+
+    <FlyoutItem Title= "PaymentFailed" Icon="navicon_logout.png" FlyoutItemIsVisible="False">
+        <ShellContent Route="PaymentFailed" ContentTemplate="{DataTemplate local:Test.PaymentFailedPage} "/>
     </FlyoutItem>
 
 
@@ -154,6 +158,7 @@
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
         <ShellContent Route="createaccount" ContentTemplate="{DataTemplate local:createaccount}"/>
         <ShellContent Route="AddProductPage" ContentTemplate="{DataTemplate local:AddProductPage}"/>
+        
       
         
        
